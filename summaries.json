@@ -3,10 +3,10 @@
     "img": "summary-b1c9.jpg",
     "last_update": "2017-07-24",
     "date": "2017-07-24",
-    "version": "4e4f55c6bcd63c1d4b38401ba134e8f00430d7edc0b3731b1577e81fb2d61a02",
+    "version": "062cab3b78b6bf58ea3306d9bfb5959acb11adf92706c7b5adab3585d02911fc",
     "author": "Pierre-Henry Fröhring",
     "id": "07a6caad-6fd7-44c9-93ca-949b2c2cf7ea",
-    "abstract": "Les choses faites et en cours.",
+    "abstract": "Les choses faites et en cours.\n<a href=\"/pubs/curriculum-vitae-c5566488.html\">English version</a>.",
     "title": "Curriculum Vitae",
     "sign": "Signature",
     "tags": [
@@ -16,12 +16,12 @@
   },
   {
     "img": "summary-b1c9.jpg",
-    "last_update": "2017-07-24",
+    "last_update": "2017-07-25",
     "date": "2017-07-24",
-    "version": "1e80bdcf200ca8258f51875b82d09621ddd5f90d486ea7506da082d8f86a87a0",
+    "version": "027a310334f2afad77717cc20a3e1a9fac05926887986194cf699b4f002ccc3e",
     "author": "Pierre-Henry Fröhring",
     "id": "c5566488-fb41-4554-8650-4eadfe570391",
-    "abstract": "Things done and undergoing.",
+    "abstract": "Things done and undergoing.\n<a href=\"/pubs/curriculum-vitae-07a6caad.html\">Version française</a>.",
     "title": "Curriculum Vitae",
     "sign": "Signature",
     "tags": [

@@ -19,7 +19,7 @@ body {
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    -moz-font-feature-settings: "liga" on;
-   color: rgba(0,0,0,.8);
+   color: rgba(0,0,0,.75);
    margin: 0;
    padding: 0;
    word-break: break-word;
@@ -27,7 +27,8 @@ body {
    font-family: Georgia,Cambria,"Times New Roman",Times,serif;
    background: #eeeeee;
    padding-bottom: 20em;
-
+   font-size: 18px;
+   line-height: 1.3;
 }
 
 textarea, input { outline: none; border:none; }
@@ -57,6 +58,10 @@ a {
    text-decoration: none;
 }
 
+a:hover {
+   color: #FB8C00;
+}
+
 
 .navigation {
    padding: 0.5em 0.5em 0 0.5em;
@@ -70,6 +75,7 @@ a {
    display: flex;
    justify-content: space-around;
 }
+
 .list_of-predifined_publications li {
    list-style: none;
    text-align: center;
@@ -164,9 +170,6 @@ blockquote a{
    color: #2196F3;
 }
 
-blockquote a:hover{
-   color: #666;
-}
 
 blockquote em{
    font-style: italic;
@@ -183,8 +186,24 @@ blockquote em{
 
 
 
+.summary {
+   height: 157px;
+   border: 1px solid rgba(0,0,0,.1)
+}
 
 
+.publication-wrapper .abstract {
+   height: 6em;
+}
+
+.publication-wrapper .date {
+   margin-top: 1em;
+   font-size: 0.75em;
+}
+
+.publication-wrapper .author {
+   font-size: 0.75em;
+}
 
 
 @media (max-width: 1000px) {
@@ -199,7 +218,6 @@ blockquote em{
       padding-top: 28.125%;
    }
 
-
    .summary {
       padding: 0.5em;
       max-width: 500px;
@@ -208,8 +226,17 @@ blockquote em{
       border: 1px solid rgba(0,0,0,.1)
    }
 
+   .summary-columns {
+      height: 100%;
+   }
+
+   .summary-text-column {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+   }
+
    .summary-title {
-      color: rgba(0,0,0,.8);
       text-align: center;
       font-size: 1.2em;
       margin: 0;
@@ -218,7 +245,7 @@ blockquote em{
    .summary-tags {
       margin: 0;
       padding: 0.5em 0 0 0;
-      font-size: 0.85em;
+      font-size: 0.65em;
    }
 
 
@@ -226,16 +253,17 @@ blockquote em{
       margin: 0;
       padding-top: 0.5em;
       font-size: 1em;
+      flex:1;
    }
 
    .summary-author_date {
       margin: 0;
       padding-top: 0.5em;
-      font-size: 0.85em;
+      font-size: 0.75em;
    }
 
    .content {
-      padding: 2em 0.5em;
+      padding: 6em 0.5em 4em 0.5em;
       max-width: 740px;
       min-width: 300px;
       margin: auto;
@@ -246,10 +274,10 @@ blockquote em{
 
 
 @media (min-width: 1000px) {
-   body {
-      font-size: 18px;
-      line-height: 1.4;
-   }
+   /* body { */
+   /*    font-size: 18px; */
+   /*    line-height: 1.4; */
+   /* } */
 
    .top-header {
       margin: 2em 0;
@@ -259,7 +287,6 @@ blockquote em{
 
    .summary {
       width: 650px;
-      height: 157px;
       margin: auto;
       margin-top: 2em;
       border: 1px solid rgba(0,0,0,.1)
@@ -293,7 +320,6 @@ blockquote em{
    }
 
    .summary-title {
-      color: rgba(0,0,0,.8);
       text-align: center;
       font-size: 1em;
       margin: 0;
@@ -302,28 +328,28 @@ blockquote em{
    .summary-tags {
       margin: 0;
       padding: 0.5em 0 0 0;
-      font-size: 0.5em;
+      font-size: 0.65em;
    }
 
    .summary-abstract {
       margin: 0;
       padding-top: 0.5em;
-      font-size: 0.75em;
+      font-size: 1em;
       flex: 1;
    }
 
    .summary-author_date {
       margin: 0;
       padding-top: 0.5em;
-      font-size: 0.5em;
+      font-size: 0.75em;
    }
 
    .content {
-      padding: 2em 0.5em;
+      padding: 6em 0.5em 4em 0.5em;
       max-width: 740px;
       min-width: 550px;
       margin: auto;
-      font-size: 20px;
+      font-size: 16px;
    }
 
 }

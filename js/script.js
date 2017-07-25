@@ -140,6 +140,7 @@
 
             var address = `/pubs/${meta_to_filename(title,id)}.html`
 
+
             return `
 <div class="summary">
     <div class="summary-columns">
@@ -202,7 +203,7 @@
             { summaries: [] },
             function({ summaries }) {
                 summaries.forEach(check_summary)
-                return summaries
+                return summaries.sort((s1,s2) => (new Date(s2.last_update)).getTime() - (new Date(s1.last_update)).getTime())
             },
             summaries_equal
         )
