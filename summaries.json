@@ -3,14 +3,30 @@
     "img": "summary-b1c9.jpg",
     "last_update": "2017-07-24",
     "date": "2017-07-24",
-    "version": "62ac03138f8d493c01698f42637d46ef33143569f671163fd7d1908e910fa9d2",
+    "version": "4e4f55c6bcd63c1d4b38401ba134e8f00430d7edc0b3731b1577e81fb2d61a02",
+    "author": "Pierre-Henry Fröhring",
+    "id": "07a6caad-6fd7-44c9-93ca-949b2c2cf7ea",
+    "abstract": "Les choses faites et en cours.",
+    "title": "Curriculum Vitae",
+    "sign": "Signature",
+    "tags": [
+      "cv",
+      "fr"
+    ]
+  },
+  {
+    "img": "summary-b1c9.jpg",
+    "last_update": "2017-07-24",
+    "date": "2017-07-24",
+    "version": "1e80bdcf200ca8258f51875b82d09621ddd5f90d486ea7506da082d8f86a87a0",
     "author": "Pierre-Henry Fröhring",
     "id": "c5566488-fb41-4554-8650-4eadfe570391",
     "abstract": "Things done and undergoing.",
     "title": "Curriculum Vitae",
     "sign": "Signature",
     "tags": [
-      "cv"
+      "cv",
+      "en"
     ]
   }
 ]
