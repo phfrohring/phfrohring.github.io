@@ -135,7 +135,8 @@
             last_update,
             author,
             sign,
-            img
+            img,
+            img_credits
         }) {
 
             var address = `/pubs/${meta_to_filename(title,id)}.html`
@@ -145,7 +146,7 @@
 <div class="summary">
     <div class="summary-columns">
         <div class="summary-picture-column">
-            <a href="${address}" style="background-image: url(/images/${img});background-position: center center;"></a>
+            <a href="${address}" title="${img_credits}" style="background-image: url(/images/summary-${img});background-position: center center;"></a>
         </div>
         <div class="summary-text-column">
             <a href="${address}"><h1 class="summary-title">${title}</h1></a>
@@ -182,7 +183,8 @@
             'last_update': 'string',
             'author': 'string',
             'sign': 'string',
-            'img': 'string'
+            'img': 'string',
+            'img_credits': 'string'
         }
 
         return function(summary) { check_form(summary, summary_form) }
