@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Pierre-Henry Fröhring</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+        <link rel="icon" type="image/png" href="/images/favicon.png"/>
+                <style type="text/css">
+            div.sourceCode { overflow-x: auto; }
+            table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+              margin: 0; padding: 0; vertical-align: baseline; border: none; }
+            table.sourceCode { width: 100%; line-height: 100%; }
+            td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+            td.sourceCode { padding-left: 5px; }
+            code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+            code > span.dt { color: #902000; } /* DataType */
+            code > span.dv { color: #40a070; } /* DecVal */
+            code > span.bn { color: #40a070; } /* BaseN */
+            code > span.fl { color: #40a070; } /* Float */
+            code > span.ch { color: #4070a0; } /* Char */
+            code > span.st { color: #4070a0; } /* String */
+            code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+            code > span.ot { color: #007020; } /* Other */
+            code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+            code > span.fu { color: #06287e; } /* Function */
+            code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+            code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+            code > span.cn { color: #880000; } /* Constant */
+            code > span.sc { color: #4070a0; } /* SpecialChar */
+            code > span.vs { color: #4070a0; } /* VerbatimString */
+            code > span.ss { color: #bb6688; } /* SpecialString */
+            code > span.im { } /* Import */
+            code > span.va { color: #19177c; } /* Variable */
+            code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+            code > span.op { color: #666666; } /* Operator */
+            code > span.bu { } /* BuiltIn */
+            code > span.ex { } /* Extension */
+            code > span.pp { color: #bc7a00; } /* Preprocessor */
+            code > span.at { color: #7d9029; } /* Attribute */
+            code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+            code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+            code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+            code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+        </style>
+                    </head>
+
+    <body>
+        <div class="top-wrapper">
+            <header class="top-header" title="Photo by Ricardo Viana on Unsplash." style="background-image: url(/images/header-orig-mess-6bb3.jpg);background-size: cover; background-position: center;"></header>
+
+            <div class="columns_1">
+                <nav class="navigation">
+                    <ul class="list_of-predifined_publications">
+                        <li class="predefined_publication"><a href="/pubs/curriculum-vitae-c5566488.html">CV</a></li>
+                        <li class="predefined_publication"><a href="/">Search</a></li>
+                    </ul>
+                    <input class="card search_box" type="text" id="search_box" placeholder="some words   tag:some_tag">
+                </nav>
+
+                <div class="content">
+                    <div class="publication-wrapper">
+                                                <header>
+                            <h1 class="title">Web</h1>
+                                                        <p class="abstract">Notes on the Web.</p>
+                                                                                                                <p class="date">2017-07-28</p>
+                                                                                    <p class="author">Pierre-Henry Fröhring</p>
+                                                    </header>
+                                                                        <nav id="TOC">
+                            <ul>
+                            <li><a href="#notes">Notes</a><ul>
+                            <li><a href="#a-fixed-navbar">A fixed navbar</a></li>
+                            <li><a href="#a-black-transparent-overlay">A black transparent overlay</a></li>
+                            </ul></li>
+                            </ul>
+                        </nav>
+                                                <h1 id="notes">Notes</h1>
+<h2 id="a-fixed-navbar">A fixed navbar</h2>
+<p>HTML:</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;nav</span><span class="ot"> id=</span><span class="st">&quot;navigation&quot;</span><span class="ot"> class=</span><span class="st">&quot;navigation&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;locations-wrapper&quot;</span><span class="ot"> class=</span><span class="st">&quot;locations-wrapper&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;/images/logo.png&quot;</span><span class="ot"> id=</span><span class="st">&quot;nav-logo&quot;</span><span class="ot"> class=</span><span class="st">&quot;nav-logo&quot;</span><span class="ot"> alt=</span><span class="st">&quot;Logo&quot;</span><span class="kw">/&gt;</span>
+        <span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">&quot;locations&quot;</span><span class="ot"> class=</span><span class="st">&quot;locations&quot;</span><span class="kw">&gt;</span>
+            <span class="kw">&lt;li</span><span class="ot"> class=</span><span class="st">&quot;location&quot;</span><span class="kw">&gt;</span>
+                <span class="kw">&lt;a</span><span class="ot"> class=</span><span class="st">&quot;location-link&quot;</span><span class="ot"> href=</span><span class="st">&quot;#guaranties&quot;</span><span class="kw">&gt;</span>Guaranties<span class="kw">&lt;/a&gt;</span>
+            <span class="kw">&lt;/li&gt;</span>
+            <span class="kw">&lt;li</span><span class="ot"> class=</span><span class="st">&quot;location&quot;</span><span class="kw">&gt;</span>
+                <span class="kw">&lt;a</span><span class="ot"> class=</span><span class="st">&quot;location-link&quot;</span><span class="ot"> href=</span><span class="st">&quot;#about_us&quot;</span><span class="kw">&gt;</span>About us<span class="kw">&lt;/a&gt;</span>
+            <span class="kw">&lt;/li&gt;</span>
+        <span class="kw">&lt;/ul&gt;</span>
+    <span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;/nav&gt;</span></code></pre></div>
+<p>CSS:</p>
+<div class="sourceCode"><pre class="sourceCode css"><code class="sourceCode css"><span class="fl">.locations-wrapper</span> <span class="kw">{</span>
+    <span class="kw">margin-left:</span> <span class="dt">1em</span><span class="kw">;</span>
+    <span class="kw">margin-top:</span> <span class="dt">1em</span><span class="kw">;</span>
+    <span class="kw">display:</span> flex<span class="kw">;</span>
+    <span class="kw">flex-direction:</span> column<span class="kw">;</span>
+<span class="kw">}</span>
+<span class="fl">.navigation</span> <span class="kw">{</span>
+   <span class="kw">flex:</span> <span class="dt">1</span><span class="kw">;</span>
+   <span class="kw">max-width:</span> <span class="dt">15%</span><span class="kw">;</span>
+<span class="kw">}</span></code></pre></div>
+<p>JavaScript:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="op">!</span>(<span class="kw">function</span>()<span class="op">{</span>
+    <span class="st">&#39;use strict&#39;</span>
+
+<span class="va">window</span>.<span class="at">onload</span> <span class="op">=</span> <span class="kw">function</span>() <span class="op">{</span>
+    <span class="kw">var</span> navigation_id <span class="op">=</span> <span class="st">&#39;navigation&#39;</span>
+    <span class="kw">var</span> locations_wrapper <span class="op">=</span> <span class="st">&#39;locations-wrapper&#39;</span>
+
+    <span class="kw">var</span> addEventListenerMulti <span class="op">=</span> <span class="kw">function</span>(element<span class="op">,</span> events<span class="op">,</span> listner) <span class="op">{</span>
+        <span class="va">events</span>.<span class="at">split</span>(<span class="st">&#39; &#39;</span>).<span class="at">forEach</span>(evt <span class="op">=&gt;</span> <span class="va">element</span>.<span class="at">addEventListener</span>(evt<span class="op">,</span> listner))<span class="op">;</span>
+    <span class="op">}</span>
+
+    <span class="kw">var</span> when_needed_set_locations_wrapper_width <span class="op">=</span> 
+        <span class="kw">function</span>(navigation_id<span class="op">,</span> locations_ids) <span class="op">{</span>
+            <span class="kw">var</span> navigation <span class="op">=</span> <span class="va">document</span>.<span class="at">getElementById</span>(navigation_id)
+            <span class="kw">var</span> navigation_w <span class="op">=</span> <span class="va">window</span>.<span class="at">getComputedStyle</span>(navigation).<span class="at">width</span>
+            <span class="kw">var</span> locations_wrapper <span class="op">=</span> <span class="va">document</span>.<span class="at">getElementById</span>(locations_ids)<span class="op">;</span>
+            <span class="cf">if</span> (<span class="va">locations_wrapper</span>.<span class="va">style</span>.<span class="at">position</span> <span class="op">===</span> <span class="st">&#39;fixed&#39;</span>) <span class="op">{</span>
+                <span class="va">locations_wrapper</span>.<span class="va">style</span>.<span class="at">width</span> <span class="op">=</span> <span class="vs">`calc(</span><span class="sc">${</span>navigation_w<span class="sc">}</span><span class="vs"> - 1em)`</span>
+                <span class="va">locations_wrapper</span>.<span class="va">style</span>.<span class="at">marginLeft</span> <span class="op">=</span> <span class="st">&#39;1em&#39;</span>
+            <span class="op">}</span>
+            <span class="cf">else</span> <span class="op">{</span>
+                <span class="va">locations_wrapper</span>.<span class="va">style</span>.<span class="at">width</span> <span class="op">=</span> <span class="st">&#39;auto&#39;</span>
+                <span class="va">locations_wrapper</span>.<span class="va">style</span>.<span class="at">marginLeft</span> <span class="op">=</span> <span class="st">&#39;1em&#39;</span>
+        <span class="op">}</span>
+    <span class="op">}</span>
+
+    <span class="kw">var</span> when_needed_set_locations_wrapper_y <span class="op">=</span> 
+        <span class="kw">function</span>(navigation_id<span class="op">,</span> locations_ids) <span class="op">{</span>
+            <span class="kw">var</span> navigation <span class="op">=</span> <span class="va">document</span>.<span class="at">getElementById</span>(navigation_id)
+            <span class="kw">var</span> navigation_w <span class="op">=</span> <span class="va">window</span>.<span class="at">getComputedStyle</span>(navigation).<span class="at">width</span>
+            <span class="kw">var</span> navigation_y <span class="op">=</span> <span class="va">navigation</span>.<span class="at">offsetTop</span><span class="op">;</span>
+            <span class="kw">var</span> locations_wrapper <span class="op">=</span> <span class="va">document</span>.<span class="at">getElementById</span>(locations_ids)<span class="op">;</span>
+            <span class="cf">if</span> (<span class="va">window</span>.<span class="at">pageYOffset</span> <span class="op">&gt;</span> navigation_y) <span class="op">{</span>
+                <span class="va">locations_wrapper</span>.<span class="va">style</span>.<span class="at">position</span> <span class="op">=</span> <span class="st">&quot;fixed&quot;</span><span class="op">;</span>
+                <span class="va">locations_wrapper</span>.<span class="va">style</span>.<span class="at">top</span> <span class="op">=</span> <span class="st">&quot;0&quot;</span><span class="op">;</span>
+            <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span>
+                <span class="va">locations_wrapper</span>.<span class="va">style</span>.<span class="at">position</span> <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">;</span>
+                <span class="va">locations_wrapper</span>.<span class="va">style</span>.<span class="at">top</span> <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">;</span>
+        <span class="op">}</span>
+    <span class="op">}</span>
+
+
+    <span class="at">when_needed_set_locations_wrapper_y</span>(navigation_id<span class="op">,</span> locations_wrapper)
+    <span class="at">when_needed_set_locations_wrapper_width</span>(navigation_id<span class="op">,</span> locations_wrapper)
+
+
+    <span class="at">addEventListenerMulti</span>(window<span class="op">,</span><span class="st">&#39;scroll resize orientationChange&#39;</span><span class="op">,</span> <span class="kw">function</span>() <span class="op">{</span>
+        <span class="at">when_needed_set_locations_wrapper_y</span>(navigation_id<span class="op">,</span> locations_wrapper)
+        <span class="at">when_needed_set_locations_wrapper_width</span>(navigation_id<span class="op">,</span> locations_wrapper)
+    <span class="op">}</span>)
+<span class="op">}</span>
+
+<span class="op">}</span>())</code></pre></div>
+<h2 id="a-black-transparent-overlay">A black transparent overlay</h2>
+<div class="sourceCode"><pre class="sourceCode css"><code class="sourceCode css"><span class="fl">.landing-overlay</span><span class="dv">::before</span> <span class="kw">{</span>
+    <span class="kw">content:</span> <span class="st">&#39;&#39;</span><span class="kw">;</span>
+    <span class="kw">position:</span><span class="dt">absolute</span><span class="kw">;</span>
+    <span class="kw">top:</span><span class="dt">0</span><span class="kw">;</span>
+    <span class="kw">left:</span><span class="dt">0</span><span class="kw">;</span>
+    <span class="kw">right:</span><span class="dt">0</span><span class="kw">;</span>
+    <span class="kw">bottom:</span><span class="dt">0</span><span class="kw">;</span>
+    <span class="kw">background:</span><span class="dt">black</span><span class="kw">;</span>
+    <span class="kw">opacity:</span> <span class="dt">0.35</span><span class="kw">;</span>
+    <span class="kw">z-index:</span><span class="dt">0</span><span class="kw">;</span>
+    <span class="kw">color:</span> <span class="dt">white</span><span class="kw">;</span>
+<span class="kw">}</span></code></pre></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

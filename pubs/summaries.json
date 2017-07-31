@@ -1,0 +1,101 @@
+[
+  {
+    "broadcast": "true",
+    "img": "orig-fallout-terminal-546b.png",
+    "last_update": "2017-07-27",
+    "date": "2017-07-27",
+    "version": "f7407780172047605ce3950aa8d56d50831499e0d9293dd12cd239553c9bd154",
+    "img_credits": "Photo by Sir Mildred Pierce. Original:\nhttps://www.flickr.com/photos/sirmildredpierce/2998392469. Licence:\nhttps://creativecommons.org/licenses/by/2.0/. Unmodified.",
+    "author": "Pierre-Henry Fröhring",
+    "id": "a487a051-7bf0-4262-837d-39750b16748c",
+    "abstract": "Notes on Bash.",
+    "title": "Bash",
+    "sign": "Signature",
+    "tags": [
+      "en"
+    ]
+  },
+  {
+    "broadcast": "true",
+    "img": "orig-b1c9.jpg",
+    "last_update": "2017-07-24",
+    "date": "2017-07-24",
+    "version": "648a7ac68c139c79fe44125a75248e262eecc8d80366aa7c7874cc0be7b80a51",
+    "img_credits": "Photo by Will Fuller on Unsplash.",
+    "author": "Pierre-Henry Fröhring",
+    "id": "07a6caad-6fd7-44c9-93ca-949b2c2cf7ea",
+    "abstract": "Les choses faites et en cours.\n<a href=\"/pubs/curriculum-vitae-c5566488.html\">English version</a>.",
+    "title": "Curriculum Vitae",
+    "sign": "Signature",
+    "tags": [
+      "cv",
+      "fr"
+    ]
+  },
+  {
+    "broadcast": "true",
+    "img": "orig-b1c9.jpg",
+    "last_update": "2017-07-25",
+    "date": "2017-07-24",
+    "version": "69593d774550bf541b742a2da1df8369f322db4cdc4401077b1282c5bd89dfb5",
+    "img_credits": "Photo by Will Fuller on Unsplash.",
+    "author": "Pierre-Henry Fröhring",
+    "id": "c5566488-fb41-4554-8650-4eadfe570391",
+    "abstract": "Things done and undergoing.\n<a href=\"/pubs/curriculum-vitae-07a6caad.html\">Version française</a>.",
+    "title": "Curriculum Vitae",
+    "sign": "Signature",
+    "tags": [
+      "cv",
+      "en"
+    ]
+  },
+  {
+    "broadcast": "true",
+    "img": "orig-souk-a5e9.jpg",
+    "last_update": "2017-07-26",
+    "date": "2017-07-26",
+    "version": "dc6447dbf25f311cba35f4d7c9ab45c41b95c7ff836b7bf4c3c468d736a354bd",
+    "img_credits": "Photo by Iyad on Pixabay.",
+    "author": "Pierre-Henry Fröhring",
+    "id": "f405ebf6-0a2b-48c1-8db3-e8f3b68a9017",
+    "abstract": "Selling things online.",
+    "title": "Digital Marketing",
+    "sign": "Signature",
+    "tags": [
+      "en",
+      "marketing"
+    ]
+  },
+  {
+    "broadcast": "true",
+    "img": "orig-mess-544b.jpg",
+    "last_update": "2017-07-27",
+    "date": "2017-07-27",
+    "version": "5886dad6ac7768d8f442c93efdf4c8d7a8da8d8118b621e0c33d1f91de4421d3",
+    "img_credits": "Photo by AJ Yorio on Unsplash.",
+    "author": "Pierre-Henry Fröhring",
+    "id": "87391c6e-14a6-4ebb-9be1-d75c6db91e10",
+    "abstract": "Notes on Linux.",
+    "title": "Linux",
+    "sign": "Signature",
+    "tags": [
+      "en"
+    ]
+  },
+  {
+    "broadcast": "true",
+    "img": "orig-mess-6bb3.jpg",
+    "last_update": "2017-07-28",
+    "date": "2017-07-28",
+    "version": "9fca24c95e47f09be2f4896ed040fc09f9df95bba2052c43ffdaa8e73293482c",
+    "img_credits": "Photo by Ricardo Viana on Unsplash.",
+    "author": "Pierre-Henry Fröhring",
+    "id": "a2625936-2a7b-4a49-bcae-1fa6bf03358c",
+    "abstract": "Notes on the Web.",
+    "title": "Web",
+    "sign": "Signature",
+    "tags": [
+      "en"
+    ]
+  }
+]

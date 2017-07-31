@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Pierre-Henry Fröhring</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+        <link rel="icon" type="image/png" href="/images/favicon.png"/>
+                    </head>
+
+    <body>
+        <div class="top-wrapper">
+            <header class="top-header" title="Photo by Sir Mildred Pierce. Original: https://www.flickr.com/photos/sirmildredpierce/2998392469. Licence: https://creativecommons.org/licenses/by/2.0/. Unmodified." style="background-image: url(/images/header-orig-fallout-terminal-546b.png);background-size: cover; background-position: center;"></header>
+
+            <div class="columns_1">
+                <nav class="navigation">
+                    <ul class="list_of-predifined_publications">
+                        <li class="predefined_publication"><a href="/pubs/curriculum-vitae-c5566488.html">CV</a></li>
+                        <li class="predefined_publication"><a href="/">Search</a></li>
+                    </ul>
+                    <input class="card search_box" type="text" id="search_box" placeholder="some words   tag:some_tag">
+                </nav>
+
+                <div class="content">
+                    <div class="publication-wrapper">
+                                                <header>
+                            <h1 class="title">Bash</h1>
+                                                        <p class="abstract">Notes on Bash.</p>
+                                                                                                                <p class="date">2017-07-27</p>
+                                                                                    <p class="author">Pierre-Henry Fröhring</p>
+                                                    </header>
+                                                                        <nav id="TOC">
+                            <ul>
+                            <li><a href="#notes">Notes</a><ul>
+                            <li><a href="#introduction">Introduction</a></li>
+                            <li><a href="#shell-parameter-expansion">Shell Parameter Expansion</a></li>
+                            <li><a href="#conditional-constructs">Conditional Constructs</a></li>
+                            <li><a href="#looping-constructs">Looping Constructs</a><ul>
+                            <li><a href="#tips">Tips</a></li>
+                            </ul></li>
+                            </ul></li>
+                            </ul>
+                        </nav>
+                                                <h1 id="notes">Notes</h1>
+<p>Source: <a href="www.gnu.org/software/bash/manual/">Bash manual</a>.</p>
+<h2 id="introduction">Introduction</h2>
+<p>A shell is a macro processor that executes commands.</p>
+<p>The term macro processor means functionality where text and symbols are expanded to create larger expressions.</p>
+<p>A Unix shell is both a command interpreter and a programming language.</p>
+<p>As a command interpreter, the shell provides the user interface to the rich set of GNU utilities.</p>
+<p>A shell allows execution of GNU commands, both synchronously and asynchronously.</p>
+<h2 id="shell-parameter-expansion">Shell Parameter Expansion</h2>
+<p>Default to: “${var_name}” because If the substitution appears within double quotes, word splitting and file name expansion are not performed on the results.</p>
+<pre><code>array=(0 1 2 3 4 5 6 7 8 9 0 a b c d e f g h)
+echo ${array[@]:0}
+→ 0 1 2 3 4 5 6 7 8 9 0 a b c d e f g h</code></pre>
+<h2 id="conditional-constructs">Conditional Constructs</h2>
+<p>[[ expression ]] Return a status of 0 or 1 depending on the evaluation of the conditional expression expression. Expressions are composed of the primaries described below in Bash Conditional Expressions. Word splitting and filename expansion are not performed on the words between the [[ and ]]; tilde expansion, parameter and variable expansion, arithmetic expansion, command substitution, process substitution, and quote removal are performed. Conditional operators such as ‘-f’ must be unquoted to be recognized as primaries.</p>
+<h2 id="looping-constructs">Looping Constructs</h2>
+<pre><code>Arr=(A B)
+for v in &quot;${Arr[@]}&quot;; do echo &quot;${v}&quot;; done 
+→ A 
+→ B
+    
+A=a
+B=b
+PRIVATE_DIRS=(A B)
+for dir in &quot;${PRIVATE_DIRS[@]}&quot;; do
+    if [[ -d &quot;${!dir}&quot; ]]; then 
+        echo &quot;${!dir}&quot;
+    fi
+done
+→ a 
+→ b</code></pre>
+<h3 id="tips">Tips</h3>
+<h4 id="passing-an-array-to-a-function">Passing an array to a function</h4>
+<pre><code>A=./some_dir1
+B=./some_dir2
+PRIVATE_DIRS=(A B)
+function create_nonexistant_directories {
+    local name=$1[@]
+    directories=(&quot;${!name}&quot;)
+    
+    for dir in &quot;${directories[@]}&quot;; do
+        if [[ ! -d &quot;${!dir}&quot; ]]; then
+            echo &quot;Since it does not exist, creating: ${!dir}&quot;
+            mkdir -p &quot;${!dir}&quot;
+        fi
+    done
+}
+
+create_nonexistant_directories PRIVATE_DIRS</code></pre>
+<h4 id="test-if-a-variable-has-been-set">Test if a variable has been set</h4>
+<pre><code>if [ -z ${var+x} ]
+then 
+    echo &quot;var is unset&quot;
+fi</code></pre>
+<p><code>[ -z ${var+x} ]</code> will evaluate to <code>[ -z x ]</code> if <code>var</code> is set else to <code>[ -z ]</code> which is equivalent to <code>[ -z &quot;&quot; ]</code> which evaluates to true.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,6 +1,8 @@
+
 (function(){
     'use strict'
 
+    var publications_dir = '/pubs';
 
     // Utils.
     var fetch_document = function(address, callback) {
@@ -54,7 +56,10 @@
         return true
     }
     var type_error = function(msg) { throw new TypeError(msg) }
-    var check_type = function(value, type) { typeof value === type || type_error(`expected type: ${type}, got: ${value}.`); return true }
+    var check_type = function(value, type) {
+        var result = (type === 'string') ? typeof value === type : value === type;       
+        return result || type_error(`expected type: ${type}, got: ${value}.`);
+    }
     var check_form = function(value, form) {
         var form_keys = Object.keys(form)
         form_keys.length === Object.keys(value).length || type_error('form_keys and value_keys length should be equal.')
@@ -126,6 +131,7 @@
 
     var summary_to_html = (function() {
         var template = function({
+            broadcast,
             title,
             tags,
             abstract,
@@ -139,7 +145,7 @@
             img_credits
         }) {
 
-            var address = `/pubs/${meta_to_filename(title,id)}.html`
+            var address = `${publications_dir}/${meta_to_filename(title,id)}.html`
 
 
             return `
@@ -174,6 +180,7 @@
 
     var check_summary = (function() {
         var summary_form = {
+            'broadcast': 'true',
             'title': 'string',
             'tags': ['string'],
             'abstract': 'string',
@@ -211,7 +218,7 @@
         )
 
         fetch_document(
-            '/summaries.json',
+            `${publications_dir}/summaries.json`,
             function(doc, err) {
                 if (doc) {
                     node.re_init({ summaries: JSON.parse(doc) })
