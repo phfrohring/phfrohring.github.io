@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Pierre-Henry Fröhring</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+        <link rel="icon" type="image/png" href="/images/favicon.png"/>
+                    </head>
+
+    <body>
+        <div class="top-wrapper">
+            <header class="top-header" title="" style="background-image: url(/images/header-orig-lane_lines-6e3c.jpg);background-size: cover; background-position: center;"></header>
+
+            <div class="columns_1">
+                <nav class="navigation">
+                    <ul class="list_of-predifined_publications">
+                        <li class="predefined_publication"><a href="/pubs/curriculum-vitae-c5566488.html">CV</a></li>
+                        <li class="predefined_publication"><a href="/">Search</a></li>
+                    </ul>
+                    <input class="card search_box" type="text" id="search_box" placeholder="some words   tag:some_tag">
+                </nav>
+
+                <div class="content">
+                    <div class="publication-wrapper">
+                                                <header>
+                            <h1 class="title">Finding lane lines</h1>
+                                                        <p class="abstract">Udacity Self Driving Car Nanodegree project. <a href="https://github.com/phfrohring/CarND-LaneLines-P1">Implementation</a></p>
+                                                                                                                <p class="date">2017-08-01</p>
+                                                                                    <p class="author">Pierre-Henry Fröhring</p>
+                                                    </header>
+                                                                        <nav id="TOC">
+                            <ul>
+                            <li><a href="#finding-lane-lines-on-the-road">Finding Lane Lines on the Road</a><ul>
+                            <li><a href="#pipeline">Pipeline</a></li>
+                            <li><a href="#shortcomings">Shortcomings</a></li>
+                            <li><a href="#improvements">Improvements</a></li>
+                            <li><a href="#optional-challenge">Optional Challenge</a></li>
+                            </ul></li>
+                            </ul>
+                        </nav>
+                                                <h1 id="finding-lane-lines-on-the-road">Finding Lane Lines on the Road</h1>
+<div class="figure">
+<img src="/images/pub-pipeline-d54f.jpg" alt="Objective" />
+<p class="caption">Objective</p>
+</div>
+<h2 id="pipeline">Pipeline</h2>
+<p>My pipeline is composed of 7 steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Transform the input image into a grayscale image: <img src="/images/pub-grayscale-8b66.jpg" alt="Objective" /></p></li>
+<li><p>Smooth the grayscale image using a Gaussian Blur. <img src="/images/pub-gaussian_blur-976b.jpg" alt="Objective" /></p></li>
+<li><p>Find the edges using the Cunny algorithm. A smoothed image limit the gradient from pixels to pixels: it’s useful to get rid of potential outliers. <img src="/images/pub-cunny_edge-51a5.jpg" alt="Objective" /></p></li>
+<li><p>Mask out the region of the image that is useless for finding lanes using a trapeze. <img src="/images/pub-mask-48d6.jpg" alt="Objective" /></p></li>
+<li><p>Find lines using the Hough Transform. Project the image into the Hough Space, find all intersections that match some criteria fixed by given parameters. Return lines as pairs of points in the image. Here, all lines are drawn for illustration purpose. What is actually done is described in the next step. <img src="/images/pub-hough_transform-4f1c.jpg" alt="Objective" /></p></li>
+<li><p>Given all the Hough lines as pairs of points <code>((x1,y1),(x2,y2))</code>, <code>draw_lines</code> transforms them into matching pairs of slopes and intersects <code>[(m,b)]</code>. Outliers are excluded: those that correspond to unrealistic slopes of the lanes. Given two centroids <code>((max(m),min(b)),(min(m),max(b)))</code>, a <code>KMeans</code> run on <code>[(m,b)]</code> gives two slopes and intersects <code>(m1,b1)</code> and <code>(m2,b2)</code> that approximate the left and right lines of the lane. These two pairs give two points for each line which are used to draw the left and right lines using <code>cv2.line</code>. <img src="/images/pub-draw_lines-609a.jpg" alt="Objective" /></p></li>
+<li><p><code>weighted_img</code> is then used to superpose the lines with the original image: <img src="/images/pub-superpose_images-2960.jpg" alt="Objective" /></p></li>
+</ol>
+<h2 id="shortcomings">Shortcomings</h2>
+<ol style="list-style-type: decimal">
+<li>Finding the parameters by hand is not going to work outside of this exercise.</li>
+<li>Finding the parameters relies on human qualitative judgment instead of quantitative measurements.</li>
+<li>This code is likely to break in most situations: bad weather, car crossing, lacking lines, superposed marking…</li>
+<li>Searching for straight lines in a world made of curves is not going to work.</li>
+<li>Without a concept of depth to separate what is near from what is far, the system cannot be used in a 3D world.</li>
+</ol>
+<h2 id="improvements">Improvements</h2>
+<ol style="list-style-type: decimal">
+<li>Improving the code so that all the human found parameters are self optimised using a feedback loop and objectives.</li>
+<li>Introducing a notion of depth using for example an other image with an other angle or a radar.</li>
+<li>Generalising from finding straight lines in a 2D world to curves in a 3D world.</li>
+<li>Generalising from finding lines to imagining the lane and considering the marking on the road as a mere suggestion: sometimes, the marking may not be there, yet the lane is in the driver’s head. Sometimes, the marking does not make sense e.g. temporary markings on top of original markings.</li>
+</ol>
+<h2 id="optional-challenge">Optional Challenge</h2>
+<p>A way to solve the problem by modifying slightly the existing pipeline would be to cut the image is horizontal slices, calling the pipeline on each of the slices, then gluing back together the slices. The effect would be the same as a linear approximation of the curves. Horizontal slices should be taken using a log distribution along the y axis to take into account depth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

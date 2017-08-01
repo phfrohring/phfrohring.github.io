@@ -68,6 +68,24 @@
   },
   {
     "broadcast": "true",
+    "img": "orig-lane\\_lines-6e3c.jpg",
+    "last_update": "2017-08-01",
+    "date": "2017-08-01",
+    "version": "74391706358cde3564be34b33eebf6993dbd8fc1ca1b33ed2a0b2a7f7ae26846",
+    "img_credits": "",
+    "author": "Pierre-Henry Fröhring",
+    "id": "26c5ecbf-cfcd-4a19-85c6-5a5d95747fdd",
+    "abstract": "Udacity Self Driving Car Nanodegree project.\n<a href=\"https://github.com/phfrohring/CarND-LaneLines-P1\">Implementation</a>",
+    "title": "Finding lane lines",
+    "sign": "Signature",
+    "tags": [
+      "en",
+      "computer-vision",
+      "udacity"
+    ]
+  },
+  {
+    "broadcast": "true",
     "img": "orig-mess-544b.jpg",
     "last_update": "2017-07-27",
     "date": "2017-07-27",
@@ -80,6 +98,23 @@
     "sign": "Signature",
     "tags": [
       "en"
+    ]
+  },
+  {
+    "broadcast": "true",
+    "img": "orig-harley-3448.jpg",
+    "last_update": "2017-07-27",
+    "date": "2017-07-26",
+    "version": "b58a003153b0221835ae0c8286fc3a7db3eefb5fb34c56022a0fc66f664e4545",
+    "img_credits": "Photo by Andrei Ianovskii on Unsplash.",
+    "author": "Pierre-Henry Fröhring",
+    "id": "487641a1-a3e0-4d37-873f-b4e9d4d58090",
+    "abstract": "Selling exotic travels online.",
+    "title": "Selling travels online",
+    "sign": "Signature",
+    "tags": [
+      "en",
+      "marketing"
     ]
   },
   {
