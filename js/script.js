@@ -24,7 +24,7 @@
     }
 
     var meta_to_filename = function(title, uuid) {
-        var name = title.trim().toLowerCase().replace(/'*/g,'').replace(/\s+/g,'-')
+        var name = title.trim().toLowerCase().replace(/'*/g,'').replace(/\s+/g,'-').replace('ö','o')
         var id = uuid.slice(0,uuid.indexOf('-'))
         return `${name}-${id}`
     }
@@ -142,7 +142,9 @@
             author,
             sign,
             img,
-            img_credits
+            img_credits,
+            to_pdf,
+            css
         }) {
 
             var address = `${publications_dir}/${meta_to_filename(title,id)}.html`
@@ -191,7 +193,9 @@
             'author': 'string',
             'sign': 'string',
             'img': 'string',
-            'img_credits': 'string'
+            'img_credits': 'string',
+            'to_pdf': 'string',
+            'css': 'string'
         }
 
         return function(summary) { check_form(summary, summary_form) }

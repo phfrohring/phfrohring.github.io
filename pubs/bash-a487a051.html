@@ -6,7 +6,44 @@
         <title>Pierre-Henry Fröhring</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="/css/style.css"/>
-        <link rel="icon" type="image/png" href="/images/favicon.png"/>
+                <link rel="icon" type="image/png" href="/images/favicon.png"/>
+                <style type="text/css">
+            div.sourceCode { overflow-x: auto; }
+            table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+              margin: 0; padding: 0; vertical-align: baseline; border: none; }
+            table.sourceCode { width: 100%; line-height: 100%; }
+            td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+            td.sourceCode { padding-left: 5px; }
+            code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+            code > span.dt { color: #902000; } /* DataType */
+            code > span.dv { color: #40a070; } /* DecVal */
+            code > span.bn { color: #40a070; } /* BaseN */
+            code > span.fl { color: #40a070; } /* Float */
+            code > span.ch { color: #4070a0; } /* Char */
+            code > span.st { color: #4070a0; } /* String */
+            code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+            code > span.ot { color: #007020; } /* Other */
+            code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+            code > span.fu { color: #06287e; } /* Function */
+            code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+            code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+            code > span.cn { color: #880000; } /* Constant */
+            code > span.sc { color: #4070a0; } /* SpecialChar */
+            code > span.vs { color: #4070a0; } /* VerbatimString */
+            code > span.ss { color: #bb6688; } /* SpecialString */
+            code > span.im { } /* Import */
+            code > span.va { color: #19177c; } /* Variable */
+            code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+            code > span.op { color: #666666; } /* Operator */
+            code > span.bu { } /* BuiltIn */
+            code > span.ex { } /* Extension */
+            code > span.pp { color: #bc7a00; } /* Preprocessor */
+            code > span.at { color: #7d9029; } /* Attribute */
+            code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+            code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+            code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+            code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+        </style>
                     </head>
 
     <body>
@@ -52,51 +89,61 @@
 <p>A shell allows execution of GNU commands, both synchronously and asynchronously.</p>
 <h2 id="shell-parameter-expansion">Shell Parameter Expansion</h2>
 <p>Default to: “${var_name}” because If the substitution appears within double quotes, word splitting and file name expansion are not performed on the results.</p>
-<pre><code>array=(0 1 2 3 4 5 6 7 8 9 0 a b c d e f g h)
-echo ${array[@]:0}
-→ 0 1 2 3 4 5 6 7 8 9 0 a b c d e f g h</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">
+<span class="va">array=(</span>0 1 2 3 4 5 6 7 8 9 0 a b c d e f g h<span class="va">)</span>
+<span class="bu">echo</span> <span class="va">${array[@]:0}</span>
+→ <span class="ex">0</span> 1 2 3 4 5 6 7 8 9 0 a b c d e f g h</code></pre></div>
 <h2 id="conditional-constructs">Conditional Constructs</h2>
 <p>[[ expression ]] Return a status of 0 or 1 depending on the evaluation of the conditional expression expression. Expressions are composed of the primaries described below in Bash Conditional Expressions. Word splitting and filename expansion are not performed on the words between the [[ and ]]; tilde expansion, parameter and variable expansion, arithmetic expansion, command substitution, process substitution, and quote removal are performed. Conditional operators such as ‘-f’ must be unquoted to be recognized as primaries.</p>
 <h2 id="looping-constructs">Looping Constructs</h2>
-<pre><code>Arr=(A B)
-for v in &quot;${Arr[@]}&quot;; do echo &quot;${v}&quot;; done 
-→ A 
-→ B
-    
-A=a
-B=b
-PRIVATE_DIRS=(A B)
-for dir in &quot;${PRIVATE_DIRS[@]}&quot;; do
-    if [[ -d &quot;${!dir}&quot; ]]; then 
-        echo &quot;${!dir}&quot;
-    fi
-done
-→ a 
-→ b</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">
+<span class="va">Arr=(</span>A B<span class="va">)</span>
+<span class="kw">for</span> <span class="ex">v</span> in <span class="st">&quot;</span><span class="va">${Arr[@]}</span><span class="st">&quot;</span><span class="kw">;</span> <span class="kw">do</span> <span class="bu">echo</span> <span class="st">&quot;</span><span class="va">${v}</span><span class="st">&quot;</span><span class="kw">;</span> <span class="kw">done</span>
+→ <span class="ex">A</span>
+→ <span class="ex">B</span>
+
+<span class="va">A=</span>a
+<span class="va">B=</span>b
+<span class="va">PRIVATE_DIRS=(</span>A B<span class="va">)</span>
+<span class="kw">for</span> <span class="fu">dir</span> in <span class="st">&quot;</span><span class="va">${PRIVATE_DIRS[@]}</span><span class="st">&quot;</span>
+<span class="kw">do</span>
+    <span class="kw">if [[</span> <span class="ot">-d</span> <span class="st">&quot;</span><span class="va">${!dir}</span><span class="st">&quot;</span><span class="kw"> ]]</span>; <span class="kw">then</span>
+        <span class="bu">echo</span> <span class="st">&quot;</span><span class="va">${!dir}</span><span class="st">&quot;</span>
+    <span class="kw">fi</span>
+<span class="kw">done</span></code></pre></div>
+<p>→ a → b</p>
 <h3 id="tips">Tips</h3>
 <h4 id="passing-an-array-to-a-function">Passing an array to a function</h4>
-<pre><code>A=./some_dir1
-B=./some_dir2
-PRIVATE_DIRS=(A B)
-function create_nonexistant_directories {
-    local name=$1[@]
-    directories=(&quot;${!name}&quot;)
-    
-    for dir in &quot;${directories[@]}&quot;; do
-        if [[ ! -d &quot;${!dir}&quot; ]]; then
-            echo &quot;Since it does not exist, creating: ${!dir}&quot;
-            mkdir -p &quot;${!dir}&quot;
-        fi
-    done
-}
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">
+<span class="va">A=</span>./some_dir1
+<span class="va">B=</span>./some_dir2
+<span class="va">PRIVATE_DIRS=(</span>A B<span class="va">)</span>
+<span class="kw">function</span><span class="fu"> create_nonexistant_directories</span> <span class="kw">{</span>
+    <span class="bu">local</span> <span class="va">name=$1[@]</span>
+    <span class="va">directories=(</span><span class="st">&quot;</span><span class="va">${!name}</span><span class="st">&quot;</span><span class="va">)</span>
 
-create_nonexistant_directories PRIVATE_DIRS</code></pre>
+    <span class="kw">for</span> <span class="fu">dir</span> in <span class="st">&quot;</span><span class="va">${directories[@]}</span><span class="st">&quot;</span><span class="kw">;</span> <span class="kw">do</span>
+        <span class="kw">if [[</span> <span class="ot">!</span> <span class="ot">-d</span> <span class="st">&quot;</span><span class="va">${!dir}</span><span class="st">&quot;</span><span class="kw"> ]]</span>; <span class="kw">then</span>
+            <span class="bu">echo</span> <span class="st">&quot;Since it does not exist, creating: </span><span class="va">${!dir}</span><span class="st">&quot;</span>
+            <span class="fu">mkdir</span> -p <span class="st">&quot;</span><span class="va">${!dir}</span><span class="st">&quot;</span>
+        <span class="kw">fi</span>
+    <span class="kw">done</span>
+<span class="kw">}</span></code></pre></div>
+<p>create_nonexistant_directories PRIVATE_DIRS</p>
 <h4 id="test-if-a-variable-has-been-set">Test if a variable has been set</h4>
-<pre><code>if [ -z ${var+x} ]
-then 
-    echo &quot;var is unset&quot;
-fi</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">
+<span class="kw">if</span><span class="bu"> [</span> <span class="ot">-z</span> <span class="va">${var+</span>x<span class="va">}</span><span class="bu"> ]</span>
+<span class="kw">then</span>
+    <span class="bu">echo</span> <span class="st">&quot;var is unset&quot;</span>
+<span class="kw">fi</span></code></pre></div>
 <p><code>[ -z ${var+x} ]</code> will evaluate to <code>[ -z x ]</code> if <code>var</code> is set else to <code>[ -z ]</code> which is equivalent to <code>[ -z &quot;&quot; ]</code> which evaluates to true.</p>
+<h4 id="set-a-variable-from-stdin">Set a variable from stdin</h4>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">
+<span class="co">#!/usr/bin/env bash</span>
+
+<span class="bu">read</span> <span class="va">filename</span>
+<span class="ex">shasum</span> -a 256 <span class="st">&quot;</span><span class="va">${filename}</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">cut</span> -f 1 -d <span class="st">&quot; &quot;</span></code></pre></div>
+<p>then: <code>$ echo 'tmp.txt' | ./script.sh</code></p>
                     </div>
                 </div>
             </div>
