@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Pierre-Henry Fröhring</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+                <link rel="icon" type="image/png" href="/images/favicon.png"/>
+                <style type="text/css">
+            div.sourceCode { overflow-x: auto; }
+            table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+              margin: 0; padding: 0; vertical-align: baseline; border: none; }
+            table.sourceCode { width: 100%; line-height: 100%; }
+            td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+            td.sourceCode { padding-left: 5px; }
+            code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+            code > span.dt { color: #902000; } /* DataType */
+            code > span.dv { color: #40a070; } /* DecVal */
+            code > span.bn { color: #40a070; } /* BaseN */
+            code > span.fl { color: #40a070; } /* Float */
+            code > span.ch { color: #4070a0; } /* Char */
+            code > span.st { color: #4070a0; } /* String */
+            code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+            code > span.ot { color: #007020; } /* Other */
+            code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+            code > span.fu { color: #06287e; } /* Function */
+            code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+            code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+            code > span.cn { color: #880000; } /* Constant */
+            code > span.sc { color: #4070a0; } /* SpecialChar */
+            code > span.vs { color: #4070a0; } /* VerbatimString */
+            code > span.ss { color: #bb6688; } /* SpecialString */
+            code > span.im { } /* Import */
+            code > span.va { color: #19177c; } /* Variable */
+            code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+            code > span.op { color: #666666; } /* Operator */
+            code > span.bu { } /* BuiltIn */
+            code > span.ex { } /* Extension */
+            code > span.pp { color: #bc7a00; } /* Preprocessor */
+            code > span.at { color: #7d9029; } /* Attribute */
+            code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+            code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+            code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+            code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+        </style>
+                    </head>
+
+    <body>
+        <div class="top-wrapper">
+            <header class="top-header" title="Photo by AJ Yorio on Unsplash." style="background-image: url(/images/header-orig-mess-544b.jpg);background-size: cover; background-position: center;"></header>
+
+            <div class="columns_1">
+                <nav class="navigation">
+                    <ul class="list_of-predifined_publications">
+                        <li class="predefined_publication"><a href="/pubs/curriculum-vitae-c5566488.html">CV</a></li>
+                        <li class="predefined_publication"><a href="/">Search</a></li>
+                    </ul>
+                    <input class="card search_box" type="text" id="search_box" placeholder="some words   tag:some_tag">
+                </nav>
+
+                <div class="content">
+                    <div class="publication-wrapper">
+                                                <header>
+                            <h1 class="title">Unix</h1>
+                                                        <p class="abstract">Notes on Unix.</p>
+                                                                                                                <p class="date">2017-07-27</p>
+                                                                                    <p class="author">Pierre-Henry Fröhring</p>
+                                                    </header>
+                                                                        <nav id="TOC">
+                            <ul>
+                            <li><a href="#notes">Notes</a><ul>
+                            <li><a href="#tips">Tips</a><ul>
+                            <li><a href="#sed"><code>sed</code></a></li>
+                            <li><a href="#ln"><code>ln</code></a></li>
+                            <li><a href="#own-a-remote-server">Own a remote server</a></li>
+                            <li><a href="#nginx">NGINX</a></li>
+                            <li><a href="#sending-files-with-sftp">Sending files with SFTP</a></li>
+                            </ul></li>
+                            </ul></li>
+                            </ul>
+                        </nav>
+                                                <h1 id="notes">Notes</h1>
+<h2 id="tips">Tips</h2>
+<p>To get back 2 level in current path:</p>
+<pre><code>ROOT=&quot;$(echo $(pwd) | xargs dirname | xargs dirname)&quot;</code></pre>
+<h3 id="sed"><code>sed</code></h3>
+<p>Arbitrary separators for <code>sed</code>:</p>
+<pre><code>sed &#39;s/a/b/&#39; ⟷ sed &#39;s a b &#39; ⟷ sed &#39;s&amp;a&amp;b&amp;&#39; ⟷ …</code></pre>
+<h3 id="ln"><code>ln</code></h3>
+<p>Create/update a symbolink link:</p>
+<pre><code>ln -sf /path/to/file /path/to/symlink</code></pre>
+<p>If trying to execute a script represented by a symlink then make sure you use absolute paths, else it may break.</p>
+<h3 id="own-a-remote-server">Own a remote server</h3>
+<p>Having shell access with root priviledges, and hopefully no one else. TL,DR: 1 door to the server ~ 1 user (not root) with root priviledges and 1 key to ssh into it.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">echo</span> <span class="st">&quot;Generate private/public keys&quot;</span>
+$ <span class="fu">ssh-keygen</span> -o -a 100 -t ed25519
+$ …
+$ <span class="bu">echo</span> <span class="st">&quot;Create an Ubuntu like server somewhere w/ IP: &lt;some_ip&gt; and ssh&quot;</span>
+$ <span class="bu">echo</span> <span class="st">&quot;If third party then probably already have a ssh for root setup.&quot;</span>
+$ <span class="fu">ssh</span> root@<span class="op">&lt;</span>some_ip<span class="op">&gt;</span>
+<span class="co"># adduser &lt;user_name&gt; # New user but not root.</span>
+<span class="co"># gpasswd -a &lt;user_name&gt; sudo # Root priviledges for &lt;user_name&gt;.</span>
+<span class="co"># echo &quot;Add a key to this user so that we can log him later.&quot;</span>
+<span class="co"># su - &lt;user_name&gt;</span>
+$ <span class="fu">mkdir</span> .ssh
+$ <span class="fu">chmod</span> 700 .ssh <span class="co"># Owner can read, write and execute, others cannot.</span>
+$ <span class="fu">nano</span> .ssh/authorized_keys <span class="co"># Add public key we have secret key for.</span>
+$ <span class="fu">chmod</span> 600 .ssh/authorized_keys <span class="co"># Owner can read/write, no one else.</span>
+$ <span class="bu">exit</span>
+<span class="co"># echo &quot;Test that you can login with &lt;user_name&gt;.&quot;</span>
+<span class="co"># nano /etc/ssh/sshd_config # set &quot;PermitRootLogin&quot; to &quot;no&quot;.</span>
+<span class="co"># exit</span></code></pre></div>
+<p>TL,DR: Closing all the windows but the one we explicitly want ~ firewall deny traffic to all ports but the one explicitly open to connections.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">ssh</span> <span class="op">&lt;</span>user<span class="op">&gt;</span>@<span class="op">&lt;</span>server_ip<span class="op">&gt;</span>
+$ <span class="bu">echo</span> <span class="st">&quot;Let&#39;s secure a connection to the firewall we are about to modify,&quot;</span>
+$ <span class="bu">echo</span> <span class="st">&quot;so that we do not lock ourselves outside.&quot;</span>
+$ <span class="bu">echo</span> <span class="st">&quot;Ubuntu comes with &#39;ufw&#39; that modifies the firewall (iptables front-end).&quot;</span>
+$ <span class="bu">echo</span> <span class="st">&quot;Let&#39;s allow ssh connections.&quot;</span>
+$ <span class="bu">echo</span> <span class="st">&quot;On Ubuntu, ssh deamon listen port 22 by default.&quot;</span>
+$ <span class="fu">sudo</span> ufw allow ssh <span class="co"># If default port changed to 4444, allow port with: sudo ufw allow 4444/tcp</span>
+$ <span class="fu">sudo</span> ufw allow 80/tcp <span class="co"># Let&#39;s allow HTTP connections b/c webserver.</span>
+$ <span class="fu">sudo</span> ufw allow 443/tcp <span class="co"># for SSL/TLS</span>
+$ <span class="fu">sudo</span> ufw show added 
+$ <span class="fu">sudo</span> ufw enable <span class="co"># connections are now port filtered by the firewall.</span>
+$ <span class="fu">sudo</span> ufw status <span class="co"># List which ports are allowed.</span>
+$ <span class="bu">echo</span> <span class="st">&quot;May be useful:&quot;</span>
+$ <span class="fu">sudo</span> ufw default deny incoming 
+$ <span class="fu">sudo</span> ufw default allow outgoing
+$ <span class="fu">sudo</span> ufw reset</code></pre></div>
+<p>TL,DR: the server needs to know what time it is.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">sudo</span> dpkg-reconfigure tzdata <span class="co"># GUI to reconfigure tzdata</span>
+$ <span class="fu">sudo</span> apt-get update
+$ <span class="fu">sudo</span> apt-get install ntp <span class="co"># Allow server to agree on time with other servers. </span></code></pre></div>
+<h3 id="nginx">NGINX</h3>
+<p>Installing:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">sudo</span> apt-get update
+$ <span class="fu">sudo</span> apt-get install nginx
+$ <span class="bu">echo</span> <span class="st">&quot;Some useful commands.&quot;</span>
+$ <span class="fu">sudo</span> service nginx stop
+$ <span class="fu">sudo</span> service nginx start
+$ <span class="fu">sudo</span> service nginx restart
+$ <span class="fu">sudo</span> update-rc.d nginx defaults <span class="co"># Server reboot ⇒ NGINX server starts</span></code></pre></div>
+<p>Hosting website files:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">sudo</span> mkdir -p /var/www/a_website/html
+$ <span class="fu">sudo</span> chown -R <span class="va">$USER</span>:<span class="va">$USER</span> /var/www/a_website/html <span class="co"># Give website ownership to $USER.</span>
+$ <span class="fu">sudo</span> chmod -R 755 /var/www <span class="co"># Owner can execute/write/read others execute/read.</span>
+$ <span class="bu">echo</span> <span class="st">&quot;Create an index.html in /var/www/a_website/html/&quot;</span>
+$ <span class="fu">sudo</span> cp /etc/nginx/sites-available/default /etc/nginx/sites-available/a_website <span class="co"># Default NGINX server config for a_website.</span>
+$ <span class="bu">echo</span> <span class="st">&quot;Edit NGINX conf&quot;</span></code></pre></div>
+<p>Config file Ubuntu:</p>
+<pre><code>pid /var/run/nginx.pid;
+events {
+    worker_connections  1024;
+}
+http {
+    access_log /var/log/nginx/a_website/access.log;
+    error_log /var/log/nginx/a_website/error.log;
+
+    server {
+        listen 80;
+        listen [::]:80 ipv6only=on;
+
+        root /var/www/a_website;
+
+        index index.html;
+
+        server_name a_website;
+
+        location ~ \.(html)$ {
+                root /var/www/a_website/html;
+        }
+    }
+}</code></pre>
+<p>Test config file</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">sudo</span> ln -s /etc/nginx/sites-available/a_website /etc/nginx/sites-enabled/ 
+$ <span class="ex">nginx</span> -p /etc/nginx/sites-enabled -t -c a_website</code></pre></div>
+<p>Run server</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">nginx</span> -p /etc/nginx/sites-enabled -c a_website</code></pre></div>
+<p>Test with, for example, a browser: <code>http://a_website</code></p>
+<h3 id="sending-files-with-sftp">Sending files with SFTP</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">sftp</span> user@host
+$ <span class="ex">put</span> -r localDir <span class="co"># will upload the files you want where you want (check options).</span></code></pre></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

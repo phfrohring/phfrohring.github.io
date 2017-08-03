@@ -58,30 +58,12 @@
   },
   {
     "broadcast": "true",
-    "img": "orig-mess-544b.jpg",
-    "css": "",
-    "to_pdf": "false",
-    "last_update": "2017-07-27",
-    "date": "2017-07-27",
-    "version": "3b9eda2478193af723425d725800caeab009bcc41c1c10d5d8de8789e93d7778",
-    "img_credits": "Photo by AJ Yorio on Unsplash.",
-    "author": "Pierre-Henry Fröhring",
-    "id": "87391c6e-14a6-4ebb-9be1-d75c6db91e10",
-    "abstract": "Notes on Linux.",
-    "title": "Linux",
-    "sign": "Signature",
-    "tags": [
-      "en"
-    ]
-  },
-  {
-    "broadcast": "true",
     "img": "orig-b1c9.jpg",
     "css": "resume.css",
     "to_pdf": "true",
     "last_update": "2017-08-02",
     "date": "2017-07-24",
-    "version": "566ff1eba23d2955f0295709f53e2c1b67adf49367611d8e9eec8d9b0681868e",
+    "version": "bfa5e15cdf05458bc9603a1882d1852814fef7833b4badc3e477ec0d33fd6320",
     "img_credits": "Photo by Will Fuller on Unsplash.",
     "author": "Pierre-Henry Fröhring",
     "id": "07a6caad-6fd7-44c9-93ca-949b2c2cf7ea",
@@ -100,7 +82,7 @@
     "to_pdf": "true",
     "last_update": "2017-08-2",
     "date": "2017-07-24",
-    "version": "f92c5818a211940e15265075dc8cb4e48a87f542095bdbce977482f8e57923b2",
+    "version": "60563300d37ab4b7795228b66c1e6a4ba1b6b6c96d20e8baf33a52b1e41a09a0",
     "img_credits": "Photo by Will Fuller on Unsplash.",
     "author": "Pierre-Henry Fröhring",
     "id": "c5566488-fb41-4554-8650-4eadfe570391",
@@ -109,6 +91,24 @@
     "sign": "Signature",
     "tags": [
       "cv",
+      "en"
+    ]
+  },
+  {
+    "broadcast": "true",
+    "img": "orig-mess-544b.jpg",
+    "css": "",
+    "to_pdf": "false",
+    "last_update": "2017-08-03",
+    "date": "2017-07-27",
+    "version": "5c42f1727a244d5535102337beb949a58607b79ec3b0348acfdfae435db12b12",
+    "img_credits": "Photo by AJ Yorio on Unsplash.",
+    "author": "Pierre-Henry Fröhring",
+    "id": "87391c6e-14a6-4ebb-9be1-d75c6db91e10",
+    "abstract": "Notes on Unix.",
+    "title": "Unix",
+    "sign": "Signature",
+    "tags": [
       "en"
     ]
   },
