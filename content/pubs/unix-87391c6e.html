@@ -99,18 +99,18 @@ $ …
 $ <span class="bu">echo</span> <span class="st">&quot;Create an Ubuntu like server somewhere w/ IP: &lt;some_ip&gt; and ssh&quot;</span>
 $ <span class="bu">echo</span> <span class="st">&quot;If third party then probably already have a ssh for root setup.&quot;</span>
 $ <span class="fu">ssh</span> root@<span class="op">&lt;</span>some_ip<span class="op">&gt;</span>
-<span class="co"># adduser &lt;user_name&gt; # New user but not root.</span>
-<span class="co"># gpasswd -a &lt;user_name&gt; sudo # Root priviledges for &lt;user_name&gt;.</span>
-<span class="co"># echo &quot;Add a key to this user so that we can log him later.&quot;</span>
-<span class="co"># su - &lt;user_name&gt;</span>
+$ <span class="ex">adduser</span> <span class="op">&lt;</span>user_name<span class="op">&gt;</span> <span class="co"># New user but not root.</span>
+$ <span class="ex">gpasswd</span> -a <span class="op">&lt;</span>user_name<span class="op">&gt;</span> sudo <span class="co"># Root priviledges for &lt;user_name&gt;.</span>
+$ <span class="bu">echo</span> <span class="st">&quot;Add a key to this user so that we can log him later.&quot;</span>
+$ <span class="fu">su</span> - <span class="op">&lt;</span>user_name<span class="op">&gt;</span>
 $ <span class="fu">mkdir</span> .ssh
 $ <span class="fu">chmod</span> 700 .ssh <span class="co"># Owner can read, write and execute, others cannot.</span>
 $ <span class="fu">nano</span> .ssh/authorized_keys <span class="co"># Add public key we have secret key for.</span>
 $ <span class="fu">chmod</span> 600 .ssh/authorized_keys <span class="co"># Owner can read/write, no one else.</span>
 $ <span class="bu">exit</span>
-<span class="co"># echo &quot;Test that you can login with &lt;user_name&gt;.&quot;</span>
-<span class="co"># nano /etc/ssh/sshd_config # set &quot;PermitRootLogin&quot; to &quot;no&quot;.</span>
-<span class="co"># exit</span></code></pre></div>
+$ <span class="bu">echo</span> <span class="st">&quot;Test that you can login with &lt;user_name&gt;.&quot;</span>
+$ <span class="fu">nano</span> /etc/ssh/sshd_config <span class="co"># set &quot;PermitRootLogin&quot; to &quot;no&quot;.</span>
+$ <span class="bu">exit</span></code></pre></div>
 <p>TL,DR: Closing all the windows but the one we explicitly want ~ firewall deny traffic to all ports but the one explicitly open to connections.</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">ssh</span> <span class="op">&lt;</span>user<span class="op">&gt;</span>@<span class="op">&lt;</span>server_ip<span class="op">&gt;</span>
 $ <span class="bu">echo</span> <span class="st">&quot;Let&#39;s secure a connection to the firewall we are about to modify,&quot;</span>
