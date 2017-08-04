@@ -19,6 +19,42 @@
   },
   {
     "broadcast": "true",
+    "img": "orig-deep-dream-0210.jpg",
+    "css": "",
+    "to_pdf": "false",
+    "last_update": "2017-08-03",
+    "date": "2017-08-03",
+    "version": "46e3eb17d2c470c28149623df23eb9a4614000484e66a263b57022b5c3afd440",
+    "img_credits": "By MartinThoma - Own work, CC0,\nhttps://commons.wikimedia.org/w/index.php?curid=45488162",
+    "author": "Pierre-Henry Fröhring",
+    "id": "bdc4332b-2d19-4657-9306-b84eaf38639b",
+    "abstract": "Soon.",
+    "title": "Deep Learning",
+    "sign": "Signature",
+    "tags": [
+      "en"
+    ]
+  },
+  {
+    "broadcast": "true",
+    "img": "orig-blockchain-2972.jpg",
+    "css": "",
+    "to_pdf": "false",
+    "last_update": "2017-08-04",
+    "date": "2017-08-04",
+    "version": "72dd00856c946030247dd6a2bbc70ccfbf6f06ce5e56874ed0cd28712b8a85af",
+    "img_credits": "Photo by Laura Lefurgey-Smith on Unsplash.",
+    "author": "Pierre-Henry Fröhring",
+    "id": "51942231-0c7b-4abd-99c7-bcbecd2997ba",
+    "abstract": "BitCoin is a dencentralized consensus over a append only ledger of\nblocks a.k.a. the Blockchain. { BitCoinNode } → BitCoinNetwork →\nBitCoin.",
+    "title": "Dencentralized consensus",
+    "sign": "Signature",
+    "tags": [
+      "en"
+    ]
+  },
+  {
+    "broadcast": "true",
     "img": "orig-souk-a5e9.jpg",
     "css": "",
     "to_pdf": "false",

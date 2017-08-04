@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Pierre-Henry Fröhring</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+                <link rel="icon" type="image/png" href="/images/favicon.png"/>
+                    </head>
+
+    <body>
+        <div class="top-wrapper">
+            <header class="top-header" title="Photo by Laura Lefurgey-Smith on Unsplash." style="background-image: url(/images/header-orig-blockchain-2972.jpg);background-size: cover; background-position: center;"></header>
+
+            <div class="columns_1">
+                <nav class="navigation">
+                    <ul class="list_of-predifined_publications">
+                        <li class="predefined_publication"><a href="/pubs/curriculum-vitae-c5566488.html">CV</a></li>
+                        <li class="predefined_publication"><a href="/">Search</a></li>
+                    </ul>
+                    <input class="card search_box" type="text" id="search_box" placeholder="some words   tag:some_tag">
+                </nav>
+
+                <div class="content">
+                    <div class="publication-wrapper">
+                                                <header>
+                            <h1 class="title">Dencentralized consensus</h1>
+                                                        <p class="abstract">BitCoin is a dencentralized consensus over a append only ledger of blocks a.k.a. the Blockchain. { BitCoinNode } → BitCoinNetwork → BitCoin.</p>
+                                                                                                                <p class="date">2017-08-04</p>
+                                                                                    <p class="author">Pierre-Henry Fröhring</p>
+                                                    </header>
+                                                                        <nav id="TOC">
+                            <ul>
+                            <li><a href="#bitcoin-dencentralized-consensus">BitCoin : Dencentralized Consensus</a><ul>
+                            <li><a href="#notations">Notations</a></li>
+                            <li><a href="#crypo-101">Crypo 101</a></li>
+                            <li><a href="#bitcoin">BitCoin</a><ul>
+                            <li><a href="#transaction">Transaction</a></li>
+                            <li><a href="#block">Block</a></li>
+                            <li><a href="#bitcoinnode">BitCoinNode</a></li>
+                            <li><a href="#bitcoinnetwork">BitCoinNetwork</a></li>
+                            </ul></li>
+                            </ul></li>
+                            </ul>
+                        </nav>
+                                                <h1 id="bitcoin-dencentralized-consensus">BitCoin : Dencentralized Consensus</h1>
+<h2 id="notations">Notations</h2>
+<ul>
+<li>‘abcdfegh ≡ X’ means that ‘abcdfegh’ and ‘X’ symbols are interchangeable. You have to infer the scope. It’s really just a shorthand for ‘a.k.a.’</li>
+<li>‘a = b’ means that a computation ‘=’ with argument ‘a’ and ‘b’ will check if they are equal according to its implementation.</li>
+<li>‘A,B,C ⊢ E,F,G’ ≡ from assumptions A,B,C we can conclude that E,F,G</li>
+<li>OrderedList ≡ [a,b,c, …, z]</li>
+<li>UnorderedList ≡ [a b c … z]</li>
+<li>OrderedSet ≡ {a,b,c,…,z}</li>
+<li>UnorderedSet ≡ {a b c … z}</li>
+<li>s,s’:String ↦ ss’ where ss’ symbolises the concatenation of s and s’</li>
+<li>‘«x»’ means that «x» is to be replaced by what ‘x’ represents e.g.: ‘«sig»’</li>
+<li>‘□’ means that something is missing. Should be replaced by something.</li>
+</ul>
+<h2 id="crypo-101">Crypo 101</h2>
+<ul>
+<li>Hash ≡
+<ul>
+<li>String Int → String</li>
+<li>length hash s i = i</li>
+<li>s,s’:String, s ≠ s’, P(hash s i = hash s’ i) ~ 0</li>
+<li>‘r:Seed, s:String, P(hash rs i ⊢ s) ~ 0’ ≡ PuzzleFriendly</li>
+<li>Fast</li>
+</ul></li>
+<li>Commitment ≡ commit verify
+<ul>
+<li>commit : msg → commitment key</li>
+<li>verify : msg commitment key → Boolean</li>
+<li>P(com ⊢ msg) ~ 0</li>
+<li>P(com ⊢ msg’, verify(com, msg’,key) = true) ~ 0</li>
+</ul></li>
+<li>Pointer ≡ A piece of data that can be exchanged for an other one.</li>
+<li>HashPointer ≡ A piece of data that can be exchanged for an other one and is the hash of it.</li>
+<li>DigitalSignatures ≡
+<ul>
+<li>identity : → secret-key public-key</li>
+<li>sign : doc secret-key → signature</li>
+<li>verify : doc signature pub-key → Boolean</li>
+<li>P({ {doc sig pub-key} } doc’ ⊢ verify(doc’ forged-sig pub-key) = true) ~ 0</li>
+</ul></li>
+<li>DistributedConsensus ≡ Algorithm that when it terminates, guaranty that correct nodes all agree on a value proposed by a correct node.</li>
+</ul>
+<h2 id="bitcoin">BitCoin</h2>
+<h3 id="transaction">Transaction</h3>
+<p>Transaction ≡ Tx ≡</p>
+<ul>
+<li>{ Action Signature }. An Action example: “Send 8 of my coins (HashPointer) to Bob.”</li>
+<li>For each source of consumed bitcoins should come the signature of the Tx by the corresponding owner.</li>
+<li>Sources of Bitcoins are entirely consumed during a Tx e.g. A: 3 BitCoins and A -1 BitCoin→ B then Tx : { A:3, A → B: 1, A → A: 2 }. Avoid the need to check history too far if only transfers like A → B: 1 where recorded in Tx.</li>
+<li>Pay-To-PublicKeyHash
+<ul>
+<li>B spends what A sent to him</li>
+<li>A created scriptPubKey = OP_DUP OP_HASH160 «B pub key hash» OP_EQUALVERIFY OP_CHECKSIG</li>
+<li>B creates scriptSig = «sig» «B pub key»,
+<ul>
+<li>«sig» is created from B private key and this entire Tx (except the signature).</li>
+</ul></li>
+<li>Input addresses of Tx ≡ scriptSig and output addresses of Tx ≡ scriptPubKey are in fact scripts.</li>
+<li>scriptValidation = (concat scriptSig scriptPubKey) should execute w/o error.</li>
+<li>Script: stack base, Forth-like, Time/Memory limited ⇒ No loops, No halting problem.</li>
+<li>scriptValidation execution stack (hypothesis: no errors):
+<ul>
+<li>stack:</li>
+<li>stack: «sig»</li>
+<li>stack: «sig» «B pub key»</li>
+<li>stack: «sig» «B pub key» «B pub key»</li>
+<li>stack: «sig» «B pub key» «B pub key hash»</li>
+<li>stack: «sig» «B pub key» «B pub key hash» «B pub key hash»</li>
+<li>stack: «sig» «B pub key»</li>
+<li>stack: True</li>
+<li>Conclusion: B has proven that he is the legit receiver of the coins send by A. He can now spend them.</li>
+</ul></li>
+</ul></li>
+<li>OP_CHECKMULTISIG:
+<ul>
+<li>Assume: n public keys, k signatures, t:Integer</li>
+<li>Conclude: (eval ‘at least t (pubKey,sign) matches’)</li>
+<li>Implementation bug: pop an extra data, so have to add a dummy one.</li>
+</ul></li>
+<li>Proof-Of-Burn : Tx such that output BTC cannot be spent.
+<ul>
+<li>scriptPubKey: OP_RETURN «arbitrary data»</li>
+<li>Usage: proof of knowledge, bootstrap an other crypto currency, …</li>
+</ul></li>
+<li>Pay-To-ScriptHash
+<ul>
+<li>scriptPubKey: OP_HASH160 «hash of script» OP_EQUAL</li>
+<li>scriptSig: «sig» ««pubkey» OP_CHECKSIG»</li>
+<li>scriptValidation execution stack (hypothesis: no errors):
+<ul>
+<li>stack:</li>
+<li>stack: «sig»</li>
+<li>stack: «sig» ««pubkey» OP_CHECKSIG»</li>
+<li>stack: «sig» ««pubkey» OP_CHECKSIG» «««pubkey» OP_CHECKSIG» hash»</li>
+<li>stack: «sig» ««pubkey» OP_CHECKSIG» «««pubkey» OP_CHECKSIG» hash» «hash of script»</li>
+<li>stack: «sig» «pubkey» OP_CHECKSIG</li>
+<li>stack: True</li>
+<li>Conclusion: A agreed that a script with a given hash can dispose of its BTC. B provided the corresponding script that ended up challenging the spender to be B. B provided an additional signature and passed the challenge. B can spend A’s BTC.</li>
+<li>Usage: the spender just have to accept a hash to pay.</li>
+</ul></li>
+</ul></li>
+<li>Escrow Transactions
+<ul>
+<li>□</li>
+</ul></li>
+</ul>
+<h3 id="block">Block</h3>
+<ul>
+<li>Transaction: {Tx,…,Tx}</li>
+<li>Hash: hash of the block it extends</li>
+<li>Nounce for the HashPuzzle</li>
+</ul>
+<h3 id="bitcoinnode">BitCoinNode</h3>
+<ul>
+<li>Has consensus blocks {Block,…,Block}</li>
+<li>Has blocks to reach consensus upon [Block,…,Block]</li>
+<li>Has no identity</li>
+<li>Can broadcast Tx</li>
+</ul>
+<h3 id="bitcoinnetwork">BitCoinNetwork</h3>
+<ul>
+<li>Incentive: Block reward</li>
+<li>Incentive: Tx fee</li>
+<li>HashPuzzle ≡ solve hash256(nounce prev-hash tx … tx) ∈ target-space for nounce. target-space is chosen by the network so that the average time to find a nounce is ~ 10 min.</li>
+<li>Proof-Of-Work ≡ Select node in proportion to its computing power i.e. its ability to solve hash puzzles. Trivial for anyone to verify that puzzle was solved: check that hash256(block.nounce …) ∈ target.</li>
+<li><strong>Randomly</strong> choosen node to suggest a block to the network is approximated by Proof-Of-Work</li>
+<li>Round ≡ a node is randomly chosen and suggests a block<br />
+</li>
+<li>Check if block is valid (unspent, valid tx)</li>
+<li>Nodes either prolong their concensus chain with this block or a block from an earlier round because of incentives.<br />
+</li>
+<li>Network properties:
+<ul>
+<li>As long as a majority of miners weighted by computing power are honest, BitCoin is secure.</li>
+<li>It’s a currency: it includes incentives for nodes to act honestly (by the rules).<br />
+</li>
+<li>Nodes reach consensus upon one {Block,Block,…} ≡ Blockchain</li>
+<li>Works despite disconnected Nodes</li>
+<li>Works despite crashed Nodes</li>
+<li>Works despite malicious Nodes</li>
+<li>Works despite network latency</li>
+<li>Works despite Byzentine general problem</li>
+<li>Works despite FischerLynchPaterson</li>
+<li>Works despite many others <em>a priori</em> impossibilities</li>
+<li>Nodes w/o identity → protect from Sybil Attacks</li>
+<li>No starting point for the consensus: reached in 1H, not matter where it originated from → Never sure but wrong consensus is exponentially less likely to happen.</li>
+</ul></li>
+</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
