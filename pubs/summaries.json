@@ -42,11 +42,11 @@
     "to_pdf": "false",
     "last_update": "2017-08-04",
     "date": "2017-08-04",
-    "version": "72dd00856c946030247dd6a2bbc70ccfbf6f06ce5e56874ed0cd28712b8a85af",
+    "version": "b172e882e2ac5b8e2504e6a4814c9674618a29eecc35d0813bc1c4910da4a040",
     "img_credits": "Photo by Laura Lefurgey-Smith on Unsplash.",
     "author": "Pierre-Henry Fröhring",
     "id": "51942231-0c7b-4abd-99c7-bcbecd2997ba",
-    "abstract": "BitCoin is a dencentralized consensus over a append only ledger of\nblocks a.k.a. the Blockchain. { BitCoinNode } → BitCoinNetwork →\nBitCoin.",
+    "abstract": "BitCoin is a dencentralized consensus over an append only ledger of\nblocks a.k.a. the Blockchain. { BitCoinNode } → BitCoinNetwork →\nBitCoin.",
     "title": "Dencentralized consensus",
     "sign": "Signature",
     "tags": [
