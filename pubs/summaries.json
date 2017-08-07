@@ -24,7 +24,7 @@
     "to_pdf": "false",
     "last_update": "2017-08-03",
     "date": "2017-08-03",
-    "version": "46e3eb17d2c470c28149623df23eb9a4614000484e66a263b57022b5c3afd440",
+    "version": "6e8afdc67d67fe0cc1b8da32c2e172fd4379f89be045de4dcfc6000767698def",
     "img_credits": "By MartinThoma - Own work, CC0,\nhttps://commons.wikimedia.org/w/index.php?curid=45488162",
     "author": "Pierre-Henry Fröhring",
     "id": "bdc4332b-2d19-4657-9306-b84eaf38639b",
@@ -40,13 +40,13 @@
     "img": "orig-blockchain-2972.jpg",
     "css": "",
     "to_pdf": "false",
-    "last_update": "2017-08-04",
+    "last_update": "2017-08-07",
     "date": "2017-08-04",
-    "version": "b172e882e2ac5b8e2504e6a4814c9674618a29eecc35d0813bc1c4910da4a040",
+    "version": "a6d9207d4415b8492d87186f1ccdd0185c690a79df182158b8f8949cfbdf356d",
     "img_credits": "Photo by Laura Lefurgey-Smith on Unsplash.",
     "author": "Pierre-Henry Fröhring",
     "id": "51942231-0c7b-4abd-99c7-bcbecd2997ba",
-    "abstract": "BitCoin is a dencentralized consensus over an append only ledger of\nblocks a.k.a. the Blockchain. { BitCoinNode } → BitCoinNetwork →\nBitCoin.",
+    "abstract": "BitCoin is a decentralized consensus over an append only ledger of\nblocks a.k.a. the Blockchain.",
     "title": "Dencentralized consensus",
     "sign": "Signature",
     "tags": [
@@ -127,6 +127,24 @@
     "sign": "Signature",
     "tags": [
       "cv",
+      "en"
+    ]
+  },
+  {
+    "broadcast": "true",
+    "img": "orig-jhon-mccarthy-7fff.jpg",
+    "css": "",
+    "to_pdf": "false",
+    "last_update": "2017-08-06",
+    "date": "2017-07-27",
+    "version": "5587d07a91db99e12d9b195d69a5af7857f375ad49ff12d63a78875d71f2b521",
+    "img_credits": "",
+    "author": "Pierre-Henry Fröhring",
+    "id": "2abfe99a-b5b8-49cb-82f2-bfb38de42f3c",
+    "abstract": "Notes on Racket.",
+    "title": "Racket",
+    "sign": "Signature",
+    "tags": [
       "en"
     ]
   },

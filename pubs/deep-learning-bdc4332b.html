@@ -39,30 +39,64 @@
                                                     </header>
                                                                         <nav id="TOC">
                             <ul>
-                            <li><a href="#sss">SSS</a></li>
+                            <li><a href="#deep-learning">Deep Learning</a></li>
                             </ul>
                         </nav>
-                                                <h1 id="sss">SSS</h1>
+                                                <h1 id="deep-learning">Deep Learning</h1>
 <p>Gradient Descent</p>
 <p>Heaviside step function</p>
 <p>Perceptrons</p>
 <p><span class="math display">\displaystyle 
-g(b,w,x) = b + \sum x\cdot w
+x,w : \mathbb{Q}^n;~g(x,w) :\equiv x \cdot w
 </span></p>
 <p><span class="math display">\displaystyle 
-g(x) \geq 0 \Rightarrow f(x) = 1
+g(x) \geq 0 \Rightarrow f(x) :\equiv 1
 </span></p>
 <p><span class="math display">\displaystyle 
-g(x) &lt; 0 \Rightarrow f(x) = 0
+g(x) &lt; 0 \Rightarrow f(x) :\equiv 0
 </span></p>
 <p>AND/OR/NOT/XOR perceptron</p>
 <p>input → layers of perceptrons → outputs</p>
 <p>Layers of perceptrons can simulate any computer programs.</p>
-<p>sigmoids</p>
-<p>stacking units will let you model linearly inseparable data, impossible to do with regression models.</p>
-<p>Once you start using activation functions that are continuous and differentiable, it’s possible to train the network using gradient descent, which you’ll learn about next.</p>
 <p><span class="math display">\displaystyle 
-E = \frac{1}{2} \sum_{i} \sum_{j} (y_j^i - \hat{y}_j^i)^2
+z : \mathbb{Q};~s(z) :\equiv \frac{1}{1 - e^{-z}}
+</span></p>
+<p>Stacking units will let you model linearly inseparable data, impossible to do with regression models.</p>
+<p>Once you start using activation functions that are continuous and differentiable, it’s possible to train the network using gradient descent.</p>
+<p>Assume that <span class="math inline">\varphi</span> : continuous differentiable.</p>
+<p><span class="math display">\displaystyle 
+\hat{y} :\equiv \varphi \circ g
+</span></p>
+<p><span class="math display">\displaystyle 
+\hat{y}^i :\equiv \varphi \circ g~x_i
+</span></p>
+<p><span class="math display">\displaystyle 
+\hat{y}^i_j :\equiv (\varphi \circ g~x_i)_j
+</span></p>
+<p><span class="math display">\displaystyle 
+y,\hat{y} : \mathbb{Q};~E :\equiv \frac{1}{2} \sum_{i} \sum_{j} (y_j^i - \hat{y}_j^i)^2
+</span></p>
+<p><span class="math inline">\eta:\mathbb{Q}</span> is called the learning rate.</p>
+<p><span class="math display">\displaystyle 
+\Delta w_i :\equiv - \eta \frac{\partial E}{\partial w_i}
+</span></p>
+<p><span class="math display">\displaystyle 
+w_i&#39; :\equiv w_i + \Delta w_i
+</span></p>
+<p><span class="math display">\displaystyle 
+(f \circ g)&#39; = f&#39; \circ g \cdot g
+</span></p>
+<p><span class="math display">\displaystyle 
+\frac{\partial E}{\partial w_k} = - \sum_{i} \sum_{j} (y_j^i - \hat{y}_j^i) \varphi&#39; (g(x^i)) x_k^i 
+</span></p>
+<p><span class="math display">\displaystyle 
+\delta^i :\equiv \sum_{j} (y_j^i - \hat{y}_j^i) \varphi&#39; (g(x^i))
+</span></p>
+<p><span class="math display">\displaystyle 
+\frac{\partial E}{\partial w_k} = - \sum_{i} \delta^i x_k^i 
+</span></p>
+<p><span class="math display">\displaystyle 
+w_k&#39; :\equiv w_k + \eta \sum_{i} \delta^i x_k^i 
 </span></p>
                     </div>
                 </div>
