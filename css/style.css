@@ -168,6 +168,10 @@ img {
    padding-right: 0.7em;
 }
 
+.summary-tag:hover {
+   cursor: pointer;
+}
+
 /* Begin of blockquote */
 .publication-wrapper blockquote {
    display:block;

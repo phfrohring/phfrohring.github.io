@@ -4,7 +4,14 @@
 
     var publications_dir = '/pubs';
 
+
+
     // Utils.
+
+    var addMultiEventsListener = function(element, events, listner) {
+        events.split(' ').forEach(evt => element.addEventListener(evt, listner))
+    }
+
     var fetch_document = function(address, callback) {
         var httpRequest = new XMLHttpRequest()
         httpRequest.onreadystatechange = function() {
@@ -57,7 +64,7 @@
     }
     var type_error = function(msg) { throw new TypeError(msg) }
     var check_type = function(value, type) {
-        var result = (type === 'string') ? typeof value === type : value === type;       
+        var result = (type === 'string') ? typeof value === type : value === type;
         return result || type_error(`expected type: ${type}, got: ${value}.`);
     }
     var check_form = function(value, form) {
@@ -162,7 +169,7 @@
             <p class="summary-author_date">Author: ${author}. Last update: ${last_update}.</p>
             <ul class="summary-tags">
                 <li class="summary-tag">tags:</li>
-                ${tags.map((tag) => '<li class="summary-tag">'+tag+'</li>\n').join('')}
+                ${tags.map((tag) => '<li class="summary-tag"><a>'+tag+'</a></li>\n').join('')}
             </ul>
         </div>
     </div>
@@ -265,6 +272,7 @@
         search_box.addEventListener('input', function(evt) {
             node.re_init({ search_string: evt.target.value })
         })
+
         return node
     }
     var init_query = function(search_string) {
@@ -322,6 +330,21 @@
                 check_type(filtered_summaries_html, 'string')
 
                 page.getElementsByClassName('content')[0].innerHTML = filtered_summaries_html
+
+                var search_box = document.getElementById('search_box')
+                Array.
+                    prototype.
+                    slice.
+                    call(document.getElementsByClassName('summary-tag')).
+                    forEach(function(tag) {
+                        tag.addEventListener(
+                            'click',
+                            function(evt) {
+                                search_box.value = `${search_box.value} tag:${evt.target.text}`
+                                search_box.dispatchEvent(new Event('input'))
+                            }
+                        )
+                    })
 
                 return undefined
             },
