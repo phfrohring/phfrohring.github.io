@@ -7,7 +7,14 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="/css/style.css"/>
                 <link rel="icon" type="image/png" href="/images/favicon.png"/>
-                    </head>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
+        for (var i=0; i < mathElements.length; i++)
+        {
+         var texText = mathElements[i].firstChild
+         katex.render(texText.data, mathElements[i])
+        }}
+        </script>
+            </head>
 
     <body>
         <div class="top-wrapper">
@@ -25,23 +32,44 @@
                 <div class="content">
                     <div class="publication-wrapper">
                                                 <header>
-                            <h1 class="title">Dencentralized consensus</h1>
-                                                        <p class="abstract">BitCoin is a decentralized consensus over an append only ledger of blocks a.k.a. the Blockchain.</p>
+                            <h1 class="title">Bitcoin</h1>
+                                                        <p class="abstract">Money and Bitcoin. BitCoin ≈ Tally Stick. Bitcoin is a decentralized consensus over an append only ledger of blocks of transactions a.k.a. the Blockchain.</p>
                                                                                                                 <p class="date">2017-08-04</p>
-                                                                                    <p class="author">Pierre-Henry Fröhring</p>
-                                                    </header>
+                                                                                                                      <p class="author"><a href="mailto:contact@pierrehenryfrohring.com">Pierre-Henry Fröhring</a></p>
+                                                                                  </header>
                                                                         <nav id="TOC">
                             <ul>
-                            <li><a href="#bitcoin-dencentralized-consensus">BitCoin : Dencentralized Consensus</a><ul>
                             <li><a href="#notations">Notations</a></li>
+                            <li><a href="#money">Money</a><ul>
+                            <li><a href="#a-necessary-intermediary">A necessary intermediary</a></li>
+                            <li><a href="#a-necessary-intermediary-properties">A necessary intermediary properties</a></li>
+                            <li><a href="#candidates">Candidates</a><ul>
+                            <li><a href="#paper-money">Paper money</a></li>
+                            <li><a href="#tally-sticks">Tally Sticks</a></li>
+                            <li><a href="#bitcoin">BitCoin</a></li>
+                            </ul></li>
+                            </ul></li>
+                            <li><a href="#bitcoin-dencentralized-consensus">BitCoin : Dencentralized Consensus</a><ul>
                             <li><a href="#crypo-101">Crypo 101</a><ul>
                             <li><a href="#merkle-tree">Merkle Tree</a></li>
                             </ul></li>
-                            <li><a href="#bitcoin">BitCoin</a><ul>
-                            <li><a href="#transaction">Transaction</a></li>
+                            <li><a href="#transaction">Transaction</a><ul>
+                            <li><a href="#pay-to-publickeyhash">Pay-To-PublicKeyHash</a></li>
+                            <li><a href="#op_checkmultisig">OP_CHECKMULTISIG</a></li>
+                            <li><a href="#proof-of-burn">Proof-Of-Burn</a></li>
+                            <li><a href="#pay-to-scripthash">Pay-To-ScriptHash</a></li>
+                            <li><a href="#escrow-transactions">Escrow Transactions</a></li>
+                            <li><a href="#green-addresses">Green addresses</a></li>
+                            <li><a href="#micro-payments">Micro payments</a></li>
+                            </ul></li>
                             <li><a href="#block">Block</a></li>
                             <li><a href="#bitcoinnode-miner">BitCoinNode ≡ Miner</a></li>
-                            <li><a href="#bitcoinnetwork">BitCoinNetwork</a></li>
+                            <li><a href="#bitcoinnetwork">BitCoinNetwork</a><ul>
+                            <li><a href="#joining-the-network">Joining the network</a></li>
+                            <li><a href="#propagating-tx">Propagating Tx</a></li>
+                            <li><a href="#propagating-blocks">Propagating Blocks</a></li>
+                            <li><a href="#limits">Limits</a></li>
+                            <li><a href="#upgrading-bitcoin">Upgrading BitCoin</a></li>
                             </ul></li>
                             <li><a href="#people-using-bitcoin">People using BitCoin</a><ul>
                             <li><a href="#agreements">Agreements</a></li>
@@ -65,10 +93,10 @@
                             <li><a href="#future-of-bitcoin">Future of BitCoin?</a></li>
                             <li><a href="#what-to-decentralize">What to decentralize?</a></li>
                             </ul></li>
+                            <li><a href="#references">References</a></li>
                             </ul>
                         </nav>
-                                                <h1 id="bitcoin-dencentralized-consensus">BitCoin : Dencentralized Consensus</h1>
-<h2 id="notations">Notations</h2>
+                                                <h1 id="notations">Notations</h1>
 <ul>
 <li>‘abcdfegh ≡ X’ means that ‘abcdfegh’ and ‘X’ symbols are interchangeable. You have to infer the scope. It’s really just a shorthand for ‘a.k.a.’</li>
 <li>‘a = b’ means that a computation ‘=’ with argument ‘a’ and ‘b’ will check if they are equal according to its implementation.</li>
@@ -80,7 +108,41 @@
 <li>s,s’:String ↦ ss’ where ss’ symbolises the concatenation of s and s’</li>
 <li>‘«x»’ means that «x» is to be replaced by what ‘x’ represents e.g.: ‘«sig»’</li>
 <li>‘□’ means that something is missing. Should be replaced by something.</li>
+<li>Let <span class="math inline">f : A \rightarrow B</span> then we usually write <span class="math inline">f x</span> instead of traditional <span class="math inline">f(x)</span>.</li>
 </ul>
+<h1 id="money">Money</h1>
+<h2 id="a-necessary-intermediary">A necessary intermediary</h2>
+<ul>
+<li>Barter does not scale: if <span class="math inline">N</span> ≠ products and barter then number of exchange ratios is of the magnitude of <span class="math inline">\binom{N}{2} = \frac{N(N-1)}{2}</span>. E.g. bread for bread ratio is 1:1, chicken to bread: 1:5, bread for whatever, …</li>
+<li>If intermediary <span class="math inline">I</span> then exchange ratios are of the order of <span class="math inline">N</span>. E.g. bread to coin ratio: 1:1, chicken to coin ratio: 1:10, …</li>
+<li>⇒ if lots of ≠ products then at least one intermediary becomes necessary else explosion of exchange ratios which is impractical.</li>
+</ul>
+<h2 id="a-necessary-intermediary-properties">A necessary intermediary properties</h2>
+<ul>
+<li><strong>Countable</strong>: If we could not count money then exchange ratios would be meaningless: money must be countable.</li>
+<li><strong>Divisible</strong>: If we could not divide money then exchange ratios would be obviously impractical.</li>
+<li><strong>Portable</strong>: Imagine a dollar was made of two by two billboards…</li>
+<li><strong>Unforgeable</strong>: If someone could produce money at will w/o matching value then it would be equivalent to a theft: this guy could claim goods he did not produce matching value for. One could buy countries with a enough printing presses.</li>
+<li><strong>Durable</strong>: Who wants dollar bills that evaporate after a few hours?</li>
+<li><strong>Uniform</strong>: If a dollar in Texas was different from a follar in New York then a lot of confusion would obviously ensue.</li>
+<li><strong>Fungible</strong>: The value of a 1 dollar bill should always be equal to the value of an other 1 dollar bill at any given time.</li>
+<li><strong>Maybe others</strong>: Please, let me know if I missed something.</li>
+</ul>
+<h2 id="candidates">Candidates</h2>
+<h3 id="paper-money">Paper money</h3>
+<p>□</p>
+<h3 id="tally-sticks">Tally Sticks</h3>
+<p>From <span class="citation">(“MEDIEVAL Tally Sticks and How They Worked,” n.d.; Goetzmann and Rouwenhorst <a href="#ref-goetzmann_rouwenhorst_2005">2005</a>; Baxter <a href="#ref-baxter_2015">2015</a>)</span>:</p>
+<blockquote>
+<p>The stick would be split in half, down its length from one end to the other. The debtor would retain half, called the “foil”. The creditor would retain the other half, called the “stock” - even today, British bankers use the word “stocks” to refer to debts of the British government.</p>
+</blockquote>
+<ul>
+<li>The <a href="https://en.wikipedia.org/wiki/Ishango_bone">Ishango Bone</a> <a href="https://en.wikipedia.org/wiki/Tally_stick">Tally stick</a> is thought to date back from 20,000 years <span class="citation">(Brooks and Smith <a href="#ref-10.2307/25130482">1987</a>)</span>. In 1834, tallies where ordered to be destroyed by the british parliament which lead to the destruction by fire of the <a href="https://en.wikipedia.org/wiki/Burning_of_Parliament">Palace of Westminster</a></li>
+</ul>
+<p>□</p>
+<h3 id="bitcoin">BitCoin</h3>
+<p>□</p>
+<h1 id="bitcoin-dencentralized-consensus">BitCoin : Dencentralized Consensus</h1>
 <h2 id="crypo-101">Crypo 101</h2>
 <ul>
 <li>Hash ≡
@@ -111,8 +173,7 @@
 </ul>
 <h3 id="merkle-tree">Merkle Tree</h3>
 <p><a href="https://en.wikipedia.org/wiki/Merkle_tree">Wikipedia</a></p>
-<h2 id="bitcoin">BitCoin</h2>
-<h3 id="transaction">Transaction</h3>
+<h2 id="transaction">Transaction</h2>
 <p>Transaction ≡ Tx ≡</p>
 <ul>
 <li>{ Action Signature }. An Action example: “Send 8 of my coins (HashPointer) to Bob.”</li>
@@ -125,7 +186,7 @@
 <li>Fees should eventually be the main miners incentive.</li>
 </ul></li>
 </ul>
-<h4 id="pay-to-publickeyhash">Pay-To-PublicKeyHash</h4>
+<h3 id="pay-to-publickeyhash">Pay-To-PublicKeyHash</h3>
 <ul>
 <li>B spends what A sent to him</li>
 <li>A created scriptPubKey = OP_DUP OP_HASH160 «B pub key hash» OP_EQUALVERIFY OP_CHECKSIG</li>
@@ -149,19 +210,19 @@
 <li>Conclusion: B has proven that he is the legit receiver of the coins send by A. He can now spend them.</li>
 </ul></li>
 </ul>
-<h4 id="op_checkmultisig">OP_CHECKMULTISIG</h4>
+<h3 id="op_checkmultisig">OP_CHECKMULTISIG</h3>
 <ul>
 <li>Assume: n public keys, k signatures, t:Integer</li>
 <li>Conclude: (eval ‘at least t (pubKey,sign) matches’)</li>
 <li>Implementation bug: pop an extra data, so have to add a dummy one.</li>
 </ul>
-<h4 id="proof-of-burn">Proof-Of-Burn</h4>
+<h3 id="proof-of-burn">Proof-Of-Burn</h3>
 <ul>
 <li>Tx such that output BTC cannot be spent.</li>
 <li>scriptPubKey: OP_RETURN «arbitrary data»</li>
 <li>Usage: proof of knowledge, bootstrap an other crypto currency, …</li>
 </ul>
-<h4 id="pay-to-scripthash">Pay-To-ScriptHash</h4>
+<h3 id="pay-to-scripthash">Pay-To-ScriptHash</h3>
 <ul>
 <li>scriptPubKey: OP_HASH160 «hash of script» OP_EQUAL</li>
 <li>scriptSig: «sig» ««pubkey» OP_CHECKSIG»</li>
@@ -178,12 +239,12 @@
 <li>Usage: the spender just have to accept a hash to pay.</li>
 </ul></li>
 </ul>
-<h4 id="escrow-transactions">Escrow Transactions</h4>
+<h3 id="escrow-transactions">Escrow Transactions</h3>
 <ul>
 <li>A wants B to ship X of price x to A.</li>
 <li>A wants to pay B when X is shipped.</li>
 <li>B wants to be paid before X is shipped.</li>
-<li><p>⇒ Deadlock.</p></li>
+<li>⇒ Deadlock.</li>
 <li>A wants B to ship X of price x to A.</li>
 <li>A,B,J emit a Multisig A,B,J 2 on x BTC of Alice.</li>
 <li>Case 1
@@ -207,7 +268,7 @@
 <li>⇒ Pay x to B.</li>
 </ul></li>
 </ul>
-<h4 id="green-addresses">Green addresses</h4>
+<h3 id="green-addresses">Green addresses</h3>
 <ul>
 <li>How to pay B if he does not have access to the Blockchain?</li>
 <li>Directly, you cannot: there is no address to send BTC to.</li>
@@ -215,7 +276,7 @@
 <li>Third party guarantees agains double spend attack (thus: green address) else goes bust. Instawallet and Mount Gox went bust exactly this way.</li>
 <li>Now, people are nervous about green addresses.</li>
 </ul>
-<h4 id="micro-payments">Micro payments</h4>
+<h3 id="micro-payments">Micro payments</h3>
 <ul>
 <li>If Tx.value is less than Tx.fee then self defeating: one pays Tx.value + Tx.fee which is &gt;&gt; than Tx.value.</li>
 <li>Solution: aggregate small Tx into one big Tx so that Tx.fee &lt;&lt; Tx.value.</li>
@@ -232,7 +293,7 @@
 <li>if bob do not sign in time then A is refunded.</li>
 </ul></li>
 </ul>
-<h3 id="block">Block</h3>
+<h2 id="block">Block</h2>
 <ul>
 <li>Block ≡
 <ul>
@@ -248,7 +309,7 @@
 <li>Addressing indirection for a Tx: Block.Tx instead of Tx: addresses are shorter.</li>
 </ul></li>
 </ul>
-<h3 id="bitcoinnode-miner">BitCoinNode ≡ Miner</h3>
+<h2 id="bitcoinnode-miner">BitCoinNode ≡ Miner</h2>
 <ul>
 <li>Has consensus blocks {Block,…,Block}</li>
 <li>Has blocks to reach consensus upon [Block,…,Block]</li>
@@ -256,7 +317,7 @@
 <li>Can broadcast Tx</li>
 <li>HashPuzzle so hard that header so sometime not enough to find the nounce: use the coinbase field.</li>
 </ul>
-<h3 id="bitcoinnetwork">BitCoinNetwork</h3>
+<h2 id="bitcoinnetwork">BitCoinNetwork</h2>
 <ul>
 <li>Runs on TCP, port 8333</li>
 <li>Ad-hoc network, random topology</li>
@@ -287,12 +348,12 @@
 <li>No starting point for the consensus: reached in 1H, not matter where it originated from → Never sure but wrong consensus is exponentially less likely to happen.</li>
 </ul></li>
 </ul>
-<h4 id="joining-the-network">Joining the network</h4>
+<h3 id="joining-the-network">Joining the network</h3>
 <ul>
 <li>Ask one (also first) node of the network (≡ seed node) randomly chosen the list of all his peers.</li>
 <li>Repeat w/ the fetched peers arbitrarily.</li>
 </ul>
-<h4 id="propagating-tx">Propagating Tx</h4>
+<h3 id="propagating-tx">Propagating Tx</h3>
 <ul>
 <li>If given a new Tx then tell to as many peers as you can.</li>
 <li>They can decide to do the same thing.</li>
@@ -304,7 +365,7 @@
 <li>Is it a double spend?</li>
 </ul></li>
 </ul>
-<h4 id="propagating-blocks">Propagating Blocks</h4>
+<h3 id="propagating-blocks">Propagating Blocks</h3>
 <ul>
 <li>If given a new Tx then tell to as many peers as you can.</li>
 <li>They can decide to do the same thing.</li>
@@ -315,7 +376,7 @@
 <li>Built on longest chain? (else try to fork)</li>
 </ul></li>
 </ul>
-<h4 id="limits">Limits</h4>
+<h3 id="limits">Limits</h3>
 <ul>
 <li>10min avg creation time per block</li>
 <li>≤ 1Mb per block</li>
@@ -329,7 +390,7 @@
 <li>≤ 21M BTC</li>
 <li><p>50,25,12.5,… BTC mining reward.</p></li>
 </ul>
-<h4 id="upgrading-bitcoin">Upgrading BitCoin</h4>
+<h3 id="upgrading-bitcoin">Upgrading BitCoin</h3>
 <ul>
 <li>HardFork: Some nodes update the SW others do not ⇒ Network split ⇒ Chain split</li>
 <li>SoftFork: Some nodes just deal w/ stricter protocol so that just a sub case of a more general one: no split. Old nodes will catch up eventually: they can understand the new protocol.</li>
@@ -502,7 +563,22 @@
 <ul>
 <li>Security ≡ f(preventive,detective,corrective)</li>
 </ul>
-                    </div>
+<h1 id="references" class="unnumbered">References</h1>
+<div id="refs" class="references">
+<div id="ref-baxter_2015">
+<p>Baxter, W.T. 2015. <em>Accounting Theory</em>. Routledge, Taylor &amp; Francis Group.</p>
+</div>
+<div id="ref-10.2307/25130482">
+<p>Brooks, Alison S., and Catherine C. Smith. 1987. “Ishango Revisited: New Age Determinations and Cultural Interpretations.” <em>The African Archaeological Review</em> 5. Springer: 65–78. <a href="http://www.jstor.org/stable/25130482" class="uri">http://www.jstor.org/stable/25130482</a>.</p>
+</div>
+<div id="ref-goetzmann_rouwenhorst_2005">
+<p>Goetzmann, William N., and K. Geert. Rouwenhorst. 2005. <em>The Origins of Value: The Financial Innovations That Created Modern Capital Markets</em>. Oxford University Press.</p>
+</div>
+<div id="ref-5beb">
+<p>“MEDIEVAL Tally Sticks and How They Worked.” n.d. <em>MEDIEVAL TALLY STICKS AND HOW THEY WORKED</em>. <a href="http://www.coinbooks.org/v20/esylum_v20n29a26.html" class="uri">http://www.coinbooks.org/v20/esylum_v20n29a26.html</a>.</p>
+</div>
+</div>
+                                            </div>
                 </div>
             </div>
         </div>

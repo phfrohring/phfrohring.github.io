@@ -7,11 +7,18 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="/css/style.css"/>
                 <link rel="icon" type="image/png" href="/images/favicon.png"/>
-                    </head>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
+        for (var i=0; i < mathElements.length; i++)
+        {
+         var texText = mathElements[i].firstChild
+         katex.render(texText.data, mathElements[i])
+        }}
+        </script>
+            </head>
 
     <body>
         <div class="top-wrapper">
-            <header class="top-header" title="" style="background-image: url(/images/header-orig-jhon-mccarthy-7fff.jpg);background-size: cover; background-position: center;"></header>
+            <header class="top-header" title="Source: https://exhibits.stanford.edu/stanford-stories/feature/stanford-innovators" style="background-image: url(/images/header-orig-jhon-mccarthy-7fff.jpg);background-size: cover; background-position: center;"></header>
 
             <div class="columns_1">
                 <nav class="navigation">
@@ -28,8 +35,8 @@
                             <h1 class="title">Racket</h1>
                                                         <p class="abstract">Notes on Racket.</p>
                                                                                                                 <p class="date">2017-07-27</p>
-                                                                                    <p class="author">Pierre-Henry Fröhring</p>
-                                                    </header>
+                                                                                                                      <p class="author"><a href="mailto:contact@pierrehenryfrohring.com">Pierre-Henry Fröhring</a></p>
+                                                                                  </header>
                                                                         <nav id="TOC">
                             <ul>
                             <li><a href="#notes">Notes</a></li>
@@ -47,8 +54,9 @@
 <li>s,s’:String ↦ ss’ where ss’ symbolises the concatenation of s and s’</li>
 <li>‘«x»’ means that «x» is to be replaced by what ‘x’ represents e.g.: ‘«sig»’</li>
 <li>‘□’ means that something is missing. Should be replaced by something.</li>
+<li>Let <span class="math inline">f : A \rightarrow B</span> then we usually write <span class="math inline">f x</span> instead of traditional <span class="math inline">f(x)</span>.</li>
 </ul>
-                    </div>
+                                            </div>
                 </div>
             </div>
         </div>

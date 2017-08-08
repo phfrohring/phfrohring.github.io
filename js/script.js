@@ -2,11 +2,17 @@
 (function(){
     'use strict'
 
-    var publications_dir = '/pubs';
-
+    var publications_dir = '/pubs'
+    var max_abtract_len = 120
+    var search_box_id = 'search_box'
+    var summary_tag_class = 'summary-tag'
 
 
     // Utils.
+
+    var truncate_abstract_string = function(s) {
+        return s.length > max_abtract_len ? `${s.slice(0,max_abtract_len)}…` : s
+    }
 
     var addMultiEventsListener = function(element, events, listner) {
         events.split(' ').forEach(evt => element.addEventListener(evt, listner))
@@ -63,19 +69,24 @@
         return true
     }
     var type_error = function(msg) { throw new TypeError(msg) }
-    var check_type = function(value, type) {
-        var result = (type === 'string') ? typeof value === type : value === type;
-        return result || type_error(`expected type: ${type}, got: ${value}.`);
-    }
-    var check_form = function(value, form) {
-        var form_keys = Object.keys(form)
-        form_keys.length === Object.keys(value).length || type_error('form_keys and value_keys length should be equal.')
-        form_keys.forEach(function(key) {
-            var expected_type = form[key]
 
-            if (Array.isArray(expected_type)) { value[key].forEach(function(v) { check_type(v,expected_type[0]) }) }
-            else { check_type(value[key],expected_type) }
-        })
+    var check_form = function(value, form) {
+        if (form === Boolean) {
+            typeof value === 'boolean' || type_error(`expected type: ${form}, got: ${value}.`)
+        }
+        else if (form === String) {
+            typeof value === 'string' || type_error(`expected type: ${form}, got: ${value}.`)
+        }
+        else if (Array.isArray(form)) {
+            form.length === 1 || type_error(`form should be like [form'] not: ${form}.`)
+            value.forEach(function(value) { check_form(value,form[0]) })
+        }
+        else if (typeof form === 'object') {
+            var form_keys = Object.keys(form)
+            form_keys.length === Object.keys(value).length || type_error('form_keys and value_keys length should be equal.')
+            form_keys.forEach(function(key) { check_form(value[key],form[key]) })
+        }
+        return true
     }
     var summaries_to_html = (function() {
         var template = function(summaries) {
@@ -151,7 +162,8 @@
             img,
             img_credits,
             to_pdf,
-            css
+            css,
+            email
         }) {
 
             var address = `${publications_dir}/${meta_to_filename(title,id)}.html`
@@ -165,11 +177,11 @@
         </div>
         <div class="summary-text-column">
             <a href="${address}"><h1 class="summary-title">${title}</h1></a>
-            <p class="summary-abstract">${abstract}</p>
-            <p class="summary-author_date">Author: ${author}. Last update: ${last_update}.</p>
+            <p class="summary-abstract">${truncate_abstract_string(abstract)}</p>
+            <p class="summary-author_date"><a href="mailto:${email}">Author: ${author}</a>. Last update: ${last_update}.</p>
             <ul class="summary-tags">
-                <li class="summary-tag">tags:</li>
-                ${tags.map((tag) => '<li class="summary-tag"><a>'+tag+'</a></li>\n').join('')}
+                <li class="${summary_tag_class}">tags:</li>
+                ${tags.map((tag) => '<li class="'+summary_tag_class+'"><a>'+tag+'</a></li>\n').join('')}
             </ul>
         </div>
     </div>
@@ -189,25 +201,27 @@
 
     var check_summary = (function() {
         var summary_form = {
-            'broadcast': 'true',
-            'title': 'string',
-            'tags': ['string'],
-            'abstract': 'string',
-            'id': 'string',
-            'version': 'string',
-            'date': 'string',
-            'last_update': 'string',
-            'author': 'string',
-            'sign': 'string',
-            'img': 'string',
-            'img_credits': 'string',
-            'to_pdf': 'string',
-            'css': 'string'
+            'broadcast': Boolean,
+            'title': String,
+            'tags': [String],
+            'abstract': String,
+            'id': String,
+            'version': String,
+            'date': String,
+            'last_update': String,
+            'author': String,
+            'sign': String,
+            'img': String,
+            'img_credits': String,
+            'to_pdf': Boolean,
+            'css': String,
+            'email': String,
+            'link-citations': Boolean
         }
 
         return function(summary) { check_form(summary, summary_form) }
     }())
-    var check_search_string = function(search_string) { check_type(search_string, 'string') || type_error(`search_string value should have type: 'string', but has type: ${typeof search_string}.`)}
+    var check_search_string = function(search_string) { check_form(search_string, 'string') || type_error(`search_string value should have type: 'string', but has type: ${typeof search_string}.`)}
 
 
     // Node initializations.
@@ -240,7 +254,7 @@
         return node
     }
     var init_search_string = function() {
-        var search_box = document.getElementById('search_box')
+        var search_box = document.getElementById(search_box_id)
         var node = Node(
             { search_string: search_box.value },
             function({ search_string }) {
@@ -327,15 +341,15 @@
         var node = Node(
             { filtered_summaries_html: '' },
             function({ filtered_summaries_html }) {
-                check_type(filtered_summaries_html, 'string')
+                check_form(filtered_summaries_html, 'string')
 
                 page.getElementsByClassName('content')[0].innerHTML = filtered_summaries_html
 
-                var search_box = document.getElementById('search_box')
+                var search_box = document.getElementById(search_box_id)
                 Array.
                     prototype.
                     slice.
-                    call(document.getElementsByClassName('summary-tag')).
+                    call(document.getElementsByClassName(summary_tag_class)).
                     forEach(function(tag) {
                         tag.addEventListener(
                             'click',

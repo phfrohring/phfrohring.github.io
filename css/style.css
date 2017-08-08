@@ -243,6 +243,18 @@ blockquote em{
    font-size: 0.75em;
 }
 
+  .summary-abstract-text {
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         overflow-y: hidden;
+         text-overflow: ellipsis;
+         
+   }
+
+
 
 @media (max-width: 1000px) {
    body {
@@ -289,11 +301,13 @@ blockquote em{
 
    .summary-abstract {
       margin: 0;
-      padding-top: 0.5em;
+      margin-top: 0.5em;
       font-size: 1em;
       flex:1;
+      position: relative;
    }
 
+ 
    .summary-author_date {
       margin: 0;
       padding-top: 0.5em;
@@ -371,9 +385,10 @@ blockquote em{
 
    .summary-abstract {
       margin: 0;
-      padding-top: 0.5em;
+      margin-top: 0.5em;
       font-size: 1em;
       flex: 1;
+      position: relative;
    }
 
    .summary-author_date {
