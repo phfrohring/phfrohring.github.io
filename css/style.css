@@ -63,7 +63,7 @@ a:hover {
 }
 
 q {
-   quotes: "â€œ" "â€" "â€˜" "â€™";
+   quotes: "Ã¢â‚¬Å“" "Ã¢â‚¬Â" "Ã¢â‚¬Ëœ" "Ã¢â‚¬â„¢";
 }
 
 table {
@@ -341,7 +341,8 @@ blockquote em{
       width: 650px;
       margin: auto;
       margin-top: 2em;
-      border: 1px solid rgba(0,0,0,.1)
+      border: 1px solid rgba(0,0,0,.1);
+      font-size: 16px;
    }
 
    .summary-columns {
@@ -402,7 +403,7 @@ blockquote em{
       max-width: 740px;
       min-width: 550px;
       margin: auto;
-      font-size: 16px;
+      font-size: 18px;
    }
 
 }

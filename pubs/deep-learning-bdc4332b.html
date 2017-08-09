@@ -33,71 +33,91 @@
                     <div class="publication-wrapper">
                                                 <header>
                             <h1 class="title">Deep Learning</h1>
-                                                        <p class="abstract">Soon.</p>
+                                                        <p class="abstract">Notes on Deep Learning.</p>
                                                                                                                 <p class="date">2017-08-03</p>
                                                                                                                       <p class="author"><a href="mailto:contact@pierrehenryfrohring.com">Pierre-Henry Fröhring</a></p>
                                                                                   </header>
                                                                         <nav id="TOC">
                             <ul>
-                            <li><a href="#deep-learning">Deep Learning</a></li>
+                            <li><a href="#notations">Notations</a></li>
+                            <li><a href="#heaviside-step-function">Heaviside step function</a></li>
+                            <li><a href="#perceptron">Perceptron</a></li>
+                            <li><a href="#deep-learning">Deep learning</a></li>
+                            <li><a href="#gradient-descent">Gradient descent</a></li>
+                            <li><a href="#practice">Practice</a></li>
                             </ul>
                         </nav>
-                                                <h1 id="deep-learning">Deep Learning</h1>
-<p>Gradient Descent</p>
-<p>Heaviside step function</p>
-<p>Perceptrons</p>
+                                                <h1 id="notations">Notations</h1>
+<ul>
+<li>‘abcdfegh ≡ X’ ⇔ ‘abcdfegh’ a.k.a. ‘X’.</li>
+<li>‘A;B;C;… ⊢ E;F;G;…’ ≡ From assumptions A B C … we can conclude E F G ….</li>
+<li>An ordered list ≡ [a,b,c, …, z].</li>
+<li>An unordered list ≡ [a b c … z].</li>
+<li>An ordered set ≡ {a,b,c,…,z}.</li>
+<li>An unordered set ≡ {a b c … z}.</li>
+<li>s,s’:String; ss’ ≡ concatenation of s and s’.</li>
+<li>‘«x»’ ≡ «x» is to be replaced by what ‘x’ represents.</li>
+<li>‘□’ ≡ something is to be written here.</li>
+<li>Let f : A → B: f(x) ≡ f x.</li>
+<li><span class="math inline">x \cdot y</span> ≡ dot product of <span class="math inline">x</span> and <span class="math inline">y</span>.</li>
+<li>Let f : A B … → C then f a : B … → C</li>
+<li><span class="math inline">x_i</span> ≡ component indexed <span class="math inline">i</span> of <span class="math inline">x</span></li>
+</ul>
+<h1 id="heaviside-step-function">Heaviside step function</h1>
 <p><span class="math display">\displaystyle 
-x,w : \mathbb{Q}^n;~g(x,w) :\equiv x \cdot w
+H : x \ge 0\mapsto H(x) = 1
 </span></p>
 <p><span class="math display">\displaystyle 
-g(x) \geq 0 \Rightarrow f(x) :\equiv 1
+H : x &lt; 0 \mapsto H(x) = 0
 </span></p>
+<h1 id="perceptron">Perceptron</h1>
 <p><span class="math display">\displaystyle 
-g(x) &lt; 0 \Rightarrow f(x) :\equiv 0
+\text{Perceptron}_w(x) \equiv H(w \cdot x)
 </span></p>
 <p>AND/OR/NOT/XOR perceptron</p>
 <p>input → layers of perceptrons → outputs</p>
 <p>Layers of perceptrons can simulate any computer programs.</p>
-<p><span class="math display">\displaystyle 
-z : \mathbb{Q};~s(z) :\equiv \frac{1}{1 - e^{-z}}
-</span></p>
 <p>Stacking units will let you model linearly inseparable data, impossible to do with regression models.</p>
-<p>Once you start using activation functions that are continuous and differentiable, it’s possible to train the network using gradient descent.</p>
-<p>Assume that <span class="math inline">\varphi</span> : continuous differentiable.</p>
+<h1 id="deep-learning">Deep learning</h1>
+<p>Input ≡ <span class="math inline">x</span> ≡ <span class="math inline">[x_1,\ldots,x_n]</span>, <span class="math inline">x_i \equiv [x_{i1},\ldots,x_{im}]</span></p>
+<p>Expected ouput ≡ <span class="math inline">y</span> ≡ <span class="math inline">[y_1,\ldots,y_n]</span>, <span class="math inline">y_i \equiv [y_{i1},\ldots,y_{ik}]</span></p>
+<p>Weights of the network ≡ <span class="math inline">w</span> ≡ <span class="math inline">[w_1,\ldots,w_m]</span>, weights of a node <span class="math inline">i</span> in the network ≡ <span class="math inline">w_i</span> ≡ <span class="math inline">[w_{i1},\ldots,w_{ik}]</span></p>
+<p><span class="math inline">\hat{y}</span> ≡ <span class="math inline">\text{network}(x) \equiv \varphi \odot x \times w</span> where <span class="math inline">\times</span> is the matrix multiplication, <span class="math inline">\odot</span> is the pointwise multiplication of a function and a matrix.</p>
+<p>Error comparing (SSE) <span class="math inline">\hat{y}</span> and <span class="math inline">y</span> ≡ <span class="math inline">E</span> ≡ <span class="math inline">\frac{1}{2} \sum_{i=1}^n \sum_{j=1}^k (y_{ij} - \hat{y}_{ij})^2</span></p>
+<p>Also possible: error (MSE) comparing <span class="math inline">\hat{y}</span> and <span class="math inline">y</span> for one output layer and <span class="math inline">n</span> input points ≡ <span class="math inline">E</span> ≡ <span class="math inline">\frac{1}{2n} \sum_{i=1}^n (y_{i} - \hat{y}_{i})^2</span></p>
+<p>It’s impractical to modify the network by hand so that <span class="math inline">E</span> is minimized. It may be done by the computer by looking at how <span class="math inline">E</span> changes wrt some parameters of the network then updating the parameters so that <span class="math inline">E</span> is minimized until no more optimization can occur.</p>
+<h1 id="gradient-descent">Gradient descent</h1>
+<p>Assuming the above network, <span class="math inline">E</span> and that <span class="math inline">\varphi</span> is continuous differentiable we can conclude that the computer can minimize <span class="math inline">E</span> by updating <span class="math inline">w</span> one component at a time like so: <span class="math inline">w_{op}&#39; \equiv w_{op} + \Delta w_{op}</span>, <span class="math inline">\eta</span> ≡ learning rate, <span class="math inline">\Delta w_{op} \equiv - \eta \frac{\partial E}{\partial w_{op}}</span></p>
+<p>Let’s derive <span class="math inline">w_{op}&#39; \equiv w_{op} + \Delta w_{op}</span> in terms of operations a computer may perform:</p>
 <p><span class="math display">\displaystyle 
-\hat{y} :\equiv \varphi \circ g
+\frac{\partial E}{\partial w_{op}} \equiv -\sum_{i,j}(y_{ij} - \hat{y}_{ij}) \frac{\partial \hat{y}_{ij}}{\partial w_{op}}
 </span></p>
 <p><span class="math display">\displaystyle 
-\hat{y}^i :\equiv \varphi \circ g~x_i
+\frac{\partial \hat{y}_{ij}}{\partial w_{op}} \equiv \frac{\partial \varphi(x_i \cdot w_j)}{\partial w_{op}} \equiv \varphi&#39;(x_i \cdot w_j) \frac{\partial}{\partial w_{op}} x_i \cdot w_j
 </span></p>
 <p><span class="math display">\displaystyle 
-\hat{y}^i_j :\equiv (\varphi \circ g~x_i)_j
+\frac{\partial}{\partial w_{op}} x_i \cdot w_j \equiv \frac{\partial}{\partial w_{op}} x_i \cdot w_o \equiv x_{ip}
 </span></p>
 <p><span class="math display">\displaystyle 
-y,\hat{y} : \mathbb{Q};~E :\equiv \frac{1}{2} \sum_{i} \sum_{j} (y_j^i - \hat{y}_j^i)^2
-</span></p>
-<p><span class="math inline">\eta:\mathbb{Q}</span> is called the learning rate.</p>
-<p><span class="math display">\displaystyle 
-\Delta w_i :\equiv - \eta \frac{\partial E}{\partial w_i}
+\varphi&#39;(x_i \cdot w_j) \frac{\partial}{\partial w_{op}} x_i \cdot w_j \equiv \varphi&#39;(x_i \cdot w_o) x_{ip}
 </span></p>
 <p><span class="math display">\displaystyle 
-w_i&#39; :\equiv w_i + \Delta w_i
+\frac{\partial E}{\partial w_{op}} \equiv -\sum_{i}(y_{io} - \hat{y}_{io}) \varphi&#39;(x_i \cdot w_o) x_{ip}
 </span></p>
 <p><span class="math display">\displaystyle 
-(f \circ g)&#39; = f&#39; \circ g \cdot g
+\delta_{io} \equiv (y_{io} - \hat{y}_{io}) \varphi&#39;(x_i \cdot w_o)
 </span></p>
 <p><span class="math display">\displaystyle 
-\frac{\partial E}{\partial w_k} = - \sum_{i} \sum_{j} (y_j^i - \hat{y}_j^i) \varphi&#39; (g(x^i)) x_k^i 
+\Delta w_{op} \equiv \eta \sum_{i}\delta_{io} x_{ip} \equiv \eta(\delta_{o} \cdot x_{p})
 </span></p>
 <p><span class="math display">\displaystyle 
-\delta^i :\equiv \sum_{j} (y_j^i - \hat{y}_j^i) \varphi&#39; (g(x^i))
+w_{op}&#39; \equiv w_{op} + \eta (\delta_{o} \cdot x_{p})
 </span></p>
-<p><span class="math display">\displaystyle 
-\frac{\partial E}{\partial w_k} = - \sum_{i} \delta^i x_k^i 
-</span></p>
-<p><span class="math display">\displaystyle 
-w_k&#39; :\equiv w_k + \eta \sum_{i} \delta^i x_k^i 
-</span></p>
+<p>A commonly used <span class="math inline">\varphi</span> function is the sigmoid function: <span class="math inline">\text{Sigmoid}(z) \equiv S(z) \equiv \frac{1}{1 - e^{-z}}</span></p>
+<p>Local optimum may trap gradient descents.</p>
+<h1 id="practice">Practice</h1>
+<p>The human intervention has been moved from optimizing the weights of the network to the more general optimization of the “shape” of the data where the automatic learning is supposed to happen.</p>
+<p>E.g., the sigmoid will be more useful on a 0 centered set with a reasonable spread because the sigmoid is linear around 0 but not far from it. Far from zero, “everything looks the same” i.e. the derivative is close to 0.</p>
                                             </div>
                 </div>
             </div>
