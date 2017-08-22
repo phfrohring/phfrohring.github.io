@@ -7,6 +7,43 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="/css/style.css"/>
                 <link rel="icon" type="image/png" href="/images/favicon.png"/>
+                <style type="text/css">
+            div.sourceCode { overflow-x: auto; }
+            table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+              margin: 0; padding: 0; vertical-align: baseline; border: none; }
+            table.sourceCode { width: 100%; line-height: 100%; }
+            td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+            td.sourceCode { padding-left: 5px; }
+            code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+            code > span.dt { color: #902000; } /* DataType */
+            code > span.dv { color: #40a070; } /* DecVal */
+            code > span.bn { color: #40a070; } /* BaseN */
+            code > span.fl { color: #40a070; } /* Float */
+            code > span.ch { color: #4070a0; } /* Char */
+            code > span.st { color: #4070a0; } /* String */
+            code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+            code > span.ot { color: #007020; } /* Other */
+            code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+            code > span.fu { color: #06287e; } /* Function */
+            code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+            code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+            code > span.cn { color: #880000; } /* Constant */
+            code > span.sc { color: #4070a0; } /* SpecialChar */
+            code > span.vs { color: #4070a0; } /* VerbatimString */
+            code > span.ss { color: #bb6688; } /* SpecialString */
+            code > span.im { } /* Import */
+            code > span.va { color: #19177c; } /* Variable */
+            code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+            code > span.op { color: #666666; } /* Operator */
+            code > span.bu { } /* BuiltIn */
+            code > span.ex { } /* Extension */
+            code > span.pp { color: #bc7a00; } /* Preprocessor */
+            code > span.at { color: #7d9029; } /* Attribute */
+            code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+            code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+            code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+            code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+        </style>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
         for (var i=0; i < mathElements.length; i++)
         {
@@ -39,109 +76,553 @@
                                                                                   </header>
                                                                         <nav id="TOC">
                             <ul>
+                            <li><a href="#preamble">Preamble</a></li>
+                            <li><a href="#requirements">Requirements</a></li>
                             <li><a href="#notations">Notations</a></li>
-                            <li><a href="#heaviside-step-function">Heaviside step function</a></li>
+                            <li><a href="#history">History</a></li>
+                            <li><a href="#classification-problem">Classification Problem</a></li>
+                            <li><a href="#state-of-the-art">State Of The Art</a></li>
                             <li><a href="#perceptron">Perceptron</a></li>
-                            <li><a href="#supervised-learning">Supervised learning</a></li>
-                            <li><a href="#deep-learning">Deep learning</a></li>
+                            <li><a href="#deep-learning">Deep Learning</a><ul>
+                            <li><a href="#network-as-matrices">Network As Matrices</a></li>
+                            <li><a href="#finding-the-matrices">Finding The Matrices</a></li>
                             <li><a href="#backpropagation">Backpropagation</a></li>
-                            <li><a href="#practice">Practice</a></li>
+                            <li><a href="#layers-neural-network-training">2 layers neural network training</a></li>
+                            </ul></li>
+                            <li><a href="#network">Network</a><ul>
+                            <li><a href="#rectified-linear-unit-relu">Rectified Linear Unit ≡ RELU</a></li>
+                            <li><a href="#linear-models">Linear models</a></li>
+                            <li><a href="#multinomial-logistic-classifier">Multinomial Logistic Classifier</a></li>
+                            <li><a href="#neural-network">Neural Network</a></li>
+                            <li><a href="#convolutional-networks">Convolutional Networks</a><ul>
+                            <li><a href="#pooling">Pooling</a></li>
+                            <li><a href="#convolution">1×1 convolution</a></li>
+                            <li><a href="#inception">Inception</a></li>
+                            </ul></li>
+                            </ul></li>
+                            <li><a href="#optimisation">Optimisation</a><ul>
+                            <li><a href="#deep-and-wide">Deep And Wide</a></li>
+                            <li><a href="#cross-validation-measuring-how-well-it-generalizes">Cross validation ≡ Measuring How Well It Generalizes</a></li>
+                            <li><a href="#stochastic-gradient-descent">Stochastic Gradient Descent</a></li>
+                            <li><a href="#batching">Batching</a></li>
+                            <li><a href="#how-to-update-the-model">How to update the model</a></li>
+                            <li><a href="#momentum">Momentum</a></li>
+                            <li><a href="#learning-rate-decay">Learning rate decay</a></li>
+                            <li><a href="#decrease-overfitting">Decrease overfitting</a><ul>
+                            <li><a href="#early-termination">Early Termination</a></li>
+                            <li><a href="#regularization">Regularization</a></li>
+                            <li><a href="#dropout">Dropout</a></li>
+                            </ul></li>
+                            </ul></li>
+                            <li><a href="#caveats">Caveats</a><ul>
+                            <li><a href="#numerical-stability">Numerical stability</a></li>
+                            <li><a href="#minimizing-loss">Minimizing Loss</a></li>
+                            <li><a href="#vanishing-gradients-on-sigmoids">Vanishing gradients on sigmoids</a></li>
+                            <li><a href="#dying-relus">Dying ReLUs</a></li>
+                            <li><a href="#exploding-gradients-in-rnns">Exploding gradients in RNNs</a></li>
+                            </ul></li>
+                            <li><a href="#implementation">Implementation</a><ul>
+                            <li><a href="#tensorflow">TensorFlow</a><ul>
+                            <li><a href="#hello-world">Hello World</a></li>
+                            </ul></li>
+                            </ul></li>
+                            <li><a href="#resources">Resources</a></li>
+                            <li><a href="#bibliography">Bibliography</a></li>
                             </ul>
                         </nav>
-                                                <h1 id="notations">Notations</h1>
-<ul>
-<li>‘abcdfegh ≡ X’ ⇔ ‘abcdfegh’ a.k.a. ‘X’.</li>
-<li>‘A;B;C;… ⊢ E;F;G;…’ ≡ From assumptions A B C … we can conclude E F G ….</li>
-<li>An ordered list ≡ [a,b,c, …, z].</li>
-<li>An unordered list ≡ [a b c … z].</li>
-<li>An ordered set ≡ {a,b,c,…,z}.</li>
-<li>An unordered set ≡ {a b c … z}.</li>
-<li>s,s’:String; ss’ ≡ concatenation of s and s’.</li>
-<li>‘«x»’ ≡ «x» is to be replaced by what ‘x’ represents.</li>
-<li>‘□’ ≡ something is to be written here.</li>
-<li>Let f : A → B: f(x) ≡ f x.</li>
-<li><span class="math inline">x \cdot y</span> ≡ dot product of <span class="math inline">x</span> and <span class="math inline">y</span>.</li>
-<li>Let f : A B … → C then f a : B … → C</li>
-<li><span class="math inline">x_i</span> ≡ component indexed <span class="math inline">i</span> of <span class="math inline">x</span></li>
-<li><span class="math inline">\blacksquare</span> ≡ end of computation</li>
-</ul>
-<h1 id="heaviside-step-function">Heaviside step function</h1>
-<p><span class="math display">\displaystyle 
-H : x \ge 0\mapsto H(x) = 1
-</span></p>
-<p><span class="math display">\displaystyle 
-H : x &lt; 0 \mapsto H(x) = 0
-</span></p>
+                                                <h1 id="preamble">Preamble</h1>
+<p>If something is incorrect, please let me know at <a
+href="mailto:contact@pierrehenryfrohring.com">this address</a>.</p>
+<h1 id="requirements">Requirements</h1>
+<p>□</p>
+<h1 id="notations">Notations</h1>
+<div style="white-space: pre-line;"><a href="http://www.jsoftware.com/papers/tot.htm">Notation as a Tool of Thought (Kenneth E. Iverson)</a>
+Writing ‘abcdfegh ≡ X’ is the same as writing: ‘abcdfegh a.k.a. X’
+X :≡ 1 ≡ In the current scope, from now one, X ≡ 1, forgetting all previous bindings
+An ordered list ≡ [a,b,c, …, z]
+An unordered list ≡ [a b c … z]
+An ordered set ≡ {a,b,c,…,z}
+An unordered set ≡ {a b c … z}
+A,B,C,… ⊢ E,F,G,… ≡ From assumptions [A,B,C,…] we can conclude [E,F,G,…]
+α:A ≡ α is an instance of a type A i.e. α is constructed and used as specified by A.
+Given s,s’:String then ss’:String ≡ concatenation of s and s’
+«x» ≡ replace x by what x represents
+□ ≡ something is to be written here
+Let f:A → B then f(x) ≡ f x
+Let f:A B … → C then f a:B … → C
+<span class="math inline">x \cdot y</span> ≡ dot product of <span class="math inline">x</span> and <span class="math inline">y</span>
+<span class="math inline">x_i</span> ≡ component indexed <span class="math inline">i</span> of <span class="math inline">x</span>
+<span class="math inline">\blacksquare</span> ≡ end of computation
+x // y ≡ integer division of x by y
+‖x y‖ ≡ distance between x and y
+𝔽 ≡ a <a href="https://en.wikipedia.org/wiki/Field_(mathematics)">field</a>
+ℚ ≡ rational numbers</div>
+<h1 id="history">History</h1>
+<p>Automation: □</p>
+<p>Fukuskima’s neocognitron Le cun’s lenet-5 Krizhevsky’s alexnet Triggers: lot’s of data, cheap &amp; fast GPU</p>
+<h1 id="classification-problem">Classification Problem</h1>
+<div style="white-space: pre-line;">a,b,…,x:Phenomenon
+Measure : Phenomenon → Measurement
+m : Measure
+
+Training set:
+    a ↦ m ↦ “Horse”
+    b ↦ m ↦ “Horse”
+    c ↦ m ↦ “Horse”
+    … ↦ m ↦ “Horse”
+
+Classifier : Measurement → ClassName1+ClassName2+…
+clf : Classifier
+
+Generalisation:
+    … ↦ m ↦ clf ↦ “Horse”
+    x ↦ m ↦ clf ↦ “Not A Horse”
+    y ↦ m ↦ clf ↦ “Horse”
+    z ↦ m ↦ clf ↦ …</div>
+<p>Classification Problem: implement clf.</p>
+<h1 id="state-of-the-art">State Of The Art</h1>
+<p>□</p>
 <h1 id="perceptron">Perceptron</h1>
-<p><span class="math display">\displaystyle 
-\text{Perceptron}_w(x) \equiv H(w \cdot x)
-</span></p>
-<p>AND/OR/NOT/XOR perceptron</p>
-<p>input → layers of perceptrons → outputs</p>
-<p>Layers of perceptrons can simulate any computer programs.</p>
-<p>Stacking units will let you model linearly inseparable data, impossible to do with regression models.</p>
-<h1 id="supervised-learning">Supervised learning</h1>
-<p>(Picture)</p>
-<h1 id="deep-learning">Deep learning</h1>
-<p>(Picture)</p>
-<p><span class="math inline">\text{out}_{k-1,i}</span> output of node <span class="math inline">i</span> in layer <span class="math inline">k-1</span>. Together, they form the row vector: <span class="math inline">\underline{\text{out}_{k-1}}</span></p>
-<p><span class="math inline">w_{ikj}</span> weight of node <span class="math inline">j</span> in layer <span class="math inline">k</span> for the output of node <span class="math inline">i</span> in layer <span class="math inline">k-1</span>. Gathering all weights on <span class="math inline">i</span> forms the column vector <span class="math inline">\underline{w_{kj}}</span>. Gathering for all nodes <span class="math inline">j</span> gives the matrix <span class="math inline">W_{k}</span>.</p>
-<p>For an activation function <span class="math inline">\varphi</span>, <span class="math inline">\text{out}_{k,j} = \varphi(\underline{\text{out}_{k-1}} \cdot \underline{w_{kj}}) = \varphi(\underline{\text{in}_{k,j}})</span></p>
-<p>Given an input <span class="math inline">\underline{x}</span>, the output of the network is <span class="math inline">\hat{y}</span> and the expected output is <span class="math inline">y</span>.</p>
-<p>The error of the network <span class="math inline">E \equiv \frac{1}{2}(y - \hat{y})^2</span></p>
-<p>The objective is to make the computer find itself <span class="math inline">W_{k}</span> ∀k such that it minimizes <span class="math inline">E</span>. A way to do that is for the computer to update <span class="math inline">w_{i,k,j}</span> ∀i,k,j like so: <span class="math inline">w&#39;_{i,k,j} = w_{i,k,j} + \Delta w_{i,k,j}</span> where <span class="math inline">\Delta w_{i,k,j} = - \eta \frac{\partial E}{\partial w_{i,k,j}}</span></p>
-<h1 id="backpropagation">Backpropagation</h1>
-<p>How to compute <span class="math inline">\frac{\partial E}{\partial w_{i,k,j}}</span> ? The intuition is: when one messes around with <span class="math inline">w_{i,k,j}</span> then <span class="math inline">\text{in}_{k+1,j}</span> jiggles a bit which makes <span class="math inline">\text{in}_{k+2,j}</span> jiggle and so on until the output layer where we can compute the error. From the end error and the quantitative dependency in between layers we can propagate backward the error and measure <span class="math inline">\frac{\partial E}{\partial w_{i,k,j}}</span>.</p>
-<p>Let’s compute the output layer error:</p>
-<p><span class="math display">\displaystyle 
-\begin{aligned}
-\frac{\partial E}{\partial w_{i,m}} &amp; \equiv 
-\frac{\partial}{\partial w_{i,m}} \frac{1}{2}(y - \hat{y})^2 \equiv 
--(y - \hat{y})\frac{\partial}{\partial w_{i,m}}\hat{y} \equiv 
--(y - \hat{y})\frac{\partial}{\partial w_{i,m}} \varphi(\underline{\text{out}_{m-1}} \cdot \underline{w_{m}}) \\
-\\
-&amp; \equiv -(y - \hat{y})\varphi&#39;(\underline{\text{out}_{m-1}} \cdot \underline{w_{m}})\text{out}_{m-1,i} \\
-\\
-\delta_{m} &amp; \equiv -(y - \hat{y})\varphi&#39;(\underline{\text{out}_{m-1}} \cdot \underline{w_{m}}) \\
-\\
-\frac{\partial E}{\partial w_{i,m}} &amp; \equiv \delta_{m} \text{out}_{m-1,i} ~ \blacksquare
-\end{aligned}
-</span></p>
-<p>Let’s compute the error from one layer to the other. The above intuition leads to:</p>
-<p><span class="math display">\displaystyle 
-\begin{aligned}
-\frac{\partial E}{\partial w_{i,k,j}} &amp; \equiv 
-\frac{\partial E}{\partial \underline{\text{in}_{k,j}}}\frac{\partial \underline{\text{in}_{k,j}}}{\partial w_{i,k,j}} 
-\end{aligned}
-</span></p>
-<p>Second term:</p>
-<p><span class="math display">\displaystyle 
-\begin{aligned}
-\frac{\partial \underline{\text{in}_{k,j}}}{\partial w_{i,k,j}} &amp; \equiv \text{out}_{k-1,i}
-\end{aligned}
-</span></p>
-<p>First term: note that <span class="math inline">E \equiv E(\underline{\text{in}_{k+1,l}})</span> ∀l ≡ knowing the inputs of one layer let you compute all subsequente layers until the error, by construction.</p>
-<p><span class="math display">\displaystyle 
-\begin{aligned}
-\frac{\partial E}{\partial \underline{\text{in}_{k,j}}} &amp; \equiv 
-\delta_{k,j} \equiv 
-\sum_l \delta_{k+1,l}{ \frac{\partial \underline{\text{in}_{k+1,l}}}{\partial \underline{\text{in}_{k,j}}}} \\
-\\
-\frac{\partial \underline{\text{in}_{k+1,l}}}{\partial \underline{\text{in}_{k,j}}} &amp; \equiv 
-\frac{\partial \underline{\text{out}_{k}} \cdot \underline{w_{k+1,l}}}{\partial \underline{\text{in}_{k,j}}} \equiv 
-\varphi&#39;(\text{in}_{k,j})w_{j,k+1,l} \\
-\\
-\frac{\partial E}{\partial \underline{\text{in}_{k,j}}} &amp; \equiv \delta_{k,j} \equiv \varphi&#39;(\text{in}_{k,j}) \times \sum_l \delta_{k+1,l} w_{j,k+1,l}
-\end{aligned}
-</span></p>
-<p>In conclusion:</p>
-<p><span class="math display">\displaystyle 
-\frac{\partial E}{\partial w_{i,k,j}} \equiv \text{out}_{k-1,i} \delta_{k,j} \equiv \text{out}_{k-1,i}\varphi&#39;(\text{in}_{k,j}) \times (\sum_l \delta_{k+1,l} w_{j,k+1,l}) ~ \blacksquare
-</span></p>
-<p>In other words, to compute <span class="math inline">\frac{\partial E}{\partial w_{i,k,j}}</span> after a forward computation has been done, one needs the last error and compute from the last layers to the earliest until the first layer.</p>
-<h1 id="practice">Practice</h1>
-<p>The human intervention has been moved from optimizing the weights of the network to the more general optimization of the “shape” of the data where the automatic learning is supposed to happen.</p>
+<p>Among all the candidates that can implement an arbitrary classifier is the perceptron.</p>
+<hr />
+<div style="white-space: pre-line;">Heaviside ≡ H
+    ℚ → {0 1}
+    x ≥ 0 ↦ H(x) ≡ 1
+    x &lt; 0 ↦ H(x) ≡ 0</div>
+<hr />
+<div style="white-space: pre-line;">w:Vector(ℚ)
+
+Perceptron ≡ P
+    Vector(ℚ) → {0 1}
+    x ↦ <span class="math inline">H(x \cdot w)</span></div>
+<hr />
+<div style="white-space: pre-line;">W:Matrix(n,k,ℚ)
+
+Perceptron Layer
+    Matrix(m,n,ℚ) → Matrix(n,k,ℚ)
+    X ↦ H(XW)</div>
+<hr />
+<div style="white-space: pre-line;"><span class="math inline">W_1,W_2,\ldots</span>:Matrix(ℚ)
+
+Perceptron Network
+    Matrix(m,n,ℚ) → Matrix(m,k,ℚ)
+    X ↦ <span class="math inline">H(H(H(XW_1)W_2)\ldots)</span> ≡ X ↦ ×<span class="math inline">W_1</span> ↦ H → ×<span class="math inline">W_2</span> ↦ H ↦ ×…</div>
+<hr />
+<div class="figure">
+<img src="/images/pub-neural-network-9eb5.png" title="Found at: http://www.texample.net/tikz/examples/neural-network/" alt="Perceptron Network Illustration" />
+<p class="caption">Perceptron Network Illustration</p>
+</div>
+<hr />
+<p>AND,OR,NOT,XOR,NAND:Perceptron ⊢ perceptrons can simulate any <a href="https://en.wikipedia.org/wiki/Functional_completeness">computer program</a>.</p>
+<p>This property makes Perceptron Networks candidates for implementing arbitrary classifiers.</p>
+<p>In practice, implementing a perceptron means finding the matrices <span class="math inline">W_1,W_2,\ldots</span> which cannot be done by hand for large matrices.</p>
+<h1 id="deep-learning">Deep Learning</h1>
+<p>Modifying a perceptron network so that a computer can find good enough <span class="math inline">W_1,W_2,\ldots</span> w.r.t. a loss function itself is called Deep Learning.</p>
+<div style="white-space: pre-line;">Perceptron(<span class="math inline">\varphi</span>) ≡ perceptron network where the Heaviside function has been replaced by a continuous differentiable function <span class="math inline">\varphi</span>.
+
+Perceptron(<span class="math inline">\varphi</span>) Loss Optimiser → Deep Learning</div>
+<p>If <span class="math inline">\varphi</span> was not practically differentiable the backpropagation would not be possible.</p>
+<h2 id="network-as-matrices">Network As Matrices</h2>
+<div class="figure">
+<img src="/images/pub-neural-network-9eb5.png" title="Found at: http://www.texample.net/tikz/examples/neural-network/" alt="Network" />
+<p class="caption">Network</p>
+</div>
+<div style="white-space: pre-line;"><span class="math inline">\varphi</span> : Continuous Differentiable Function
+<span class="math inline">\text{out}_{k-1,i}</span> output of node <code>i</code> in layer <code>k-1</code>.
+<span class="math inline">\underline{\text{out}_{k-1}} \equiv [\text{out}_{k-1,0}, \text{out}_{k-1,1}, \ldots]</span> output vector of layer <code>k-1</code>
+<span class="math inline">\text{node}_{k,j}</span> is the node <code>j</code> in layer <code>k</code>.
+<span class="math inline">\text{node}_{k,j}</span> outputs <span class="math inline">\varphi(\underline{\text{out}_{k-1}} \cdot \underline{w_{k,j}})</span>
+<span class="math inline">\underline{\text{out}_{k}} \equiv [\varphi(\underline{\text{out}_{k-1}} \cdot \underline{w_{k,0}}), \varphi(\underline{\text{out}_{k-1}} \cdot \underline{w_{k,1}}), \ldots] \equiv \varphi(\underline{\text{out}_{k-1}} \times W_k)</span>
+<span class="math inline">\underline{\text{out}_{k}} \equiv \varphi(\underline{\text{out}_{k-1}} \times W_k)</span>
+
+<span class="math inline">\underline{\text{input}}</span> ↦ Deep Learning Network ↦ <span class="math inline">\underline{\text{output}}</span> ≡
+    <span class="math inline">\underline{\text{input}} \mapsto \varphi(~\times W_0) \mapsto \ldots \mapsto \varphi(~\times W_n) \mapsto \underline{\text{output}}</span></div>
+<h2 id="finding-the-matrices">Finding The Matrices</h2>
+<p>Given a Deep Learning Network, loss function <span class="math inline">E \equiv \frac{1}{2}(y - \hat{y})^2</span> and a gradient descent optimiser with a learning rate <span class="math inline">\eta</span>:ℚ, the matrices coefficients <span class="math inline">w_{i,k,j}</span> are found by updating the coefficient like so:</p>
+<div style="white-space: pre-line;"><span class="math inline">\Delta w_{i,k,j} \equiv - \eta \frac{\partial E}{\partial w_{i,k,j}}</span>
+<span class="math inline">w&#39;_{i,k,j}</span> ≔ <span class="math inline">w_{i,k,j} + \Delta w_{i,k,j}</span></div>
+<h2 id="backpropagation">Backpropagation</h2>
+<p>How to compute <span class="math inline">\frac{\partial E}{\partial w_{i,k,j}}</span> ?</p>
+<p>Once an output <span class="math inline">\hat{y}</span> has been computed by the output node <span class="math inline">\text{node}_{n,1}</span>, we have:</p>
+<div style="white-space: pre-line;"><span class="math inline">\frac{\partial E}{\partial w_{i,n,1}} \equiv \frac{\partial \hat{y}}{\partial w_{i,n,1}} \frac{\partial E}{\partial \hat{y}}</span>
+    <span class="math inline">\frac{\partial E}{\partial \hat{y}} \equiv - (y-\hat{y})</span>
+    <span class="math inline">\hat{y} \equiv \varphi(\underline{\text{out}_{n-1}}\times{}W_{n,1})</span>
+    <span class="math inline">\frac{\partial \hat{y}}{\partial w_{i,n,1}} \equiv \varphi&#39;(\underline{\text{out}_{n-1}}\times{}W_{n,1})W_{i,n,1}</span></div>
+<p>The last node can compute its weights: <span class="math inline">w&#39;_{i,n,1}</span> ≔ <span class="math inline">w_{i,n,1} - \eta \frac{\partial E}{\partial w_{i,n,1}}</span></p>
+<p>Because the last node knows how much its output changes w.r.t. its inputs and how much the error changes w.r.t. its output, it can compute how much the error changes w.r.t. its inputs:</p>
+<div style="white-space: pre-line;"><span class="math inline">\frac{\partial E}{\partial \text{out}_{n-1,i}} \equiv \frac{\partial \hat{y}}{\partial \text{out}_{n-1,i}} \frac{\partial E}{\partial \hat{y}}</span>
+    <span class="math inline">\hat{y} \equiv \varphi(\underline{\text{out}_{n-1}}\times{}W_n)</span>
+    <span class="math inline">\frac{\partial \hat{y}}{\partial \text{out}_{n-1,i}} \equiv \varphi&#39;(\underline{\text{out}_{n-1}}\times{}W_{n,1})W_{i,n,1}</span></div>
+<p>Then, we back propagate <span class="math inline">\frac{\partial{} E}{\partial \text{out}_{n-1,i}}</span> so that the <span class="math inline">\text{node}_{n-1,i}</span> can update its weights:</p>
+<div style="white-space: pre-line;"><span class="math inline">\frac{\partial E}{\partial w_{r,n-1,i}} \equiv \frac{\partial \text{out}_{n-1,i}}{\partial w_{r,n-1,i}} \frac{\partial E}{\partial \text{out}_{n-1,i}}</span></div>
+<p><span class="math inline">w&#39;_{r,n-1,i}</span> ≔ <span class="math inline">w_{r,n-1,i} - \eta \frac{\partial E}{\partial w_{r,n-1,i}}</span></p>
+<p>This recurrence in called Backpropagation.</p>
+<p>To backpropagate from a k nodes layer to a n nodes layers, it suffices to use the multivariable chain rule: just sum the terms to compute <span class="math inline">\frac{\partial E}{\partial \text{out}_{n-1,i}}</span></p>
+<h2 id="layers-neural-network-training">2 layers neural network training</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">Deep Learning In A Couple of LOCs.</code></pre></div>
+<h1 id="network">Network</h1>
+<h2 id="rectified-linear-unit-relu">Rectified Linear Unit ≡ RELU</h2>
+<div style="white-space: pre-line;">if x &lt; 0 then RELU(x) ≡ 0
+if x ≥ 0 then RELU(x) ≡ x</div>
+<h2 id="linear-models">Linear models</h2>
+<p>if you have (X:Mat(n,k),Y:Math(n,m)) and are trying to find f : Linear Model such that ‖f(X) - Y‖ ≡ ‖ (XM + B) - Y‖ small enough then:</p>
+<ul>
+<li>of parameters ≡ (k+1)m ≡ number of elements in concat(M,B).</li>
+<li>Linear interations between inputs are efficiently captured, but non-linear ones are much harder.</li>
+<li>Fast: GPUs are good at adding things.</li>
+<li>Stable: small ≠ in inputs does not lead to large ≠ in outputs.</li>
+<li>Derivatives are nice: constants!</li>
+<li>No way to model non-linearities with linear models since a composition of linear functions is linear (<span class="math inline">g\circ{}f (ab+cd) \equiv ag\circ{}f(b)+cg\circ{}f(d)</span>)</li>
+</ul>
+<h2 id="multinomial-logistic-classifier">Multinomial Logistic Classifier</h2>
+<div style="white-space: pre-line;">X,W,b : (Matrix 𝔽)
+DataIn ≡ (Matrix 𝔽)
+DataOut ≡ (Matrix 𝔽)
+
+Linear Model
+    DataIn → DataOut
+    X ↦ XW+b</div>
+<hr />
+<div style="white-space: pre-line;">Believes ≡ (Matrix 𝔽 [0-1])
+
+Softmax
+    (Matrix 𝔽) → Believes
+    softmax X ≡ <span class="math inline">\frac{e^X}{e^X \cdot 1}</span></div>
+<p>Softmax 10×X is dramatically ≠ from Softmax 0.1×X</p>
+<hr />
+<div style="white-space: pre-line;">Believes ≡ (Matrix 𝔽 [0-1])
+softmax : Softmax
+linear_model : LinearModel
+
+Classifier
+    Data → Believes
+    X ↦ softmax linear_model X</div>
+<hr />
+<p>One-Hot Encoding</p>
+<hr />
+<div style="white-space: pre-line;">Believes ≡ (Matrix 0 ≤ 𝔽 ≤ 1)
+One-Hot
+Distance ≡ { q | q : 𝔽; q ≥ 0 }
+
+Cross Entropy
+    Believes One-Hot → Distance
+    B S ↦ <span class="math inline">- S \cdot (\text{log} B)</span></div>
+<hr />
+<div style="white-space: pre-line;">Data ≡ (Matrix 𝔽)
+One-Hot
+Distance ≡ { q | q : 𝔽; q ≥ 0 }
+classifier : Classifier
+cross_entropy : Cross Entropy
+
+Multinomial Logistic Classifier
+    Data One-Hot → Distance
+    X S ↦ cross_entropy(classifier X, S)</div>
+<hr />
+<div style="white-space: pre-line;">Data ≡ (Matrix 𝔽)
+One-Hot
+classifier : Multinomial Logistic Classifier
+
+Loss
+  Data One-Hot → Distance
+  X S ↦ <span class="math inline">\frac{(\text{classifier} X S) \cdot 1}{\text{nbr rows}~X}</span></div>
+<h2 id="neural-network">Neural Network</h2>
+<p>x → Linear Model → RELU → Linear Model → … → y</p>
+<h2 id="convolutional-networks">Convolutional Networks</h2>
+<p>Exploit locality in data, images for examples. Parameters sharing enable to pick up statistical invariants, like same pattern but in difference area of an image.</p>
+<div style="white-space: pre-line;">Vocabulary:
+    Patch ≡ Kernel
+    Depth
+    Feature Map
+    Stride
+    Valid Padding
+    Same Padding
+    Filter: Feature Map → Feature Map
+
+</div>
+<div class="figure">
+<img src="/images/pub-covnet-73e0.png" title="Udacity" alt="Covnet schema" />
+<p class="caption">Covnet schema</p>
+</div>
+<p>Convolutional Networks tend to pick up statistical invariant.</p>
+<p>Because weights/biases are shared among sampled patches, covnets tend to pick up statistical invariants.</p>
+<p>X → covnet → classifier → Y</p>
+<h3 id="pooling">Pooling</h3>
+<div style="white-space: pre-line;">A way to do sub-sampling.
+More computations
+More accuracy
+Same amount of weights
+More hyperparameters: pooling size &amp; pooling stride
+Decreases overfitting
+Dropouts gives better results as a regularizer</div>
+<h4 id="max-pooling-average-pooling">Max Pooling, Average Pooling</h4>
+<div class="figure">
+<img src="/images/pub-max-pooling-3c93.png" title="By Aphex34 - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=45673581" alt="Max Pooling" />
+<p class="caption">Max Pooling</p>
+</div>
+<h3 id="convolution">1×1 convolution</h3>
+<p>Cheap and makes networks deeper.</p>
+<h3 id="inception">Inception</h3>
+<p>At each layer, you may choose to use all kinds of transformations (pooling followed by 1×1 followed by …) and just concatenate the results to build the output vector. It’s called “Inception module”.</p>
+<h1 id="optimisation">Optimisation</h1>
+<h2 id="deep-and-wide">Deep And Wide</h2>
+<p>In practice, deeper networks do better than wider network for a same amount of parameters, usually.</p>
+<p>Larger networks then prevent overfitting more than smaller network: a little too small ⇒ will never fit.</p>
+<h2 id="cross-validation-measuring-how-well-it-generalizes">Cross validation ≡ Measuring How Well It Generalizes</h2>
+<p>Split the data in training, validation and test sets. You may update the network wrt validation set but never the test set. The test set should be ideally used once.</p>
+<p>How to measure effectiveness of updates you make on the network? Rule of thumbs: <strong>if more than 30 examples classified successfully a posteriori then significant</strong>.</p>
+<p>Size of the validation test set?</p>
+<p>Rule of thumbs: <strong>more than 30000</strong> because a change of 30 means first decimal change i.e. good resolution.</p>
+<p>Data scarcity may be mitigated by cross validation but more data is almost always better.</p>
+<p>□</p>
+<h2 id="stochastic-gradient-descent">Stochastic Gradient Descent</h2>
+<p>Ideally, all data would be forwarded to the network at once. In practice, too much data. Learning happens in multiple steps: data is randomly sampled into batches, learned and again until data exhaustion and/or some requirements met.</p>
+<p>rule of thumbs: <strong>If loss costs N floating points operations then its gradient costs about 3N</strong>.</p>
+<p>Compute the loss function for a tiny amount of random data e.g. 1 to 1000 and use gradient descent on it. This si stochastic gradient descent.</p>
+<p>It scales much better than gradient descent.</p>
+<h2 id="batching">Batching</h2>
+<p>If the dataset exceeds available memory, e.g. the frame buffer of the GTX 1080 Ti is about 11 GB piece and some datasets reach terrabytes, then cut the dataset in random pieces and throw them at whatever memory you have.</p>
+<p>Dicing and throwing random prieces of data is called <strong>batching</strong>.</p>
+<h2 id="how-to-update-the-model">How to update the model</h2>
+<p>Tune:</p>
+<ul>
+<li>Initial learning rate: lower it!</li>
+<li>Learning rate decay</li>
+<li>Momentum</li>
+<li>Bach size</li>
+<li>Weight initialization</li>
+<li>ADAGRAD does learning rate and momemtum on its own.</li>
+<li>Nothing works ⇒ bigger network, more data</li>
+</ul>
+<h2 id="momentum">Momentum</h2>
+<p>Instead of <span class="math inline">-\alpha \text{grad}~\text{loss}</span> use <span class="math inline">M</span> such that at each step, <span class="math inline">M&#39; \equiv 0.9M + \text{grad}~\text{loss}</span> i.e. running average i.e. momentum.</p>
+<h2 id="learning-rate-decay">Learning rate decay</h2>
+<p>At each step, decrease the learning rate.</p>
+<h2 id="decrease-overfitting">Decrease overfitting</h2>
+<h3 id="early-termination">Early Termination</h3>
+<p>Early termination: when performance(training time) passes a first max, just stop.</p>
+<h3 id="regularization">Regularization</h3>
+<p>Penalize regions of search space ⇒ less to search from. E.g. <span class="math inline">E&#39; \equiv E + \frac{1}{2}\beta||\omega||^2</span></p>
+<h3 id="dropout">Dropout</h3>
+<p>Dropout: Whac-A-Mole activation values randomly. During training, weight surviving values so that total weight preserved. During evaluation, remove dropouts and weights: activation values take the average of what they took during training.</p>
+<h1 id="caveats">Caveats</h1>
+<h2 id="numerical-stability">Numerical stability</h2>
+<p>Computers have limited amount of memory and computation power: too many operations and/or memory usage and it becomes useless ⇒ <strong>A computation should respect its computer</strong></p>
+<p>In particular, adding small things to big things lead to errors:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> <span class="dv">1000000000</span>
+<span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000000</span>):
+    a <span class="op">=</span> a <span class="op">+</span> <span class="fl">1e-6</span>
+<span class="bu">print</span>(a <span class="op">-</span> <span class="dv">1000000000</span>)
+<span class="co"># prints 0.953674316406 instead of 1.0</span></code></pre></div>
+<p>Rule of thumbs: <strong>variables with zero mean and equal variances</strong>. Also, it let the optimiser have an idea of where the data is in the search space.</p>
+<h2 id="minimizing-loss">Minimizing Loss</h2>
+<p>Loss is a function of the weights: Loss ≡ Loss(W). The weights can be chosen to minimize Loss. How to initialize W?</p>
+<p>Rule of thumbs: <strong>draw the loss from a zero centered gaussian distribution with small sigma</strong>.</p>
+<h2 id="vanishing-gradients-on-sigmoids">Vanishing gradients on sigmoids</h2>
+<p>See: this <a href="https://medium.com/@karpathy/yes-you-should-understand-backprop-e2f06eab496b">post</a>.</p>
 <p>E.g., the sigmoid will be more useful on a 0 centered set with a reasonable spread because the sigmoid is linear around 0 but not far from it. Far from zero, “everything looks the same” i.e. the derivative is close to 0.</p>
+<h2 id="dying-relus">Dying ReLUs</h2>
+<p>See: this <a href="https://medium.com/@karpathy/yes-you-should-understand-backprop-e2f06eab496b">post</a>.</p>
+<p>The forward and backward pass for a fully connected layer that uses ReLU would at the core include:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">z <span class="op">=</span> np.maximum(<span class="dv">0</span>, np.dot(W, x)) <span class="co"># forward pass</span>
+dW <span class="op">=</span> np.outer(z <span class="op">&gt;</span> <span class="dv">0</span>, x) <span class="co"># backward pass: local gradient for W</span></code></pre></div>
+<p>if a neuron gets clamped to zero in the forward pass (i.e. z=0, it doesn’t “fire”), then its weights will get zero gradient.</p>
+<h2 id="exploding-gradients-in-rnns">Exploding gradients in RNNs</h2>
+<p>See: this <a href="https://medium.com/@karpathy/yes-you-should-understand-backprop-e2f06eab496b">post</a>.</p>
+<p>The gradient signal going backwards in time through all the hidden states is always being multiplied by the same matrix.</p>
+<p>What happens when you take one number a and start multiplying it by some other number b (i.e. a<em>b</em>b<em>b</em>b<em>b</em>b…)? This sequence either goes to zero if |b| &lt; 1, or explodes to infinity when |b|&gt;1. The same thing happens in the backward pass of an RNN, except b is a matrix and not just a number, so we have to reason about its largest eigenvalue instead.</p>
+<h1 id="implementation">Implementation</h1>
+<h2 id="tensorflow">TensorFlow</h2>
+<h3 id="hello-world">Hello World</h3>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="im">import</span> tensorflow <span class="im">as</span> tf
+
+hello_constant <span class="op">=</span> tf.constant(<span class="st">&#39;Hello World!&#39;</span>)
+
+<span class="cf">with</span> tf.Session() <span class="im">as</span> sess:
+    output <span class="op">=</span> sess.run(hello_constant)
+    <span class="bu">print</span>(output)</code></pre></div>
+<div style="white-space: pre-line;">Data is encapsulated into… tensors.
+A session’s job is to map the defined computation to the hardware.</div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="im">import</span> tensorflow <span class="im">as</span> tf
+
+<span class="co"># Define the computational graph G here.</span>
+
+<span class="cf">with</span> tf.Session() <span class="im">as</span> sess:
+    <span class="co"># Execute G on some hardware here...</span>
+    <span class="co"># ... and get the result back.</span></code></pre></div>
+<div style="white-space: pre-line;">G can define free variable that take values at run time i.e. G ≡ G(x,y,…)</div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="im">import</span> tensorflow <span class="im">as</span> tf
+
+x <span class="op">=</span> tf.placeholder(tf.string)
+
+<span class="cf">with</span> tf.Session() <span class="im">as</span> sess:
+    hello_world <span class="op">=</span> sess.run(x, feed_dict<span class="op">=</span>{x: <span class="st">&#39;Hello World&#39;</span>})
+    <span class="bu">print</span>(hello_world)</code></pre></div>
+<div style="white-space: pre-line;">G can be defined in terms of network elements.
+These elements implement two computations: forward and backward. This makes backpropagation possible.</div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="im">import</span> tensorflow <span class="im">as</span> tf
+
+x <span class="op">=</span> tf.placeholder(tf.int32)
+y <span class="op">=</span> tf.placeholder(tf.int32)
+add <span class="op">=</span> tf.add(x,y)
+
+<span class="cf">with</span> tf.Session() <span class="im">as</span> sess:
+    <span class="cf">assert</span> <span class="dv">3</span> <span class="op">==</span> sess.run(add, feed_dict<span class="op">=</span>{x: <span class="dv">1</span>, y: <span class="dv">2</span>}) </code></pre></div>
+<div style="white-space: pre-line;">Optimisation cannot occur if the network parameters cannot be updated: it’s done using variables.
+Variables must be initialized and may be updated in the running session.
+Variables are stored in the russing session and exist across mutltiple seesion.run calls.
+Variables can be read by multiple by objects ran into ≠ sessions.</div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="im">import</span> tensorflow <span class="im">as</span> tf
+
+x <span class="op">=</span> tf.placeholder(tf.int32)
+y <span class="op">=</span> tf.Variable(<span class="dv">5</span>)
+add <span class="op">=</span> tf.add(x,y)
+
+<span class="cf">with</span> tf.Session() <span class="im">as</span> sess:
+    sess.run(tf.global_variables_initializer())
+    <span class="cf">assert</span> <span class="dv">6</span> <span class="op">==</span> sess.run(add, feed_dict<span class="op">=</span>{x: <span class="dv">1</span>}) </code></pre></div>
+<p>Example with optimisation:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="im">from</span> tensorflow.examples.tutorials.mnist <span class="im">import</span> input_data
+<span class="im">import</span> tensorflow <span class="im">as</span> tf
+<span class="im">import</span> numpy <span class="im">as</span> np
+<span class="im">from</span> helper <span class="im">import</span> batches  
+
+<span class="co"># Load the data</span>
+
+mnist <span class="op">=</span> input_data.read_data_sets(<span class="st">&#39;/datasets/ud730/mnist&#39;</span>, one_hot<span class="op">=</span><span class="va">True</span>)
+n_input <span class="op">=</span> <span class="dv">784</span>   <span class="co"># img shape: 28*28</span>
+n_classes <span class="op">=</span> <span class="dv">10</span>  <span class="co"># 0-9 digits</span>
+
+
+<span class="co">## The features are already scaled and the data is shuffled</span>
+
+train_features <span class="op">=</span> mnist.train.images
+train_labels <span class="op">=</span> mnist.train.labels.astype(np.float32)
+
+valid_features <span class="op">=</span> mnist.validation.images
+valid_labels <span class="op">=</span> mnist.validation.labels.astype(np.float32)
+
+test_features <span class="op">=</span> mnist.test.images
+test_labels <span class="op">=</span> mnist.test.labels.astype(np.float32)
+
+<span class="co"># Define the network</span>
+
+<span class="co">## G(features,labels,learning_rate)</span>
+
+features <span class="op">=</span> tf.placeholder(tf.float32, [<span class="va">None</span>, n_input])
+labels <span class="op">=</span> tf.placeholder(tf.float32, [<span class="va">None</span>, n_classes])
+
+weights <span class="op">=</span> tf.Variable(tf.random_normal([n_input, n_classes]))
+bias <span class="op">=</span> tf.Variable(tf.random_normal([n_classes]))
+logits <span class="op">=</span> tf.add(tf.matmul(features, weights), bias)
+
+
+<span class="co">## Optimisation</span>
+
+learning_rate <span class="op">=</span> tf.placeholder(tf.float32)
+cost <span class="op">=</span> tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits<span class="op">=</span>logits, labels<span class="op">=</span>labels))
+optimizer <span class="op">=</span> tf.train.GradientDescentOptimizer(learning_rate<span class="op">=</span>learning_rate).minimize(cost)
+
+
+<span class="co">## Measure accuracy</span>
+
+correct_prediction <span class="op">=</span> tf.equal(tf.argmax(logits, <span class="dv">1</span>), tf.argmax(labels, <span class="dv">1</span>))
+accuracy <span class="op">=</span> tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+
+
+<span class="co">## Training parameters</span>
+
+batch_size <span class="op">=</span> <span class="dv">128</span>
+epochs <span class="op">=</span> <span class="dv">10</span>
+learn_rate <span class="op">=</span> <span class="fl">0.001</span>
+
+<span class="co"># Compute</span>
+
+<span class="cf">with</span> tf.Session() <span class="im">as</span> sess:
+    sess.run(tf.global_variables_initializer())
+    
+    train_batches <span class="op">=</span> batches(batch_size, train_features, train_labels)
+
+    <span class="cf">for</span> epoch_i <span class="kw">in</span> <span class="bu">range</span>(epochs):
+
+        <span class="cf">for</span> batch_features, batch_labels <span class="kw">in</span> train_batches:
+            train_feed_dict <span class="op">=</span> {
+                features: batch_features,
+                labels: batch_labels,
+                learning_rate: learn_rate
+            }                
+            sess.run(optimizer, feed_dict<span class="op">=</span>train_feed_dict)
+
+    test_accuracy <span class="op">=</span> sess.run(
+        accuracy,
+        feed_dict<span class="op">=</span>{features: test_features, labels: test_labels})
+
+<span class="bu">print</span>(<span class="st">&#39;Test Accuracy: </span><span class="sc">{}</span><span class="st">&#39;</span>.<span class="bu">format</span>(test_accuracy))</code></pre></div>
+<div style="white-space: pre-line;">Given a trained network in a session, save its parameters and reuse them later.
+Parameters are mapped to their variables.
+Variable are remembered by name or position in the graph (fragile).</div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="im">import</span> tensorflow <span class="im">as</span> tf
+save_file <span class="op">=</span> <span class="st">&#39;./model-parameters.ckpt&#39;</span>
+network <span class="op">=</span> build_network()
+saver <span class="op">=</span> tf.train.Saver()
+<span class="cf">with</span> tf.Session() <span class="im">as</span> sess:
+    sess.run(tf.global_variables_initializer())
+    sess.run(network,…)
+    saver.save(sess, save_file)    </code></pre></div>
+<div style="white-space: pre-line;">Restore parameters:</div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="im">import</span> tensorflow <span class="im">as</span> tf
+tf.reset_default_graph()
+save_file <span class="op">=</span> <span class="st">&#39;./model-parameters.ckpt&#39;</span>
+network <span class="op">=</span> build_network()
+saver <span class="op">=</span> tf.train.Saver()
+<span class="cf">with</span> tf.Session() <span class="im">as</span> sess:
+    saver.restore(sess,save_file)
+    sess.run(network,…)
+    saver.save(sess, save_file)    </code></pre></div>
+<h1 id="resources">Resources</h1>
+<div style="white-space: pre-line;"><span class="citation">(LeCun et al. <a href="#ref-lecun-98">1998</a>)</span>
+<span class="citation">(Krizhevsky, Sutskever, and Hinton <a href="#ref-alexnet-2012">2012</a>)</span>
+<span class="citation">(Zeiler and Fergus <a href="#ref-Zeiler2014">2014</a>)</span>
+<a href="https://en.wikipedia.org/wiki/Tensor">Tensors</a>
+<a href="http://cs231n.stanford.edu/vecDerivs.pdf">Matrix derivations</a>
+<a href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivatives/v/partial-derivatives-introduction">Gradient descent</a>
+Linear algebra
+Jacobian</div>
+<pre><code>http://www.matthewzeiler.com/wp-content/uploads/2017/07/eccv2014.pdf
+http://cs231n.github.io
+http://neuralnetworksanddeeplearning.com
+https://www.deeplearningbook.org
+[course](https://www.youtube.com/watch?v=59Hbtz7XgjM)
+http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf
+http://people.idsia.ch/~juergen/nn2012traffic.pdf
+http://people.idsia.ch/~juergen/ijcnn2011.pdf
+http://www.irdindia.in/journal_ijraet/pdf/vol1_iss3/27.pdf
+https://stats.stackexchange.com/questions/140811/how-large-should-the-batch-size-be-for-stochastic-gradient-descent
+http://ruder.io/optimizing-gradient-descent/index.html#adam
+https://github.com/tflearn/tflearn/blob/master/examples/images/googlenet.py
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.144.5021&amp;rep=rep1&amp;type=pdf
+https://medium.com/@vivek.yadav/improved-performance-of-deep-learning-neural-network-models-on-traffic-sign-classification-using-6355346da2dc
+https://medium.com/@jeremyeshannon/udacity-self-driving-car-nanodegree-project-2-traffic-sign-classifier-f52d33d4be9f
+cs231n.github.io/neural-networks-3/#baby</code></pre>
+<h1 id="bibliography" class="unnumbered">Bibliography</h1>
+<div id="refs" class="references">
+<div id="ref-alexnet-2012">
+<p>Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E Hinton. 2012. “ImageNet Classification with Deep Convolutional Neural Networks.” In <em>Advances in Neural Information Processing Systems 25</em>, edited by F. Pereira, C. J. C. Burges, L. Bottou, and K. Q. Weinberger, 1097–1105. Curran Associates, Inc. <a href="http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf" class="uri">http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf</a>.</p>
+</div>
+<div id="ref-lecun-98">
+<p>LeCun, Y., L. Bottou, Y. Bengio, and P. Haffner. 1998. “Gradient-Based Learning Applied to Document Recognition.” <em>Proceedings of the IEEE</em> 86 (11): 2278–2324.</p>
+</div>
+<div id="ref-Zeiler2014">
+<p>Zeiler, Matthew D., and Rob Fergus. 2014. “Visualizing and Understanding Convolutional Networks.” In <em>Computer Vision – Eccv 2014: 13th European Conference, Zurich, Switzerland, September 6-12, 2014, Proceedings, Part I</em>, edited by David Fleet, Tomas Pajdla, Bernt Schiele, and Tinne Tuytelaars, 818–33. Cham: Springer International Publishing. doi:<a href="https://doi.org/10.1007/978-3-319-10590-1_53">10.1007/978-3-319-10590-1_53</a>.</p>
+</div>
+</div>
                                             </div>
                 </div>
             </div>

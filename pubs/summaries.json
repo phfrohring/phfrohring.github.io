@@ -46,9 +46,9 @@
     "img": "orig-deep-dream-0210.jpg",
     "css": "",
     "to_pdf": false,
-    "last_update": "2017-08-09",
+    "last_update": "2017-08-22",
     "date": "2017-08-03",
-    "version": "f4f6ceac0012c791687ad1d220bf3730f1fa5fca292338e8f1cf9c39fb753aab",
+    "version": "b79228f6df08233ed8519cbada46e7d8703059c1210ffb9ab2e2c06f5a2acd55",
     "img_credits": "By MartinThoma - Own work, CC0,\nhttps://commons.wikimedia.org/w/index.php?curid=45488162",
     "author": "Pierre-Henry Fröhring",
     "id": "bdc4332b-2d19-4657-9306-b84eaf38639b",
@@ -148,6 +148,26 @@
     "email": "contact@pierrehenryfrohring.com",
     "broadcast": true,
     "link-citations": true,
+    "img": "orig-cardpuncher-ed60.jpg",
+    "css": "",
+    "to_pdf": false,
+    "last_update": "2017-08-10",
+    "date": "2017-07-27",
+    "version": "c9c65cf9ac5c05bd609ee9fa8b9d0104bc7edcfabd3a5ad70b30f9eb17ef11c5",
+    "img_credits": "This media is available in the holdings of the National Archives and\nRecords Administration, cataloged under the National Archives Identifier\n(NAID) 513295",
+    "author": "Pierre-Henry Fröhring",
+    "id": "85e8bda5-3b04-4078-b7d0-f0b5a56c998c",
+    "abstract": "Notes on Python.",
+    "title": "Python",
+    "sign": "Signature",
+    "tags": [
+      "en"
+    ]
+  },
+  {
+    "email": "contact@pierrehenryfrohring.com",
+    "broadcast": true,
+    "link-citations": true,
     "img": "orig-jhon-mccarthy-7fff.jpg",
     "css": "",
     "to_pdf": false,
@@ -159,6 +179,26 @@
     "id": "2abfe99a-b5b8-49cb-82f2-bfb38de42f3c",
     "abstract": "Notes on Racket.",
     "title": "Racket",
+    "sign": "Signature",
+    "tags": [
+      "en"
+    ]
+  },
+  {
+    "email": "contact@pierrehenryfrohring.com",
+    "broadcast": true,
+    "link-citations": true,
+    "img": "orig-tezos-f812.jpg",
+    "css": "",
+    "to_pdf": false,
+    "last_update": "2017-08-15",
+    "date": "2017-08-15",
+    "version": "77045fae8d56595d246db07f1e575f421b783178e1bc6031091daec6245fd345",
+    "img_credits": "",
+    "author": "Pierre-Henry Fröhring",
+    "id": "c0032ae4-87b3-46d6-8fd2-d4c17c99847b",
+    "abstract": "Tezos",
+    "title": "Tezos",
     "sign": "Signature",
     "tags": [
       "en"

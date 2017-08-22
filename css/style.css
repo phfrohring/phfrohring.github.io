@@ -8,7 +8,7 @@ html {
    width: 100%;
    margin: 0;
    padding: 0;
-   background: #eeeeee;
+   background: white;
 }
 
 body {
@@ -19,13 +19,13 @@ body {
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    -moz-font-feature-settings: "liga" on;
-   color: rgba(0,0,0,.75);
+   color: rgba(0,0,0,.90);
    margin: 0;
    padding: 0;
    word-break: break-word;
    word-wrap: break-word;
    font-family: FreeSerif,Georgia,Cambria,"Times New Roman",Times,serif;
-   background: #eeeeee;
+   background: white;
    padding-bottom: 20em;
    font-size: 18px;
    line-height: 1.3;
@@ -251,7 +251,7 @@ blockquote em{
          bottom: 0;
          overflow-y: hidden;
          text-overflow: ellipsis;
-         
+
    }
 
 
@@ -307,7 +307,7 @@ blockquote em{
       position: relative;
    }
 
- 
+
    .summary-author_date {
       margin: 0;
       padding-top: 0.5em;
