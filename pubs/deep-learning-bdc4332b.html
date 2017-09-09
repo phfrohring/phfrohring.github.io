@@ -89,6 +89,7 @@
                             <li><a href="#backpropagation">Backpropagation</a></li>
                             <li><a href="#layers-neural-network-training">2 layers neural network training</a></li>
                             </ul></li>
+                            <li><a href="#performance">Performance</a></li>
                             <li><a href="#network">Network</a><ul>
                             <li><a href="#rectified-linear-unit-relu">Rectified Linear Unit ≡ RELU</a></li>
                             <li><a href="#linear-models">Linear models</a></li>
@@ -126,6 +127,7 @@
                             <li><a href="#hello-world">Hello World</a></li>
                             </ul></li>
                             </ul></li>
+                            <li><a href="#questions">Questions:</a></li>
                             <li><a href="#resources">Resources</a></li>
                             <li><a href="#bibliography">Bibliography</a></li>
                             </ul>
@@ -260,6 +262,9 @@ Perceptron(<span class="math inline">\varphi</span>) Loss Optimiser → Deep Lea
 <p>To backpropagate from a k nodes layer to a n nodes layers, it suffices to use the multivariable chain rule: just sum the terms to compute <span class="math inline">\frac{\partial E}{\partial \text{out}_{n-1,i}}</span></p>
 <h2 id="layers-neural-network-training">2 layers neural network training</h2>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">Deep Learning In A Couple of LOCs.</code></pre></div>
+<h1 id="performance">Performance</h1>
+<p>□</p>
+<p>Precision and Recall Accuracy</p>
 <h1 id="network">Network</h1>
 <h2 id="rectified-linear-unit-relu">Rectified Linear Unit ≡ RELU</h2>
 <div style="white-space: pre-line;">if x &lt; 0 then RELU(x) ≡ 0
@@ -470,7 +475,7 @@ y <span class="op">=</span> tf.placeholder(tf.int32)
 add <span class="op">=</span> tf.add(x,y)
 
 <span class="cf">with</span> tf.Session() <span class="im">as</span> sess:
-    <span class="cf">assert</span> <span class="dv">3</span> <span class="op">==</span> sess.run(add, feed_dict<span class="op">=</span>{x: <span class="dv">1</span>, y: <span class="dv">2</span>}) </code></pre></div>
+    <span class="cf">assert</span> <span class="dv">3</span> <span class="op">==</span> sess.run(add, feed_dict<span class="op">=</span>{x: <span class="dv">1</span>, y: <span class="dv">2</span>})</code></pre></div>
 <div style="white-space: pre-line;">Optimisation cannot occur if the network parameters cannot be updated: it’s done using variables.
 Variables must be initialized and may be updated in the running session.
 Variables are stored in the russing session and exist across mutltiple seesion.run calls.
@@ -484,13 +489,13 @@ add <span class="op">=</span> tf.add(x,y)
 
 <span class="cf">with</span> tf.Session() <span class="im">as</span> sess:
     sess.run(tf.global_variables_initializer())
-    <span class="cf">assert</span> <span class="dv">6</span> <span class="op">==</span> sess.run(add, feed_dict<span class="op">=</span>{x: <span class="dv">1</span>}) </code></pre></div>
+    <span class="cf">assert</span> <span class="dv">6</span> <span class="op">==</span> sess.run(add, feed_dict<span class="op">=</span>{x: <span class="dv">1</span>})</code></pre></div>
 <p>Example with optimisation:</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
 <span class="im">from</span> tensorflow.examples.tutorials.mnist <span class="im">import</span> input_data
 <span class="im">import</span> tensorflow <span class="im">as</span> tf
 <span class="im">import</span> numpy <span class="im">as</span> np
-<span class="im">from</span> helper <span class="im">import</span> batches  
+<span class="im">from</span> helper <span class="im">import</span> batches
 
 <span class="co"># Load the data</span>
 
@@ -545,7 +550,7 @@ learn_rate <span class="op">=</span> <span class="fl">0.001</span>
 
 <span class="cf">with</span> tf.Session() <span class="im">as</span> sess:
     sess.run(tf.global_variables_initializer())
-    
+
     train_batches <span class="op">=</span> batches(batch_size, train_features, train_labels)
 
     <span class="cf">for</span> epoch_i <span class="kw">in</span> <span class="bu">range</span>(epochs):
@@ -555,7 +560,7 @@ learn_rate <span class="op">=</span> <span class="fl">0.001</span>
                 features: batch_features,
                 labels: batch_labels,
                 learning_rate: learn_rate
-            }                
+            }
             sess.run(optimizer, feed_dict<span class="op">=</span>train_feed_dict)
 
     test_accuracy <span class="op">=</span> sess.run(
@@ -574,7 +579,7 @@ saver <span class="op">=</span> tf.train.Saver()
 <span class="cf">with</span> tf.Session() <span class="im">as</span> sess:
     sess.run(tf.global_variables_initializer())
     sess.run(network,…)
-    saver.save(sess, save_file)    </code></pre></div>
+    saver.save(sess, save_file)</code></pre></div>
 <div style="white-space: pre-line;">Restore parameters:</div>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
 <span class="im">import</span> tensorflow <span class="im">as</span> tf
@@ -585,7 +590,9 @@ saver <span class="op">=</span> tf.train.Saver()
 <span class="cf">with</span> tf.Session() <span class="im">as</span> sess:
     saver.restore(sess,save_file)
     sess.run(network,…)
-    saver.save(sess, save_file)    </code></pre></div>
+    saver.save(sess, save_file)</code></pre></div>
+<h1 id="questions">Questions:</h1>
+<p>Dividing data into training, validation and testing set? Which proportions? See: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.33.1337&amp;rep=rep1&amp;type=pdf</p>
 <h1 id="resources">Resources</h1>
 <div style="white-space: pre-line;"><span class="citation">(LeCun et al. <a href="#ref-lecun-98">1998</a>)</span>
 <span class="citation">(Krizhevsky, Sutskever, and Hinton <a href="#ref-alexnet-2012">2012</a>)</span>
@@ -595,7 +602,8 @@ saver <span class="op">=</span> tf.train.Saver()
 <a href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivatives/v/partial-derivatives-introduction">Gradient descent</a>
 Linear algebra
 Jacobian</div>
-<pre><code>http://www.matthewzeiler.com/wp-content/uploads/2017/07/eccv2014.pdf
+<pre><code>https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/
+http://www.matthewzeiler.com/wp-content/uploads/2017/07/eccv2014.pdf
 http://cs231n.github.io
 http://neuralnetworksanddeeplearning.com
 https://www.deeplearningbook.org

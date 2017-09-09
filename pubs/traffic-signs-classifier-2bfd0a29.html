@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Pierre-Henry Fröhring</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+                <link rel="icon" type="image/png" href="/images/favicon.png"/>
+                    </head>
+
+    <body>
+        <div class="top-wrapper">
+            <header class="top-header" title="Photo by Adrián Tormo on Unsplash." style="background-image: url(/images/header-orig-traffic-sign-c831.png);background-size: cover; background-position: center;"></header>
+
+            <div class="columns_1">
+                <nav class="navigation">
+                    <ul class="list_of-predifined_publications">
+                        <li class="predefined_publication"><a href="/pubs/curriculum-vitae-c5566488.html">CV</a></li>
+                        <li class="predefined_publication"><a href="/">Search</a></li>
+                    </ul>
+                    <input class="card search_box" type="text" id="search_box" placeholder="some words   tag:some_tag">
+                </nav>
+
+                <div class="content">
+                    <div class="publication-wrapper">
+                                                <header>
+                            <h1 class="title">Traffic Signs Classifier</h1>
+                                                        <p class="abstract">A 98.9% accurate classifier over the German Traffic Sign Dataset using Deep Learning and TensorFlow.</p>
+                                                                                                                <p class="date">2017-09-09</p>
+                                                                                                                      <p class="author"><a href="mailto:contact@pierrehenryfrohring.com">Pierre-Henry Fröhring</a></p>
+                                                                                  </header>
+                                                                        <nav id="TOC">
+                            <ul>
+                            <li><a href="#traffic-signs-classifier"><strong>Traffic Signs Classifier</strong></a><ul>
+                            <li><a href="#code">Code</a></li>
+                            <li><a href="#data-set-summary-exploration">Data Set Summary &amp; Exploration</a></li>
+                            <li><a href="#preprocessing">Preprocessing</a><ul>
+                            <li><a href="#contrast">Contrast</a></li>
+                            <li><a href="#grayscale">Grayscale</a></li>
+                            <li><a href="#edge-detection">Edge detection</a></li>
+                            <li><a href="#scaling">Scaling</a></li>
+                            <li><a href="#generating-images">Generating images</a></li>
+                            </ul></li>
+                            <li><a href="#model">Model</a></li>
+                            <li><a href="#training">Training</a></li>
+                            <li><a href="#performance">Performance</a></li>
+                            <li><a href="#test-on-new-images">Test On New Images</a></li>
+                            <li><a href="#neural-networks-state">Neural Network’s State</a></li>
+                            </ul></li>
+                            </ul>
+                        </nav>
+                                                <h1 id="traffic-signs-classifier"><strong>Traffic Signs Classifier</strong></h1>
+<div class="figure">
+<img src="/images/pub-traffic-signs-classifier-c3e2.png" />
+
+</div>
+<p>We built a traffic signs classifier using the <a href="http://benchmark.ini.rub.de/?section=gtsrb&amp;subsection=news">German Traffic Sign Dataset</a>, deep learning and TensorFlow. A 98.9% accuracy has been obtained on the test set which is higher than that of humans (98.83%) thanks to ideas from <a href="http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf">sermanet-ijcnn-11</a>.</p>
+<h2 id="code">Code</h2>
+<p>The associated code is located at: <a href="https://github.com/phfrohring/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Signs_Classifier.ipynb">Traffic Signs Classifier Jupyter Notebook.</a></p>
+<h2 id="data-set-summary-exploration">Data Set Summary &amp; Exploration</h2>
+<ul>
+<li><p>Images are 32×32 pixels over 3 colours channels : 32×32×3</p></li>
+<li><p>There are 43 classes of images.</p></li>
+<li><p>The data set counts 51839 images distributed over 3 subsets: Training, Validation and Test sets.</p></li>
+<li><p>The Training Set counts 70% of all images, Validation Set 20% and Test Set 10%.</p></li>
+<li><p>The distribution of images across the different classes is uneven:</p></li>
+</ul>
+<div class="figure">
+<img src="/images/pub-train-dist-5122.png" />
+
+</div>
+<ul>
+<li>In all images, the vast majority of pixels are attributed to the signs. Contrasts, blurring and kinds of noises are uneven:</li>
+</ul>
+<div class="figure">
+<img src="/images/pub-images-examples-7447.png" />
+
+</div>
+<ul>
+<li>We would have a hard time identifying generated images from original images, should we add a few by manipulating contrast, blurring, rotations, translations, and noises:</li>
+</ul>
+<div class="figure">
+<img src="/images/pub-images_in_class-e9b5.png" />
+
+</div>
+<h2 id="preprocessing">Preprocessing</h2>
+<p>We use the <a href="http://scikit-image.or">scikit-image</a> to preprocess images. The preprocessing step consists of 3 transformations: correcting the contrast, grayscaling then removing the mean from pixels value. We then generate images to have an even distribution of images across classes using translations, rotations, blurring and noise on original images. We did not include the edge detection data since we judged the data too noisy. The transformations are described below.</p>
+<h3 id="contrast">Contrast</h3>
+<p>It’s possible to equalise the contrast across the images using a function for the <a href="http://scikit-image.or">scikit-image</a> library. It let the model focus on the differences that matters, i.e. the signs, more than the contrast variations from one image to an other.</p>
+<p>Here is a before and after comparison:</p>
+<div class="figure">
+<img src="/images/pub-contrast-0-3f78.png" />
+
+</div>
+<div class="figure">
+<img src="/images/pub-contrast-1-de99.png" />
+
+</div>
+<h3 id="grayscale">Grayscale</h3>
+<p>Since the differences between the signs seem to rely essentially on shapes and forms, it’s worth trying to grayscale the images because it divides the number of pixels by 3 (1 gray channel instead of 3 RGB channels) and keeps what matters: shapes and forms.</p>
+<p>Here is a before and after comparison:</p>
+<div class="figure">
+<img src="/images/pub-grayscale-0-5c00.png" />
+
+</div>
+<div class="figure">
+<img src="/images/pub-grayscale-1-c4f4.png" />
+
+</div>
+<h3 id="edge-detection">Edge detection</h3>
+<p>All signs are bounded by a geometrical form: circle, triangle, square… The edge of the bounding form makes a sharp contrast with the background. I thought it might be a good idea to augment the grayscale images with detected edges using the Canny algorithm:</p>
+<p>Here is a before and after comparison:</p>
+<div class="figure">
+<img src="/images/pub-canny-0-4c82.png" />
+
+</div>
+<div class="figure">
+<img src="/images/pub-canny-1-5787.png" />
+
+</div>
+<p>Unfortunatly and after many trial and errors, I did not find a good enough set of parameters. Images are too small maybe? First order derivative eats at least 2x the pixels compared to images themselves.</p>
+<h3 id="scaling">Scaling</h3>
+<p>Finally, we scale the images so that pixels values have zero mean. It makes the optimisation easier and does not subtract information from the images because it is not encoded in their pixels absolute values but the relative differences between pixels, which is preserved by translation:</p>
+<pre><code>A preprocessed image mean = -1.04083408559e-17 ≈ 0</code></pre>
+<h3 id="generating-images">Generating images</h3>
+<p>Here is an example of a rotated, translated image with added gaussian noise:</p>
+<div class="figure">
+<img src="/images/pub-tr_image-83fb.png" />
+
+</div>
+<p>We apply these ransom transformations on all classes so that they all have the same number of images. Compare this distribution of images across classes with the one above:</p>
+<div class="figure">
+<img src="/images/pub-even_distribution-9c60.png" />
+
+</div>
+<h2 id="model">Model</h2>
+<div class="figure">
+<img src="/images/pub-model-8863.png" />
+
+</div>
+<p>The model is essentially LeNet-5 (<a href="http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf">LeCun 98</a>) evolved using ideas from  <a href="http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf">sermanet-ijcnn-11</a>, because it showed to be working on similar objects: digits classification. Instead of digits, we have signs for which I cannot find any good reason why it would not work, <em>a priori</em>.</p>
+<p>We first started with <a href="http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf">LetNet-5</a> and data re-splitted across training, validation and test into 70%, 20% and 10% of whole data respectively. The 93.8% accuracy on the test set gave us reasons to continue to invest time into improving its performance.</p>
+<p>Grayscaling the images led to a 1.2% improvement up to 95.0% accuracy on the test set. Centering the pixels values around 0 lead to a 1.3% improvement up to 96.3% accuracy on the test set. Making the distribution of training images even across classes lead to a 1.3% improvement up to 97.3% accuracy on the test set. We flattened and concatenated the outputs of the all convolutional layers into the first fully connected layer as done in <a href="http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf">sermanet-ijcnn-11</a>, augmented the number of epochs and divided the learning rate by augmenting the size of the batches up to 512 for a 0.8% increase up to 98.4% accuracy on the test set. We added the a dropout layer in between the fully connected layers of a 0.3% accuracy increase up to 98.7% accuracy on the test set. We added a 1x1 convolutional layer at the beginning of the network and increased the depth of all layers, increased the batch size up to 1024 to have a lower learning rate and augmented the number of epochs to 30 for a 0.3% accuracy increase up to 99.0% accuracy on the test set.</p>
+<h2 id="training">Training</h2>
+<p><a href="https://arxiv.org/pdf/1206.5533.pdf">Practical Recommendations for Gradient-Based Training of Deep Architectures</a> gives this formula that helps understanding how <code>batch_size</code> and <code>learning_rate</code> are related:</p>
+<div class="figure">
+<img src="/images/pub-formula-e424.png" />
+
+</div>
+<p>The bigger the batch (<strong>B</strong>), the lower the resulting <code>learning_rate</code>. A bigger batch also means a bigger region of the cost function that is optimized at each batch. For this reason, we prefered to increase the <code>batch_size</code> as long as the time/space performance where acceptable during the trial and error phase. The smaller the learning rate, the higher the number of epochs to compensate the smaller steps and avoiding getting stuck into a local minimum. Too many epochs and we are at risk of overfitting: the network learns the data set instead of how to generalize it. We just don’t train past a certain amount of epochs when we see that the accuracy does not improve anymore.</p>
+<p><a href="https://arxiv.org/abs/1412.6980">Adam: A Method for Stochastic Optimization</a> makes a great case for using the <code>AdamOptimizer</code> instead of others.</p>
+<blockquote>
+<p>6.3 EXPERIMENT: CONVOLUTIONAL NEURAL NETWORKS</p>
+<p>We show the effectiveness of Adam in deep CNNs. Our CNN architecture has three alternating stages of 5x5 convolution filters and 3x3 max pooling with stride of 2 that are followed by a fully connected layer of 1000 rectified linear hidden units (ReLU’s). The input image are pre-processed by whitening, and dropout noise is applied to the input layer and fully connected layer.</p>
+<p>Interestingly, although both Adam and Adagrad make rapid progress lowering the cost in the initial stage of the training, shown in Figure 3 (left), Adam and SGD eventually converge considerably faster than Adagrad for CNNs shown in Figure 3 (right).</p>
+</blockquote>
+<h2 id="performance">Performance</h2>
+<p>We reach 99.0% accuracy on the validation set and 98.9% on the test set which is on par with human performance: 98.8% (<a href="http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf">sermanet-ijcnn-11</a>).</p>
+<p>The model is evenly accurate across classes:</p>
+<div class="figure">
+<img src="/images/pub-accuracy_per_class-541b.png" />
+
+</div>
+<p>As a reminder, precision compares the number of true positives against true positives and false positives. Recall compares the number of false negatives against false negatives and true positives. High precision means that when the model says that a sign belong to a given class then it has high chances to be correct. High recall means that there are low chances for the model to miss instances of a given class.</p>
+<p>Here are precisions and recalls per classes of the model:</p>
+<div class="figure">
+<img src="/images/pub-precision_per_class-ab42.png" />
+
+</div>
+<div class="figure">
+<img src="/images/pub-recall_per_class-919a.png" />
+
+</div>
+<p>We see that even if accuracy is even, precision and recall are not. For example, class 0 has high recall and low precision. It means that the model identify correctly most of the instances belonging to the class 0 (recall) but makes relatively more mistakes when predicting that an instance belongs to the class 0. There is no point making the precision higher by augmenting the number of true positives since it’s already high (recall). So the only way to make the precision higher is by reducing the number of false positives. It’s equivalent to reduce overfitting. Maybe a higher dropout rate would help and/or trying different image generation distributions. Or maybe building an other network which only job is to double check class 0 predictions?</p>
+<h2 id="test-on-new-images">Test On New Images</h2>
+<p>To test our newly trained shiny and promising model, we took a couple of images of German traffic signs outside of the data set. Let’s see if the model can make predictions. Here are the selected images:</p>
+<div class="figure">
+<img src="/images/pub-new-images-430a.png" />
+
+</div>
+<p>After preprocessing:</p>
+<div class="figure">
+<img src="/images/pub-new-images-1-a15a.png" />
+
+</div>
+<p>Here is what the model believes the images classes are:</p>
+<div class="figure">
+<img src="/images/pub-new-images-belief-1-38c0.png" />
+
+</div>
+<div class="figure">
+<img src="/images/pub-new-images-belief-2-92c8.png" />
+
+</div>
+<div class="figure">
+<img src="/images/pub-new-images-belief-4-eefd.png" />
+
+</div>
+<div class="figure">
+<img src="/images/pub-new-images-belief-5-0be2.png" />
+
+</div>
+<div class="figure">
+<img src="/images/pub-new-images-belief-6-3ad2.png" />
+
+</div>
+<p>Which leads to this classification:</p>
+<div class="figure">
+<img src="/images/pub-new-images-belief-classification-863d.png" />
+
+</div>
+<p>Which leads to an accuracy of 100%. There was no real difficulty <em>a priori</em> for the network to classify these signs: no extreme contrast, overlapping environment, bad centring, damaged signs, bad weather, etc. The new images are not numerous nor diverse enough to have any kind of significance: it does not mean anything and could even be misleading.</p>
+<h2 id="neural-networks-state">Neural Network’s State</h2>
+<p>As NVIDIA’s did in their paper <a href="https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/">End-to-End Deep Learning for Self-Driving Cars</a> in the section Visualization of internal CNN State, let’s show the internal state of our model. Given the following input image:</p>
+<div class="figure">
+<img src="/images/pub-stop-14c5.png" />
+
+</div>
+<p>Here are the intermediary representation in the first convolutional layer (after the 1x1):</p>
+<div class="figure">
+<img src="/images/pub-intermediary-af7b.png" />
+
+</div>
+<p>Amazing! The network learned on its own features that matter: we can distinctively see features of the signs in the hidden layers. That said, given this map of features, how this information can be used to update the model for improved performance? E.g. <code>FeatureMap1</code> and <code>FeatureMap5</code> are almost the same. Is that redundancy an assest because it gives more robustness to the model or is it a liability in the sense that the model could do equally good without this redundancy?</p>
+                                            </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

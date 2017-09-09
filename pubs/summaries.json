@@ -48,7 +48,7 @@
     "to_pdf": false,
     "last_update": "2017-08-22",
     "date": "2017-08-03",
-    "version": "b79228f6df08233ed8519cbada46e7d8703059c1210ffb9ab2e2c06f5a2acd55",
+    "version": "a886db81b568fe666be9018066b46ef7a1a80e482e48bfc60738f5897e88ed92",
     "img_credits": "By MartinThoma - Own work, CC0,\nhttps://commons.wikimedia.org/w/index.php?curid=45488162",
     "author": "Pierre-Henry Fröhring",
     "id": "bdc4332b-2d19-4657-9306-b84eaf38639b",
@@ -100,6 +100,26 @@
       "en",
       "computer-vision",
       "udacity"
+    ]
+  },
+  {
+    "email": "contact@pierrehenryfrohring.com",
+    "broadcast": true,
+    "link-citations": true,
+    "img": "orig-mercator-1569.jpg",
+    "css": "",
+    "to_pdf": false,
+    "last_update": "2017-08-23",
+    "date": "2017-08-03",
+    "version": "0029b76b64e5502e23c00020d84a6fb705f9a55e3c3fad14c978724b7680dad6",
+    "img_credits": "Gerardus Mercator \\[Public domain\\], via Wikimedia Commons",
+    "author": "Pierre-Henry Fröhring",
+    "id": "8fe3eb93-2d6f-4b4f-8547-beb21cfef2ac",
+    "abstract": "Notes on Mathematics.",
+    "title": "Mathematics",
+    "sign": "Signature",
+    "tags": [
+      "en"
     ]
   },
   {
@@ -202,6 +222,27 @@
     "sign": "Signature",
     "tags": [
       "en"
+    ]
+  },
+  {
+    "email": "contact@pierrehenryfrohring.com",
+    "broadcast": true,
+    "link-citations": true,
+    "img": "orig-traffic-sign-c831.png",
+    "css": "",
+    "to_pdf": false,
+    "last_update": "2017-09-09",
+    "date": "2017-09-09",
+    "version": "0fa50b1721f72354fade4a791aa73fb0e44505ca78430f616287ee95632dc6b2",
+    "img_credits": "Photo by Adrián Tormo on Unsplash.",
+    "author": "Pierre-Henry Fröhring",
+    "id": "2bfd0a29-d799-4720-9738-f7d956a9383c",
+    "abstract": "A 98.9% accurate classifier over the German Traffic Sign Dataset using\nDeep Learning and TensorFlow.",
+    "title": "Traffic Signs Classifier",
+    "sign": "Signature",
+    "tags": [
+      "en",
+      "project"
     ]
   },
   {
