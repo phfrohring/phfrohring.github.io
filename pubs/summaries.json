@@ -233,11 +233,11 @@
     "to_pdf": false,
     "last_update": "2017-09-09",
     "date": "2017-09-09",
-    "version": "0fa50b1721f72354fade4a791aa73fb0e44505ca78430f616287ee95632dc6b2",
+    "version": "741e92b83c4edd1a99210751a285793b8395e57cbf3b6d06a2de40d252f6ece4",
     "img_credits": "Photo by Adrián Tormo on Unsplash.",
     "author": "Pierre-Henry Fröhring",
     "id": "2bfd0a29-d799-4720-9738-f7d956a9383c",
-    "abstract": "A 98.9% accurate classifier over the German Traffic Sign Dataset using\nDeep Learning and TensorFlow.",
+    "abstract": "A 98.9% accurate classifier over the German Traffic Signs Dataset using\nDeep Learning and TensorFlow.",
     "title": "Traffic Signs Classifier",
     "sign": "Signature",
     "tags": [
