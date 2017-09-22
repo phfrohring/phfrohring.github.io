@@ -76,6 +76,7 @@
                             <li><a href="#own-a-remote-server">Own a remote server</a></li>
                             <li><a href="#nginx">NGINX</a></li>
                             <li><a href="#sending-files-with-sftp">Sending files with SFTP</a></li>
+                            <li><a href="#synchronizing-files">Synchronizing Files</a></li>
                             </ul></li>
                             </ul></li>
                             </ul>
@@ -121,17 +122,17 @@ $ <span class="bu">echo</span> <span class="st">&quot;On Ubuntu, ssh deamon list
 $ <span class="fu">sudo</span> ufw allow ssh <span class="co"># If default port changed to 4444, allow port with: sudo ufw allow 4444/tcp</span>
 $ <span class="fu">sudo</span> ufw allow 80/tcp <span class="co"># Let&#39;s allow HTTP connections b/c webserver.</span>
 $ <span class="fu">sudo</span> ufw allow 443/tcp <span class="co"># for SSL/TLS</span>
-$ <span class="fu">sudo</span> ufw show added 
+$ <span class="fu">sudo</span> ufw show added
 $ <span class="fu">sudo</span> ufw enable <span class="co"># connections are now port filtered by the firewall.</span>
 $ <span class="fu">sudo</span> ufw status <span class="co"># List which ports are allowed.</span>
 $ <span class="bu">echo</span> <span class="st">&quot;May be useful:&quot;</span>
-$ <span class="fu">sudo</span> ufw default deny incoming 
+$ <span class="fu">sudo</span> ufw default deny incoming
 $ <span class="fu">sudo</span> ufw default allow outgoing
 $ <span class="fu">sudo</span> ufw reset</code></pre></div>
 <p>TL,DR: the server needs to know what time it is.</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">sudo</span> dpkg-reconfigure tzdata <span class="co"># GUI to reconfigure tzdata</span>
 $ <span class="fu">sudo</span> apt-get update
-$ <span class="fu">sudo</span> apt-get install ntp <span class="co"># Allow server to agree on time with other servers. </span></code></pre></div>
+$ <span class="fu">sudo</span> apt-get install ntp <span class="co"># Allow server to agree on time with other servers.</span></code></pre></div>
 <h3 id="nginx">NGINX</h3>
 <p>Installing:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">sudo</span> apt-get update
@@ -173,7 +174,7 @@ http {
     }
 }</code></pre>
 <p>Test config file</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">sudo</span> ln -s /etc/nginx/sites-available/a_website /etc/nginx/sites-enabled/ 
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">sudo</span> ln -s /etc/nginx/sites-available/a_website /etc/nginx/sites-enabled/
 $ <span class="ex">nginx</span> -p /etc/nginx/sites-enabled -t -c a_website</code></pre></div>
 <p>Run server</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">nginx</span> -p /etc/nginx/sites-enabled -c a_website</code></pre></div>
@@ -181,6 +182,24 @@ $ <span class="ex">nginx</span> -p /etc/nginx/sites-enabled -t -c a_website</cod
 <h3 id="sending-files-with-sftp">Sending files with SFTP</h3>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">sftp</span> user@host
 $ <span class="ex">put</span> -r localDir <span class="co"># will upload the files you want where you want (check options).</span></code></pre></div>
+<h3 id="synchronizing-files">Synchronizing Files</h3>
+<ul>
+<li>C1 ≡ Computer 1</li>
+<li>C2 ≡ Computer 2</li>
+<li>dir ≡ Directory to synchronize across C1 and C2.</li>
+<li>Assume dir exists in C1 i.e. C1.dir exists.</li>
+<li>install <code>unison</code> on C1 and C2.</li>
+<li>From C1:
+<ul>
+<li>check that C1 and C2 run the same version of unison.</li>
+<li><code>$ unison -version</code></li>
+<li><code>$ ssh «username@ip» unison -version</code></li>
+<li>Test that you can connect the local and remote paths:</li>
+<li><code>unison -testServer /abs/path/test_dir ssh://«username@ip»//abs/path/test_dir</code></li>
+<li>Then, synchronize the directories:</li>
+<li><code>unison /abs/path/test_dir ssh://«username@ip»//abs/path/test_dir</code></li>
+</ul></li>
+</ul>
                                             </div>
                 </div>
             </div>

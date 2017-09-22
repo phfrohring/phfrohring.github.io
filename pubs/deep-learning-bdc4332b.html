@@ -122,11 +122,16 @@
                             <li><a href="#dying-relus">Dying ReLUs</a></li>
                             <li><a href="#exploding-gradients-in-rnns">Exploding gradients in RNNs</a></li>
                             </ul></li>
+                            <li><a href="#transfer-learning">Transfer Learning</a><ul>
+                            <li><a href="#starting-points">Starting Points</a></li>
+                            </ul></li>
                             <li><a href="#implementation">Implementation</a><ul>
                             <li><a href="#tensorflow">TensorFlow</a><ul>
                             <li><a href="#hello-world">Hello World</a></li>
                             </ul></li>
+                            <li><a href="#keras">Keras</a></li>
                             </ul></li>
+                            <li><a href="#define-the-computational-graph-g-here.">Define the computational graph G here.</a></li>
                             <li><a href="#questions">Questions:</a></li>
                             <li><a href="#resources">Resources</a></li>
                             <li><a href="#bibliography">Bibliography</a></li>
@@ -435,6 +440,17 @@ dW <span class="op">=</span> np.outer(z <span class="op">&gt;</span> <span class
 <p>See: this <a href="https://medium.com/@karpathy/yes-you-should-understand-backprop-e2f06eab496b">post</a>.</p>
 <p>The gradient signal going backwards in time through all the hidden states is always being multiplied by the same matrix.</p>
 <p>What happens when you take one number a and start multiplying it by some other number b (i.e. a<em>b</em>b<em>b</em>b<em>b</em>b…)? This sequence either goes to zero if |b| &lt; 1, or explodes to infinity when |b|&gt;1. The same thing happens in the backward pass of an RNN, except b is a matrix and not just a number, so we have to reason about its largest eigenvalue instead.</p>
+<h1 id="transfer-learning">Transfer Learning</h1>
+<p>If training a network is expensive then it might be interesting to re-purpose an existing one.</p>
+<p>If small and similar data sets then feature extraction ≡ keep most of the existing network and just retrain the end of it.</p>
+<p>If large and similar then finetuning ≡ replace the end of the network and retrain all of it but starting from existing values instead of random ones.</p>
+<h2 id="starting-points">Starting Points</h2>
+<ul>
+<li>VGG</li>
+<li>AlexNet</li>
+<li>GoogLeNet</li>
+<li>ResNet</li>
+</ul>
 <h1 id="implementation">Implementation</h1>
 <h2 id="tensorflow">TensorFlow</h2>
 <h3 id="hello-world">Hello World</h3>
@@ -448,14 +464,61 @@ hello_constant <span class="op">=</span> tf.constant(<span class="st">&#39;Hello
     <span class="bu">print</span>(output)</code></pre></div>
 <div style="white-space: pre-line;">Data is encapsulated into… tensors.
 A session’s job is to map the defined computation to the hardware.</div>
+<p>```python</p>
+<p>import tensorflow as tf</p>
+<h2 id="keras">Keras</h2>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="co"># Load Data</span>
+<span class="im">import</span> pickle
+<span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;small_train_traffic.p&#39;</span>, mode<span class="op">=</span><span class="st">&#39;rb&#39;</span>) <span class="im">as</span> f:
+    data <span class="op">=</span> pickle.load(f)
+X_train, y_train <span class="op">=</span> data[<span class="st">&#39;features&#39;</span>], data[<span class="st">&#39;labels&#39;</span>]
+
+<span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;small_test_traffic.p&#39;</span>, <span class="st">&#39;rb&#39;</span>) <span class="im">as</span> f:
+    data_test <span class="op">=</span> pickle.load(f)
+X_test, y_test <span class="op">=</span> data_test[<span class="st">&#39;features&#39;</span>], data_test[<span class="st">&#39;labels&#39;</span>]
+
+<span class="co"># Preprocess Data</span>
+<span class="im">import</span> numpy <span class="im">as</span> np
+X_normalized <span class="op">=</span> np.array(X_train <span class="op">/</span> <span class="fl">255.0</span> <span class="op">-</span> <span class="fl">0.5</span>)
+<span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelBinarizer
+label_binarizer <span class="op">=</span> LabelBinarizer()
+y_one_hot <span class="op">=</span> label_binarizer.fit_transform(y_train)
+
+X_normalized_test <span class="op">=</span> np.array(X_test <span class="op">/</span> <span class="fl">255.0</span> <span class="op">-</span> <span class="fl">0.5</span> )
+y_one_hot_test <span class="op">=</span> label_binarizer.fit_transform(y_test)
+
+<span class="co"># Build Model</span>
 <span class="im">import</span> tensorflow <span class="im">as</span> tf
+tf.python.control_flow_ops <span class="op">=</span> tf
+<span class="im">from</span> keras.models <span class="im">import</span> Sequential
+<span class="im">from</span> keras.layers.core <span class="im">import</span> Dense, Activation, Flatten, Dropout
+<span class="im">from</span> keras.layers.convolutional <span class="im">import</span> Convolution2D
+<span class="im">from</span> keras.layers.pooling <span class="im">import</span> MaxPooling2D
 
-<span class="co"># Define the computational graph G here.</span>
+model <span class="op">=</span> Sequential()
+model.add(Convolution2D(<span class="dv">32</span>, <span class="dv">3</span>, <span class="dv">3</span>, input_shape<span class="op">=</span>(<span class="dv">32</span>, <span class="dv">32</span>, <span class="dv">3</span>)))
+model.add(MaxPooling2D(pool_size<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">2</span>)))
+model.add(Dropout(<span class="fl">0.5</span>))
+model.add(Activation(<span class="st">&#39;relu&#39;</span>))
+model.add(Flatten())
+model.add(Dense(<span class="dv">128</span>))
+model.add(Activation(<span class="st">&#39;relu&#39;</span>))
+model.add(Dense(<span class="dv">5</span>))
+model.add(Activation(<span class="st">&#39;softmax&#39;</span>))
+model.<span class="bu">compile</span>(<span class="st">&#39;adam&#39;</span>, <span class="st">&#39;categorical_crossentropy&#39;</span>, [<span class="st">&#39;accuracy&#39;</span>])
 
-<span class="cf">with</span> tf.Session() <span class="im">as</span> sess:
-    <span class="co"># Execute G on some hardware here...</span>
-    <span class="co"># ... and get the result back.</span></code></pre></div>
+<span class="co"># Train Model Over Data</span>
+history <span class="op">=</span> model.fit(X_normalized, y_one_hot, nb_epoch<span class="op">=</span><span class="dv">3</span>, validation_split<span class="op">=</span><span class="fl">0.2</span>)
+
+loss_value, metrics <span class="op">=</span> model.evaluate(X_test,y_test)
+
+<span class="cf">for</span> metric_i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(model.metrics_names)):
+    metric_name <span class="op">=</span> model.metrics_names[metric_i]
+    metric_value <span class="op">=</span> metrics[metric_i]
+    <span class="bu">print</span>(<span class="st">&#39;</span><span class="sc">{}</span><span class="st">: </span><span class="sc">{}</span><span class="st">&#39;</span>.<span class="bu">format</span>(metric_name, metric_value))</code></pre></div>
+<h1 id="define-the-computational-graph-g-here.">Define the computational graph G here.</h1>
+<p>with tf.Session() as sess: # Execute G on some hardware here… # … and get the result back. ```</p>
 <div style="white-space: pre-line;">G can define free variable that take values at run time i.e. G ≡ G(x,y,…)</div>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
 <span class="im">import</span> tensorflow <span class="im">as</span> tf
