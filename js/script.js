@@ -1,9 +1,8 @@
-
 (function(){
     'use strict'
 
     var publications_dir = '/pubs'
-    var max_abtract_len = 120
+    var max_abtract_len = 240
     var search_box_id = 'search_box'
     var summary_tag_class = 'summary-tag'
 

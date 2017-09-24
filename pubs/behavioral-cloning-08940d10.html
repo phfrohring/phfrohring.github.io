@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Pierre-Henry Fröhring</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+                <link rel="icon" type="image/png" href="/images/favicon.png"/>
+                    </head>
+
+    <body>
+        <div class="top-wrapper">
+            <header class="top-header" title="Photo by Priscilla Du Preez on Unsplash" style="background-image: url(/images/header-orig-behavioral-cloning-4c5a.jpg);background-size: cover; background-position: center;"></header>
+
+            <div class="columns_1">
+                <nav class="navigation">
+                    <ul class="list_of-predifined_publications">
+                        <li class="predefined_publication"><a href="/pubs/curriculum-vitae-c5566488.html">CV</a></li>
+                        <li class="predefined_publication"><a href="/">Search</a></li>
+                    </ul>
+                    <input class="card search_box" type="text" id="search_box" placeholder="some words   tag:some_tag">
+                </nav>
+
+                <div class="content">
+                    <div class="publication-wrapper">
+                                                <header>
+                            <h1 class="title">Behavioral Cloning</h1>
+                                                        <p class="abstract">Where a deep learning Keras model learn how to steer a car by learning by examples. <a href="https://github.com/phfrohring/behavioral-cloning">Associated code</a>.</p>
+                                                                                                                <p class="date">2017-07-27</p>
+                                                                                                                      <p class="author"><a href="mailto:contact@pierrehenryfrohring.com">Pierre-Henry Fröhring</a></p>
+                                                                                  </header>
+                                                                        <nav id="TOC">
+                            <ul>
+                            <li><a href="#introduction">Introduction</a></li>
+                            <li><a href="#running-the-model">Running the model</a></li>
+                            <li><a href="#model-architecture">Model Architecture</a></li>
+                            <li><a href="#training-strategy">Training Strategy</a></li>
+                            <li><a href="#discussion">Discussion</a></li>
+                            <li><a href="#conclusion">Conclusion</a></li>
+                            </ul>
+                        </nav>
+                                                <h1 id="introduction">Introduction</h1>
+<p>For a car to drive itself, it must have a way to steer its way and stay on track. Using a simulator and <a href="https://keras.io">Keras</a>, we trained a convolutional network described in the NVIDIA paper: “<a href="http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf">End to End Learning for Self-Driving Cars</a>” to predict steering angles from images captured by cameras on the simulated car.</p>
+<p>The resulting video below shows the simulated car steering its way on the training track:</p>
+<div style="width: 100%; height: 0px; position: relative; padding-bottom: 50.000%;">
+<iframe src="https://streamable.com/s/mawj0/aulqrc" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute;">
+</iframe>
+</div>
+<h1 id="running-the-model">Running the model</h1>
+<p>Launch the Udacity simulator, then:</p>
+<pre><code>$ source activate carnd-term1
+$ python drive.py model.h5</code></pre>
+<h1 id="model-architecture">Model Architecture</h1>
+<p>The model chosen is described in the NVIDIA paper: “<a href="http://images.nvidia.com/content/tegra/automotive/images/pub-2016/solutions/pdf/end-to-end-dl-using-px.pdf">End to End Learning for Self-Driving Cars</a>”.</p>
+<p>It exactly applies to our use-case:</p>
+<blockquote>
+<p>We trained a convolutional neural network (CNN) to map raw pixels from a single front-facing camera directly to steering commands. […] The system automatically learns internal representations of the necessary processing steps such as detecting useful road features with only the human steering angle as the training signal.</p>
+</blockquote>
+<div class="figure">
+<img src="/images/pub-network-7a13.png" />
+
+</div>
+<p>The only difference we introduced with regards to the NVIDIA architecture is that we use an input layer of depth 1 instead of 3: we graycale the images.</p>
+<p>An Adam optimizer is used with a learning rate of <code>10^-4</code>, empirically determined.</p>
+<h1 id="training-strategy">Training Strategy</h1>
+<p>We used a generator to load data as needed when training to avoid memory exhaustion.</p>
+<p>Each image is first vertically cropped to avoid the model to adapt to unnecessary details like the sky, trees on far away hills or the car itself.</p>
+<div class="figure">
+<img src="/images/pub-crop-1af1.png" />
+
+</div>
+<p>Since the samples are 320px wide and that the NVIDIA model accepts 200px wide samples, we crop horizontally and randomly the samples:</p>
+<div class="figure">
+<img src="/images/pub-horizontal-crop-c02f.png" />
+
+</div>
+<p>To a random horizontal cropped images is associated an empirically determined correction factor proportional to the horizontal shift. It helps adding diversity in the data set and thus avoiding bias, going from this distribution of angles:</p>
+<div class="figure">
+<img src="/images/pub-dist-08b2.png" />
+
+</div>
+<p>to this distribution:</p>
+<div class="figure">
+<img src="/images/pub-fixed-dist-8262.png" />
+
+</div>
+<p>Each images are gray-scaled to divide the quantity of data to process by 3 without any noticeable loss in performance:</p>
+<div class="figure">
+<img src="/images/pub-grayscale-1e91.png" />
+
+</div>
+<p>Each image is then scaled to match the expected dimensions of <code>66x200</code> by the NVIDIA model:</p>
+<div class="figure">
+<img src="/images/pub-scale-de39.png" />
+
+</div>
+<p>To avoid an angle bias, we flip all images so that the sum of all angles amount to 0:</p>
+<div class="figure">
+<img src="/images/pub-flip-6031.png" />
+
+</div>
+<p>This last step augments the data set by a factor of 2.</p>
+<p>In order to augment the data set, we used the side cameras of the simulated car:</p>
+<div class="figure">
+<img src="/images/pub-left_center_right-d7f1.png" />
+
+</div>
+<p>We empirically determined an angle correction factor of ±0.15 for the left and right samples. It helps the car adapt better to curves and augments the data set by a factor of 3.</p>
+<p>Because the car still exhibited misbehaviors, we recorded recovery procedures to teach it how to go back to the center of the track. We positioned the car close to borders, steered away from them and recorded the maneuver.</p>
+<p>Parameters that we needed to empirically determined can be found in the <code>parameters.py</code> file:</p>
+<pre><code>correction = 0.15
+params = {
+    &#39;correction&#39;: correction,
+    &#39;crop_y_top&#39;: 62, # px
+    &#39;crop_y_bottom&#39;: 50, # px
+    &#39;angle_interval&#39;: correction + 0.05,
+    &#39;trans_interval&#39;: 2*60, # px
+    &#39;angle_per_px&#39;: -0.008,
+    &#39;data_generation_factor&#39;: 6,
+    &#39;resize_output&#39;: (66, 200),
+    &#39;learning_rate&#39;: 0.0001,
+    &#39;nb_epoch&#39;: 9,
+    &#39;batch_size&#39;: 32,
+    &#39;data&#39;: [
+        &#39;./data/udacity&#39;,
+        &#39;./data/left_turn_without_border_1&#39;,
+        &#39;./data/left_turn_without_border_2&#39;,
+        &#39;./data/left_turn_without_border_3&#39;,
+        &#39;./data/left_turn_without_border_4&#39;,
+        &#39;./data/sharp_turn_right_1&#39;,
+        &#39;./data/recovery_bridge_1&#39;,
+        &#39;./data/recovery_left_turn_without_border_1&#39;,
+        &#39;./data/recovery_left_turn_without_border_2&#39;
+    ],
+    &#39;model_path&#39;: &#39;model.h5&#39;
+}</code></pre>
+<h1 id="discussion">Discussion</h1>
+<p>The output of the model could be smoothed. It would probably make the car go faster in the simulation and certainly avoid passengers a good headache.</p>
+<p>The model does not generalize to the second track: adding dropout layers was ineffective. More data would probably solve the problem: with 52k images in the training set and 10k images in the validation set, we could probably add more of both. The hope is to make the network to isolate road features more accurately. A way to test this may be to compare intermediary representations across data addition/augmentations.</p>
+<p>Renting GPUs from AWS turned out to be surprisingly expensive: investing in a GPU would probably turn out to be more interesting over a couple of month of experimentations.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Most of the work was done exploring, manipulating and augmenting the data set, leaving out the model. This choice was motivated by the fact that the NVIDIA model worked on its data set. In a sense, we experimented to find the data set upon which the NVIDIA team trained its model, or one that was close enough for the model to give acceptable results.</p>
+<p>We did not use any sophisticated tool to shape the data set: basic knowledge of statistics, intuition and lots of trials and errors. Given a model, maybe are there ways to characterize appropriate data sets? This would probably reduce the amount of trial and errors to be done.</p>
+<p>This model, while encouraging, is of course far from being practically usable. One important concern being: what happens if a deer crosses the road?</p>
+                                            </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

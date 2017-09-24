@@ -23,6 +23,27 @@
     "email": "contact@pierrehenryfrohring.com",
     "broadcast": true,
     "link-citations": true,
+    "img": "orig-behavioral-cloning-4c5a.jpg",
+    "css": "",
+    "to_pdf": false,
+    "last_update": "2017-09-24",
+    "date": "2017-07-27",
+    "version": "5ede4470b843389ae0e4a2f3083a34bf20e83da4d90c05c050833e4117db898f",
+    "img_credits": "Photo by Priscilla Du Preez on Unsplash",
+    "author": "Pierre-Henry Fröhring",
+    "id": "08940d10-2c87-41cd-bc08-881929f4d868",
+    "abstract": "Where a deep learning Keras model learn how to steer a car by learning\nby examples.\n<a href=\"https://github.com/phfrohring/behavioral-cloning\">Associated\ncode</a>.",
+    "title": "Behavioral Cloning",
+    "sign": "Signature",
+    "tags": [
+      "en",
+      "project"
+    ]
+  },
+  {
+    "email": "contact@pierrehenryfrohring.com",
+    "broadcast": true,
+    "link-citations": true,
     "img": "orig-blockchain-2972.jpg",
     "css": "",
     "to_pdf": false,
