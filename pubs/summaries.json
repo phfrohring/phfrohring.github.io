@@ -28,11 +28,11 @@
     "to_pdf": false,
     "last_update": "2017-09-24",
     "date": "2017-07-27",
-    "version": "5ede4470b843389ae0e4a2f3083a34bf20e83da4d90c05c050833e4117db898f",
+    "version": "233653d23598ad2cbe9b253ea52888c79e8532c37d288493831c56bb43245258",
     "img_credits": "Photo by Priscilla Du Preez on Unsplash",
     "author": "Pierre-Henry Fröhring",
     "id": "08940d10-2c87-41cd-bc08-881929f4d868",
-    "abstract": "Where a deep learning Keras model learn how to steer a car by learning\nby examples.\n<a href=\"https://github.com/phfrohring/behavioral-cloning\">Associated\ncode</a>.",
+    "abstract": "Where a deep learning Keras model learns how to steer a car by learning\nby examples.\n<a href=\"https://github.com/phfrohring/behavioral-cloning\">Associated\ncode</a>.",
     "title": "Behavioral Cloning",
     "sign": "Signature",
     "tags": [
@@ -55,6 +55,26 @@
     "id": "51942231-0c7b-4abd-99c7-bcbecd2997ba",
     "abstract": "Money and Bitcoin. BitCoin ≈ Tally Stick. Bitcoin is a decentralized\nconsensus over an append only ledger of blocks of transactions a.k.a.\nthe Blockchain.",
     "title": "Bitcoin",
+    "sign": "Signature",
+    "tags": [
+      "en"
+    ]
+  },
+  {
+    "email": "contact@pierrehenryfrohring.com",
+    "broadcast": true,
+    "link-citations": true,
+    "img": "orig-computer-vision-0881.jpg",
+    "css": "",
+    "to_pdf": false,
+    "last_update": "2017-09-24",
+    "date": "2017-07-27",
+    "version": "dd62eccc6b5b640d211fe0c0bab5a1dd352d9752aba517c8ef28671609aaeed6",
+    "img_credits": "Found at:\nhttps://hayo.io/under\\_development/wp-content/uploads/2017/01/thumbnail2-1080x675.jpg",
+    "author": "Pierre-Henry Fröhring",
+    "id": "1319272c-c8bd-41a5-b07c-ca10a41fee0d",
+    "abstract": "",
+    "title": "Computer Vision",
     "sign": "Signature",
     "tags": [
       "en"
@@ -152,7 +172,7 @@
     "to_pdf": true,
     "last_update": "2017-08-02",
     "date": "2017-07-24",
-    "version": "617e6a94b3a4232b07b2aec48d2e696799ef8e979ea695905c46cbc4b3223c1e",
+    "version": "af0dfc6a2937300d5afeb10b9de3adf7aeb7849ac8fcee403669b4b24be9ae93",
     "img_credits": "Photo by Will Fuller on Unsplash.",
     "author": "Pierre-Henry Fröhring",
     "id": "07a6caad-6fd7-44c9-93ca-949b2c2cf7ea",
@@ -173,7 +193,7 @@
     "to_pdf": true,
     "last_update": "2017-08-2",
     "date": "2017-07-24",
-    "version": "8783ab2160d351868acb1b2bd59c2329c7b59d53aaa63dbcffb3d1d210d84c11",
+    "version": "8a47c00704ca2f95d307b60912cb35e80cf71248941ca71a6ed186946573ee64",
     "img_credits": "Photo by Will Fuller on Unsplash.",
     "author": "Pierre-Henry Fröhring",
     "id": "c5566488-fb41-4554-8650-4eadfe570391",
