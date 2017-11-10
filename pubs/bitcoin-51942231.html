@@ -40,7 +40,8 @@
                                                                         <nav id="TOC">
                             <ul>
                             <li><a href="#notations">Notations</a></li>
-                            <li><a href="#money">Money</a><ul>
+                            <li><a href="#money">Money</a></li>
+                            <li><a href="#currency">Currency</a><ul>
                             <li><a href="#a-necessary-intermediary">A necessary intermediary</a></li>
                             <li><a href="#necessary-properties">Necessary properties</a></li>
                             <li><a href="#candidates">Candidates</a><ul>
@@ -50,9 +51,9 @@
                             </ul></li>
                             </ul></li>
                             <li><a href="#bitcoin-dencentralized-consensus">BitCoin : Dencentralized Consensus</a><ul>
-                            <li><a href="#crypo-101">Crypo 101</a><ul>
-                            <li><a href="#merkle-tree">Merkle Tree</a></li>
-                            </ul></li>
+                            <li><a href="#double-spending-attacks">Double Spending Attacks</a></li>
+                            <li><a href="#bizantine-generals-problem">Bizantine Generals Problem</a></li>
+                            <li><a href="#crypo-101">Crypo 101</a></li>
                             <li><a href="#transaction">Transaction</a><ul>
                             <li><a href="#pay-to-publickeyhash">Pay-To-PublicKeyHash</a></li>
                             <li><a href="#op_checkmultisig">OP_CHECKMULTISIG</a></li>
@@ -68,10 +69,10 @@
                             <li><a href="#joining-the-network">Joining the network</a></li>
                             <li><a href="#propagating-tx">Propagating Tx</a></li>
                             <li><a href="#propagating-blocks">Propagating Blocks</a></li>
-                            <li><a href="#limits">Limits</a></li>
                             <li><a href="#upgrading-bitcoin">Upgrading BitCoin</a></li>
                             </ul></li>
                             <li><a href="#people-using-bitcoin">People using BitCoin</a><ul>
+                            <li><a href="#keys-management">Keys Management</a></li>
                             <li><a href="#agreements">Agreements</a></li>
                             <li><a href="#in-practice">In practice</a></li>
                             <li><a href="#currency-exchange-markets">Currency Exchange Markets</a></li>
@@ -86,12 +87,17 @@
                             <li><a href="#asic-resistant-puzzles">ASIC resistant puzzles</a></li>
                             <li><a href="#proof-of-usefulwork">Proof-Of-UsefulWork</a></li>
                             <li><a href="#nonoutsourceable-puzzles">Nonoutsourceable puzzles</a></li>
-                            <li><a href="#virtual-mining">Virtual Mining</a></li>
+                            <li><a href="#alternative-mining">Alternative Mining</a></li>
                             </ul></li>
                             <li><a href="#built-on-bitcoin">Built on BitCoin</a></li>
                             <li><a href="#altcoins">Altcoins</a></li>
-                            <li><a href="#future-of-bitcoin">Future of BitCoin?</a></li>
+                            <li><a href="#future-of-bitcoin">Future of BitCoin?</a><ul>
+                            <li><a href="#smart-property">Smart Property</a></li>
+                            <li><a href="#use-cases">Use cases</a></li>
+                            </ul></li>
                             <li><a href="#what-to-decentralize">What to decentralize?</a></li>
+                            <li><a href="#fundamental-problems-of-bitcoin-security">Fundamental Problems Of BitCoin Security ?</a></li>
+                            <li><a href="#who-is-who">Who Is Who</a></li>
                             </ul></li>
                             <li><a href="#references">References</a></li>
                             </ul>
@@ -117,14 +123,17 @@ Let f:A B … → C then f a:B … → C
 x // y ≡ integer division of x by y
 ‖x y‖ ≡ distance between x and y
 𝔽 ≡ a <a href="https://en.wikipedia.org/wiki/Field_(mathematics)">field</a>
-ℚ ≡ rational numbers</div>
+ℚ ≡ rational numbers
+A ⇒ B ≡ If A then B
+A ⇗ B ≡ If A then there are more chances for B to be true</div>
 <h1 id="money">Money</h1>
-<h2 id="a-necessary-intermediary">A necessary intermediary</h2>
 <ul>
-<li>Barter does not scale: if <span class="math inline">N</span> ≠ products and barter then number of exchange ratios is of the magnitude of <span class="math inline">\binom{N}{2} = \frac{N(N-1)}{2}</span>. E.g. bread for bread ratio is 1:1, chicken to bread: 1:5, bread for whatever, …</li>
-<li>If intermediary <span class="math inline">I</span> then exchange ratios are of the order of <span class="math inline">N</span>. E.g. bread to coin ratio: 1:1, chicken to coin ratio: 1:10, …</li>
-<li>⇒ if lots of ≠ products then at least one intermediary becomes necessary else explosion of exchange ratios which is impractical.</li>
+<li>Plato: Money is a convention.</li>
+<li>Christ: Money is an aspect of the state: “Give back to Caesar what is Caesar’s and to God what is God’s.”</li>
 </ul>
+<h1 id="currency">Currency</h1>
+<h2 id="a-necessary-intermediary">A necessary intermediary</h2>
+<p>source_id: 6a1d2dc3-d2b5-48f5-9979-c7b6560a2c32</p>
 <h2 id="necessary-properties">Necessary properties</h2>
 <ul>
 <li><strong>Countable</strong>: If we could not count money then exchange ratios would be meaningless: money must be countable.</li>
@@ -133,7 +142,8 @@ x // y ≡ integer division of x by y
 <li><strong>Unforgeable</strong>: If someone could produce money at will w/o matching value then it would be equivalent to a theft: this guy could claim goods he did not produce matching value for. One could buy countries with a enough printing presses.</li>
 <li><strong>Durable</strong>: Who wants dollar bills that evaporate after a few hours?</li>
 <li><strong>Uniform</strong>: If a dollar in Texas was different from a follar in New York then a lot of confusion would obviously ensue.</li>
-<li><strong>Fungible</strong>: The value of a 1 dollar bill should always be equal to the value of an other 1 dollar bill at any given time.</li>
+<li><strong>Fungible</strong>: The value of a 1 dollar bill should always be equal to the value of an other 1 dollar bill whomever has possession of it.</li>
+<li><strong>Store Of Value</strong>: If it does not store value, how could it be useful besides for speculation?</li>
 <li><strong>Maybe others</strong>: Please, let me know if I missed something.</li>
 </ul>
 <h2 id="candidates">Candidates</h2>
@@ -151,36 +161,53 @@ x // y ≡ integer division of x by y
 <h3 id="bitcoin">BitCoin</h3>
 <p>□</p>
 <h1 id="bitcoin-dencentralized-consensus">BitCoin : Dencentralized Consensus</h1>
+<h2 id="double-spending-attacks">Double Spending Attacks</h2>
+<dl>
+<dt>Double Spending Attacks</dt>
+<dd><p>The risk that a digital currency can be spent twice. Double-spending is a problem unique to digital currencies because digital information can be reproduced relatively easily. You cannot double spend a 10$ bill.</p>
+</dd>
+</dl>
+<h2 id="bizantine-generals-problem">Bizantine Generals Problem</h2>
+<dl>
+<dt>Bizantine Generals Problem<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></dt>
+<dd><p>Reliable computer systems must handle malfunctioning components that give conflicting information to different parts of the system. This situation can be expressed abstractly in terms of a group of generals of the Byzantine army camped with their troops around an enemy city. Communicating only by messenger, the generals must agree upon a common battle plan. However, one or more of them may be traitors who will try to confuse the others. The problem is to find an algorithm to ensure that the loyal generals will reach agreement. It is shown that, using only oral messages, this problem is solvable if and only if more than two-thirds of the generals are loyal; so a single traitor can confound two loyal generals. With unforgeable written messages, the problem is solvable for any number of generals and possible traitors. Applications of the solutions to reliable computer systems are then discussed.</p>
+</dd>
+</dl>
 <h2 id="crypo-101">Crypo 101</h2>
+<p><em>Hash</em></p>
 <ul>
-<li>Hash ≡
+<li>hash: s:String → s’:String such that:
 <ul>
-<li>String Int → String</li>
-<li>length hash s i = i</li>
-<li>s,s’:String, s ≠ s’, P(hash s i = hash s’ i) ~ 0</li>
-<li>‘r:Seed, s:String, P(hash rs i ⊢ s) ~ 0’ ≡ PuzzleFriendly</li>
-<li>Fast</li>
+<li>s’ is of fixed length</li>
+<li>s ↦ s’ is fast</li>
+<li>It’s hard to guess s from s’</li>
 </ul></li>
-<li>Commitment ≡ commit verify
+<li>If s belongs to a set vulnerable to brut force attacks then:
+<ul>
+<li>‘r:Seed, s:String, P(hash rs i ⊢ s) ~ 0’ ≡ PuzzleFriendly</li>
+</ul></li>
+</ul>
+<p><em>Commitment</em></p>
 <ul>
 <li>commit : msg → commitment key</li>
 <li>verify : msg commitment key → Boolean</li>
 <li>P(com ⊢ msg) ~ 0</li>
 <li>P(com ⊢ msg’, verify(com, msg’,key) = true) ~ 0</li>
-</ul></li>
-<li>Pointer ≡ A piece of data that can be exchanged for an other one.</li>
-<li>HashPointer ≡ A piece of data that can be exchanged for an other one and is the hash of it.</li>
-<li>DigitalSignatures ≡
+</ul>
+<p><em>Pointer</em></p>
+<p>A piece of data that can be exchanged for an other one.</p>
+<p><em>HashPointer</em></p>
+<p>A piece of data that can be exchanged for a single other one.</p>
+<p><em>DigitalSignatures</em></p>
 <ul>
 <li>identity : → secret-key public-key</li>
 <li>sign : doc secret-key → signature</li>
 <li>verify : doc signature pub-key → Boolean</li>
 <li>P({ {doc sig pub-key} } doc’ ⊢ verify(doc’ forged-sig pub-key) = true) ~ 0</li>
-</ul></li>
-<li>DistributedConsensus ≡ Algorithm that when it terminates, guaranties that correct nodes all agree on a value proposed by a correct node.</li>
 </ul>
-<h3 id="merkle-tree">Merkle Tree</h3>
-<p><a href="https://en.wikipedia.org/wiki/Merkle_tree">Wikipedia</a></p>
+<p><em>DistributedConsensus</em></p>
+<p>Algorithm that when it terminates, guaranties that all correct nodes agree on a value proposed by a correct node.</p>
+<p><em><a href="https://en.wikipedia.org/wiki/Merkle_tree">Merkle Tree</a></em></p>
 <h2 id="transaction">Transaction</h2>
 <p>Transaction ≡ Tx ≡</p>
 <ul>
@@ -213,9 +240,10 @@ x // y ≡ integer division of x by y
 <li>stack: «sig» «B pub key» «B pub key»</li>
 <li>stack: «sig» «B pub key» «B pub key hash»</li>
 <li>stack: «sig» «B pub key» «B pub key hash» «B pub key hash»</li>
+<li>comment: “B looks like the guy these coins where intended to.”</li>
 <li>stack: «sig» «B pub key»</li>
 <li>stack: True</li>
-<li>Conclusion: B has proven that he is the legit receiver of the coins send by A. He can now spend them.</li>
+<li>comment: “B is the guy these coins where intended to.”</li>
 </ul></li>
 </ul>
 <h3 id="op_checkmultisig">OP_CHECKMULTISIG</h3>
@@ -233,15 +261,15 @@ x // y ≡ integer division of x by y
 <h3 id="pay-to-scripthash">Pay-To-ScriptHash</h3>
 <ul>
 <li>scriptPubKey: OP_HASH160 «hash of script» OP_EQUAL</li>
-<li>scriptSig: «sig» ««pubkey» OP_CHECKSIG»</li>
+<li>scriptSig: «sig» ««pubkey» OP_CHECKSIG script»</li>
 <li>scriptValidation execution stack (hypothesis: no errors):
 <ul>
 <li>stack:</li>
 <li>stack: «sig»</li>
-<li>stack: «sig» ««pubkey» OP_CHECKSIG»</li>
-<li>stack: «sig» ««pubkey» OP_CHECKSIG» «««pubkey» OP_CHECKSIG» hash»</li>
-<li>stack: «sig» ««pubkey» OP_CHECKSIG» «««pubkey» OP_CHECKSIG» hash» «hash of script»</li>
-<li>stack: «sig» «pubkey» OP_CHECKSIG</li>
+<li>stack: «sig» ««pubkey» OP_CHECKSIG script»</li>
+<li>stack: «sig» ««pubkey» OP_CHECKSIG script» «««pubkey» OP_CHECKSIG script» hash»</li>
+<li>stack: «sig» ««pubkey» OP_CHECKSIG script» «««pubkey» OP_CHECKSIG script» hash» «hash of script»</li>
+<li>stack: «sig» «pubkey» OP_CHECKSIG script</li>
 <li>stack: True</li>
 <li>Conclusion: A agreed that a script with a given hash can dispose of its BTC. B provided the corresponding script that ended up challenging the spender to be B. B provided an additional signature and passed the challenge. B can spend A’s BTC.</li>
 <li>Usage: the spender just have to accept a hash to pay.</li>
@@ -249,11 +277,9 @@ x // y ≡ integer division of x by y
 </ul>
 <h3 id="escrow-transactions">Escrow Transactions</h3>
 <ul>
-<li>A wants B to ship X of price x to A.</li>
-<li>A wants to pay B when X is shipped.</li>
-<li>B wants to be paid before X is shipped.</li>
+<li>A wants B to ship X then pay x to B</li>
+<li>B wants A to pay x before X is shipped.</li>
 <li>⇒ Deadlock.</li>
-<li>A wants B to ship X of price x to A.</li>
 <li>A,B,J emit a Multisig A,B,J 2 on x BTC of Alice.</li>
 <li>Case 1
 <ul>
@@ -384,42 +410,27 @@ x // y ≡ integer division of x by y
 <li>Built on longest chain? (else try to fork)</li>
 </ul></li>
 </ul>
-<h3 id="limits">Limits</h3>
-<ul>
-<li>10min avg creation time per block</li>
-<li>≤ 1Mb per block</li>
-<li>≤ 20k signature operations per block</li>
-<li>&gt; 250 bytes per Tx</li>
-<li><p>⇒ 7 Tx/sec. 2k ≤ Visa ≤ 10k, 50 ≤ PayPal ≤ 100</p></li>
-<li>1 signature algorithm ECDSA/P256</li>
-<li>hard-coded hash functions</li>
-<li><p>⇒ Broken after 2040?</p></li>
-<li>100m satoshis per BTC</li>
-<li>≤ 21M BTC</li>
-<li><p>50,25,12.5,… BTC mining reward.</p></li>
-</ul>
 <h3 id="upgrading-bitcoin">Upgrading BitCoin</h3>
 <ul>
 <li>HardFork: Some nodes update the SW others do not ⇒ Network split ⇒ Chain split</li>
 <li>SoftFork: Some nodes just deal w/ stricter protocol so that just a sub case of a more general one: no split. Old nodes will catch up eventually: they can understand the new protocol.</li>
 </ul>
 <h2 id="people-using-bitcoin">People using BitCoin</h2>
-<ul>
-<li>Only thing specific to each user are their keys.</li>
-<li>⇒ How to make them safe and easy to use?</li>
-<li>Local storage?</li>
-<li>Easy to use but not secure.</li>
-<li>Wallet software</li>
-<li>Hot storage | Cold storage : ideally no decypherable link between the two.</li>
-<li>How to transfert coins from hot storage to cold storage?</li>
-<li>Cannot transfert to 1 cold storage address else becomes a target.</li>
-<li>Hierarchical key generation</li>
-<li>Storing secret cold keys: in a locked device (safe, paper, brain, …) &amp; tamperproof device</li>
-<li>Until now: single place of storage ⇒ single point of failure. How to avoid that?</li>
-<li>Split keys using a big prime, random numbers and modulo operations.</li>
-<li>Still have to bring all the secret together ⇒ single point of failure…</li>
-<li>…unless MULTISIG.</li>
-</ul>
+<h3 id="keys-management">Keys Management</h3>
+<dl>
+<dt>Local Storage</dt>
+<dd>≈ wallet
+</dd>
+<dt>Hot|Cold Storage</dt>
+<dd>≈ wallet + bank account. ≠ because with BTC, all addresses are public: targets for attacks.
+</dd>
+<dt>Hierarchical Wallets</dt>
+<dd>Hot|Cold Storage + Public|Private keys generators ⇒ hard to track links between hot and cold storages.
+</dd>
+<dt>Splitting Keys + Multisig</dt>
+<dd>Works like a cold storage with multiple keys that can be joined at a distance.
+</dd>
+</dl>
 <h3 id="agreements">Agreements</h3>
 <ul>
 <li>Agreement on:
@@ -427,8 +438,8 @@ x // y ≡ integer division of x by y
 <li>what makes a Tx valid</li>
 <li>what makes a Block valid</li>
 <li>how BitCoinNode should behave</li>
-<li>BitCoinNetwork protocols</li>
 <li>the blockchain ⇒ who owns what now and past Tx</li>
+<li>BitCoinNetwork protocols</li>
 <li>the value a BTC has i.e. against what it can be exchanged. Also, Tinkerbell effect.</li>
 </ul></li>
 <li>All of the above are potential failure points.</li>
@@ -457,7 +468,6 @@ x // y ≡ integer division of x by y
 <ul>
 <li>Untraceable digital cash defeats government capital controls</li>
 <li>Untraceable digital cash defeats whole classes of law enforcements: cannot “follow the money”! (silk road)</li>
-<li></li>
 </ul>
 <h3 id="in-practice">In practice</h3>
 <ul>
@@ -524,13 +534,34 @@ x // y ≡ integer division of x by y
 <li>Pools lead to centralization</li>
 <li>Vigilante Attack</li>
 </ul>
-<h3 id="virtual-mining">Virtual Mining</h3>
-<ul>
-<li>Proof-Of-Stake</li>
-<li>Proof-Of-Burn</li>
-<li>Proof-Of-Deposit</li>
-<li>Proof-Of-Activity</li>
-</ul>
+<h3 id="alternative-mining">Alternative Mining</h3>
+<dl>
+<dt>Virtual Mining</dt>
+<dd>id: 97ec786a-8ee6-4590-b4e4-92bf3bcde807 source: <a href="https://www.coursera.org/learn/cryptocurrency/lecture/UAFGS/proof-of-stake-virtual-mining">Coursera</a>
+</dd>
+<dd>Why: Keep the mining but reduce cost by removing physical impact of mining and make harder to do a 51% attack. What: “Miners” send BTC to an adress. A winner is chosen at random proportionaly to the amount sent and is rewarded with new BTC. The rest of the BTC is redistributed. How: No physical hardware ⇒ no way to get BTC without buying them first ⇒ increase cost of 51% attack.
+</dd>
+<dt>Proof Of Stake</dt>
+<dd>id: a0aa4a8f-c4a4-496e-93f6-052e9a456fa4 source: <a href="https://www.coursera.org/learn/cryptocurrency/lecture/UAFGS/proof-of-stake-virtual-mining">Coursera</a>
+</dd>
+<dd>A form of virtual mining. Include a “stake” to coins that increases when unused else reset.
+</dd>
+<dt>Proof Of Burn</dt>
+<dd>id: 49d4547b-f3a7-4ba8-b418-136f359d3edd source: <a href="https://www.coursera.org/learn/cryptocurrency/lecture/UAFGS/proof-of-stake-virtual-mining">Coursera</a>
+</dd>
+<dd>A form of virtual mining. If used, coin is destroyed.
+</dd>
+<dt>Proof Of Deposit</dt>
+<dd>id: c38c20d7-ada4-4248-9edc-3e5d5ffbb153 source: <a href="https://www.coursera.org/learn/cryptocurrency/lecture/UAFGS/proof-of-stake-virtual-mining">Coursera</a>
+</dd>
+<dd>A form of virtual mining. Coin cannot be used for some time.
+</dd>
+<dt>Proof Of Activity</dt>
+<dd>id: a641424e-1d74-48aa-80e6-1bf90544e6bc source: <a href="https://www.coursera.org/learn/cryptocurrency/lecture/UAFGS/proof-of-stake-virtual-mining">Coursera</a>
+</dd>
+<dd>A form of virtual mining. You might win if online.
+</dd>
+</dl>
 <h2 id="built-on-bitcoin">Built on BitCoin</h2>
 <ul>
 <li>Proof of knowledge ~ Proof of receipt</li>
@@ -560,16 +591,73 @@ x // y ≡ integer division of x by y
 <li>Sidechains</li>
 </ul>
 <h2 id="future-of-bitcoin">Future of BitCoin?</h2>
+<p>Think about it as: Decentralize X in wrt Y using Z via T</p>
+<h3 id="smart-property">Smart Property</h3>
 <ul>
-<li>Smart property</li>
-<li>Decentralized property ownership</li>
-<li>Crowd funding</li>
-<li>Pay for proof</li>
-<li>Decentralize X in wrt Y using Z via T</li>
+<li>Use a car iff it has a pubkey and you the private key</li>
+<li>Car can change pubkey by coupling with blockchain</li>
+<li>Transfert if ownership: updates car’s pubkey + transfert funds at once.</li>
+<li>No proof that pubkey in the blockchain is the same as the pbkey in the car.</li>
+</ul>
+<h3 id="use-cases">Use cases</h3>
+<ul>
+<li>Purely digital assets</li>
+<li>Stocks, derivatives.</li>
+<li>Centralized markets</li>
 </ul>
 <h2 id="what-to-decentralize">What to decentralize?</h2>
 <ul>
-<li>Security ≡ f(preventive,detective,corrective)</li>
+<li>Security ≡ f(prevention,detection,correction)</li>
+</ul>
+<h2 id="fundamental-problems-of-bitcoin-security">Fundamental Problems Of BitCoin Security ?</h2>
+<ul>
+<li>Introduces software/hardware security problems.</li>
+<li>Private keys should be held safe by humans: humans security problems.</li>
+</ul>
+<h2 id="who-is-who">Who Is Who</h2>
+<ul>
+<li>Investors
+<ul>
+<li>Polychain Capital</li>
+<li>Pantera Capital</li>
+<li>Digital Currency Group</li>
+<li>Fenbushi Capital</li>
+<li>London Trust Media</li>
+<li>Evolve VC</li>
+<li>Naval Ravikant</li>
+<li>Niraj Mehta</li>
+<li>David Dacus</li>
+<li>Roger Ver</li>
+<li>Alan Fairless</li>
+<li>Ben Davenport</li>
+<li>Adam Ludwin</li>
+<li>Ryan Smith</li>
+<li>Erik Voorhees</li>
+<li>Maple Ventures</li>
+<li>Fred Ehrsam</li>
+<li>Vlad Zamfir</li>
+</ul></li>
+<li>CEO:
+<ul>
+<li>Zooko Wilcox</li>
+</ul></li>
+<li>Scientists:
+<ul>
+<li>Emin Gün Sirer</li>
+<li>Joseph Bonneau</li>
+<li>Vitalik Buterin</li>
+<li>Arvind Narayanan</li>
+<li>Edward Felten</li>
+<li>Steven Goldfeder</li>
+<li>Andrew Miller</li>
+<li>Eli Ben-Sasson</li>
+<li>Alessandro Chiesa</li>
+<li>Christina Garman</li>
+<li>Matthew Green</li>
+<li>Ian Miers</li>
+<li>Eran Tromer</li>
+<li>Madars Virza</li>
+</ul></li>
 </ul>
 <h1 id="references" class="unnumbered">References</h1>
 <div id="refs" class="references">
@@ -585,6 +673,12 @@ x // y ≡ integer division of x by y
 <div id="ref-5beb">
 <p>“MEDIEVAL Tally Sticks and How They Worked.” n.d. <em>MEDIEVAL TALLY STICKS AND HOW THEY WORKED</em>. <a href="http://www.coinbooks.org/v20/esylum_v20n29a26.html" class="uri">http://www.coinbooks.org/v20/esylum_v20n29a26.html</a>.</p>
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>source_id: afe168c4-eea1-444a-b074-cb1a66cc4a0e<a href="#fnref1">↩</a></p></li>
+</ol>
 </div>
                                             </div>
                 </div>

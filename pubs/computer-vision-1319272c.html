@@ -70,6 +70,7 @@
                     <div class="publication-wrapper">
                                                 <header>
                             <h1 class="title">Computer Vision</h1>
+                                                        <p class="abstract">Notes on computer vision.</p>
                                                                                                                 <p class="date">2017-07-27</p>
                                                                                                                       <p class="author"><a href="mailto:contact@pierrehenryfrohring.com">Pierre-Henry Fröhring</a></p>
                                                                                   </header>
@@ -106,7 +107,7 @@
 <li>Camera Calibration ≡ Compute Distortion Coefficients.</li>
 <li>Calibrate on about 20 images.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">ny <span class="op">=</span> <span class="dv">7</span> <span class="co"># Number of interior lines.</span>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">ny <span class="op">=</span> <span class="dv">9</span> <span class="co"># Number of interior lines.</span>
 nx <span class="op">=</span> <span class="dv">6</span> <span class="co"># Number of interior points per interior line.</span>
 
 
@@ -169,6 +170,7 @@ ret, corners <span class="op">=</span> cv2.findChessboardCorners(gray, (nx, ny),
 
     warped <span class="op">=</span> cv2.warpPerspective(undist, M, img_size)</code></pre></div>
 <h1 id="edge-detection">Edge Detection</h1>
+<p>Isolate gradients across any given direction.</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">img <span class="op">=</span> cv2.imread(file_name)
 gray <span class="op">=</span> cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 sobelx <span class="op">=</span> cv2.Sobel(gray, cv2.CV_64F, <span class="dv">1</span>, <span class="dv">0</span>,ksize<span class="op">=</span><span class="dv">5</span>) <span class="co"># x direction, Sobel kernel size should be an odd number.</span>
@@ -180,6 +182,63 @@ thresh_min <span class="op">=</span> <span class="dv">20</span>
 thresh_max <span class="op">=</span> <span class="dv">100</span>
 binary[(thresh_min <span class="op">&lt;=</span> scaled_sobel) <span class="op">&amp;</span> (scaled_sobel <span class="op">&lt;=</span> thresh_max)] <span class="op">=</span> <span class="dv">1</span>
 plt.imshow(binary, cmap<span class="op">=</span><span class="st">&#39;gray&#39;</span>)</code></pre></div>
+<p>Test over RGB, HLS and HSV. If varying light conditions then HLS may help isolate this variation in the L channels.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">image <span class="op">=</span> cv2.imread(<span class="st">&#39;test.jpg&#39;</span>)
+thresh <span class="op">=</span> (<span class="dv">180</span>, <span class="dv">255</span>)
+hls <span class="op">=</span> cv2.cvtColor(image, cv2.COLOR_BGR2HLS)
+s <span class="op">=</span> hls[:,:,<span class="dv">2</span>]
+binary <span class="op">=</span> np.zeros_like(s)
+binary[(s <span class="op">&gt;</span> thresh[<span class="dv">0</span>]) <span class="op">&amp;</span> (s <span class="op">&lt;=</span> thresh[<span class="dv">1</span>])] <span class="op">=</span> <span class="dv">1</span></code></pre></div>
+<p>Analyse across gradients and colors spaces then synthesis.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co">#!/usr/bin/env python</span>
+
+<span class="im">import</span> numpy <span class="im">as</span> np
+<span class="im">import</span> cv2
+<span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="im">import</span> matplotlib.image <span class="im">as</span> mpimg
+
+
+image <span class="op">=</span> mpimg.imread(<span class="st">&#39;test_1.jpg&#39;</span>)
+
+<span class="co"># Edit this function to create your own pipeline.</span>
+<span class="kw">def</span> pipeline(img, s_thresh<span class="op">=</span>(<span class="dv">170</span>, <span class="dv">255</span>), thresh_lx<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">100</span>)):
+
+    <span class="co"># Project image into HLS space.</span>
+    hls <span class="op">=</span> cv2.cvtColor(img, cv2.COLOR_RGB2HLS)
+    h_channel <span class="op">=</span> hls[:,:,<span class="dv">0</span>]
+    l_channel <span class="op">=</span> hls[:,:,<span class="dv">1</span>]
+    s_channel <span class="op">=</span> hls[:,:,<span class="dv">2</span>]
+
+    <span class="co"># Threshold s_channel</span>
+    s_binary <span class="op">=</span> np.zeros_like(s_channel)
+    s_binary[(s_thresh[<span class="dv">0</span>] <span class="op">&lt;=</span> s_channel) <span class="op">&amp;</span> (s_channel <span class="op">&lt;=</span> s_thresh[<span class="dv">1</span>])] <span class="op">=</span> <span class="dv">1</span>
+
+    <span class="co"># Threshold x gradient over the l_channel</span>
+    sobel_lx <span class="op">=</span> cv2.Sobel(l_channel, cv2.CV_64F, <span class="dv">1</span>, <span class="dv">0</span>)
+    abs_sobel_lx <span class="op">=</span> np.absolute(sobel_lx)
+    scaled_sobel <span class="op">=</span> np.uint8(<span class="dv">255</span><span class="op">*</span>abs_sobel_lx<span class="op">/</span>np.<span class="bu">max</span>(abs_sobel_lx))
+    sobel_lx_bin <span class="op">=</span> np.zeros_like(scaled_sobel)
+    sobel_lx_bin[(thresh_lx[<span class="dv">0</span>] <span class="op">&lt;=</span> scaled_sobel) <span class="op">&amp;</span> (scaled_sobel <span class="op">&lt;=</span> thresh_lx[<span class="dv">1</span>])] <span class="op">=</span> <span class="dv">1</span>
+
+    <span class="co"># Stack</span>
+    color_binary <span class="op">=</span> np.dstack(( s_binary, sobel_lx_bin, np.zeros_like(l_channel))) <span class="op">*</span> <span class="dv">255</span>
+
+    <span class="cf">return</span> color_binary
+
+result <span class="op">=</span> pipeline(image, s_thresh<span class="op">=</span>(<span class="dv">125</span>, <span class="dv">255</span>), thresh_lx<span class="op">=</span>(<span class="dv">35</span>, <span class="dv">255</span>))
+
+<span class="co"># Plot the result</span>
+f, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">24</span>, <span class="dv">9</span>))
+f.tight_layout()
+
+ax1.imshow(image)
+ax1.set_title(<span class="st">&#39;Original Image&#39;</span>, fontsize<span class="op">=</span><span class="dv">40</span>)
+
+ax2.imshow(result)
+ax2.set_title(<span class="st">&#39;Pipeline Result&#39;</span>, fontsize<span class="op">=</span><span class="dv">40</span>)
+plt.subplots_adjust(left<span class="op">=</span><span class="dv">0</span>., right<span class="op">=</span><span class="dv">1</span>, top<span class="op">=</span><span class="fl">0.9</span>, bottom<span class="op">=</span><span class="dv">0</span>.)
+
+plt.show()</code></pre></div>
                                             </div>
                 </div>
             </div>
